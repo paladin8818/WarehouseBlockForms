@@ -13,7 +13,7 @@ using System.Linq;
 
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models;
-using WarehouseBlockForms.Models.Base;
+using WarehouseBlockForms.Classes;
 
 namespace WarehouseBlockForms.Controllers
 {

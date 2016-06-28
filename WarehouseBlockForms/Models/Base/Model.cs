@@ -9,9 +9,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Data.SqlClient;
 
 using WarehouseBlockForms.Controllers.Base;
+using WarehouseBlockForms.Classes;
 
 namespace WarehouseBlockForms.Models.Base
 {
