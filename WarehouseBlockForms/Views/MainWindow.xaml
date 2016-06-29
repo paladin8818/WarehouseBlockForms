@@ -3,11 +3,69 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WarehouseBlockForms.Views"
+        xmlns:local="clr-namespace:WarehouseBlockForms.Views" 
+        xmlns:local1="clr-namespace:WarehouseBlockForms.Converters"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Склад блок-форм" Height="600" Width="800">
+    <Window.Resources>
+        <local1:TabSizeConverter x:Key="tabSizeConverter"></local1:TabSizeConverter>
+        <Style TargetType="TabItem" x:Key="styleRootTabControl">
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Background" Value="LightGreen"></Setter>
+            <Setter Property="Width">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource tabSizeConverter}">
+                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}" />
+                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}" Path="ActualWidth" />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TabItem" x:Key="styleVerticalTabControl">
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabItem Header="Поступление" Style="{StaticResource styleRootTabControl}">
+                <Frame x:Name="frameSupply" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
+            </TabItem>
+            <TabItem Header="Списание" Style="{StaticResource styleRootTabControl}">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Наличие" Style="{StaticResource styleRootTabControl}">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Ведомости" Style="{StaticResource styleRootTabControl}">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Настройки" Visibility="Collapsed" x:Name="tiSettings" Style="{StaticResource styleRootTabControl}">
+                <Grid Background="#FFE5E5E5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <TabControl TabStripPlacement="Left" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <TabItem Header="Печи" Style="{StaticResource styleVerticalTabControl}">
+                            <Frame x:Name="frameSettingsOven" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
+                        </TabItem>
+                        <TabItem Header="Детали" Style="{StaticResource styleVerticalTabControl}">
+                            <Frame x:Name="frameSettingsDetails" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
+                        </TabItem>
+                        <TabItem Header="Получатели" Style="{StaticResource styleVerticalTabControl}">
+                            <Frame x:Name="frameSettingsRecipients" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
+                        </TabItem>
+                        <TabItem Header="Настройка выгрузки" Style="{StaticResource styleVerticalTabControl}">
+                            <Grid Background="#FFE5E5E5"/>
+                        </TabItem>
+                        <TabItem Header="Резервное копирование" Style="{StaticResource styleVerticalTabControl}">
+                            <Grid Background="#FFE5E5E5"/>
+                        </TabItem>
+                        <TabItem Header="Безопасность" Style="{StaticResource styleVerticalTabControl}">
+                            <Grid Background="#FFE5E5E5"/>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>

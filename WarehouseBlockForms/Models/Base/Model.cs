@@ -12,18 +12,30 @@ using System.Data.SQLite;
 
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Classes;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace WarehouseBlockForms.Models.Base
 {
 	/// <summary>
 	/// Description of Model.
 	/// </summary>
-	public abstract class Model
+	public abstract class Model : INotifyPropertyChanged
 	{
 		public int Id { get; set; }
-		private int LastInsertId { get; set; }
 		
-		protected abstract string prepareSaveQuery ();
+        protected abstract string TableName { get; }
+
+        protected void RaisePropertyChaned (string name, object v)
+        {
+            if(PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected abstract string prepareSaveQuery ();
 		protected abstract string prepareRemoveQuery ();
 		
 		protected abstract Dictionary<string, object> prepareSaveParams();
@@ -37,9 +49,15 @@ namespace WarehouseBlockForms.Models.Base
 			{
 				if(Id == 0) 
 				{
-					Id = LastInsertId;
-					controller().add(this);
+                    int id = lastInsertId();
+					if(id != 0)
+                    {
+                        Id = id;
+                        return controller().add(this);
+                    }
+                    return false;
 				}
+                return true;
 			}
 			return false;
 		}
@@ -84,7 +102,6 @@ namespace WarehouseBlockForms.Models.Base
 		protected bool execQuery (string query,
 		                        Dictionary<string, object> parameters)
 		{
-			query += "; select last_insert_rowid()";
 			SQLiteConnection connection = DataBase.Connect();
 			if(connection == null)
 			{
@@ -94,7 +111,7 @@ namespace WarehouseBlockForms.Models.Base
 			prepareParams(command, parameters);
 			try
 			{
-				LastInsertId = (Int32)command.ExecuteScalar();
+                command.ExecuteNonQuery();
 				return true;
 			}
 			catch (Exception ex) {
@@ -103,6 +120,27 @@ namespace WarehouseBlockForms.Models.Base
 			}
 		}
 		
+        protected int lastInsertId ()
+        {
+            //TODO: кастыль получения id
+            SQLiteConnection connection = DataBase.Connect();
+            if (connection == null)
+            {
+                return 0;
+            }
+            SQLiteCommand command = new SQLiteCommand("select max(id) from " + TableName, connection);
+            try
+            {
+                Int64 id = (Int64)command.ExecuteScalar();
+                return (int)id;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError("Класс Model, строка 129: " + ex.Message);
+                return 0;
+            }
+        }
+
 		public static void prepareParams (SQLiteCommand command,
 		                              Dictionary<string, object> parameters)
 		{

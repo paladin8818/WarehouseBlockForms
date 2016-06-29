@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using WarehouseBlockForms.Classess;
 
 namespace WarehouseBlockForms.Views
 {
@@ -44,14 +32,36 @@ namespace WarehouseBlockForms.Views
             };
             btnOk.Click += delegate
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                Close();
+                openApp();
             };
             btnCancel.Click += delegate
             {
                 Close();
             };
+        }
+
+        private void openApp ()
+        {
+            if(rbtnUserMode.IsChecked == true)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
+            }
+            else
+            {
+                if(tbxPassword.Password == "")
+                {
+                    MessageBox.Show("Пароль не может быть пустым!");
+                    return;
+                }
+                if(PasswordValidate.Validate(tbxPassword.Password))
+                {
+                    MainWindow mainWindow = new MainWindow(true);
+                    mainWindow.Show();
+                    Close();
+                }
+            }
         }
     }
 }

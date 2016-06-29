@@ -14,6 +14,7 @@ using System.Linq;
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models;
 using WarehouseBlockForms.Classes;
+using System.Collections.ObjectModel;
 
 namespace WarehouseBlockForms.Controllers
 {
@@ -23,8 +24,8 @@ namespace WarehouseBlockForms.Controllers
 	public class OvenController : Controller, IController
 	{
 		private static OvenController _instance = null;
-		private List<Oven> _collection;
-		public List<Oven> Collection { 
+		private ObservableCollection<Oven> _collection;
+		public ObservableCollection<Oven> Collection { 
 			get
 			{
 				return _collection;	
@@ -43,7 +44,7 @@ namespace WarehouseBlockForms.Controllers
 		
 		private OvenController()
 		{
-			_collection = new List<Oven>();
+			_collection = new ObservableCollection<Oven>();
 			load();
 		}
 		
@@ -62,12 +63,6 @@ namespace WarehouseBlockForms.Controllers
 				_instance = new OvenController();
 			}
 			return _instance;
-		}
-		
-		public List<Oven> findByName(string name)
-		{
-			name = name.ToLower();
-			return _collection.Where(x => x.Name.ToLower().IndexOf(name) != -1).ToList();
 		}
 		
 		public bool @add<T>(T model)
@@ -108,5 +103,10 @@ namespace WarehouseBlockForms.Controllers
 				return new Dictionary<string, object> ();
 			}
 		}
+
+        public Oven getById (int id)
+        {
+            return _collection.Where(x => x.Id == id).FirstOrDefault();
+        }
 	}
 }

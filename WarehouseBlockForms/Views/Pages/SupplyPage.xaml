@@ -1,0 +1,78 @@
+﻿<Page x:Class="WarehouseBlockForms.Views.Pages.SupplyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WarehouseBlockForms.Views.Pages"
+      xmlns:nud="clr-namespace:eisiWare;assembly=NumericUpDown"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="SupplyPage">
+    <Grid>
+        <Button x:Name="btnAddRow" Content="Добавить запись" VerticalAlignment="Top" HorizontalAlignment="Left" Height="35" Width="150"/>
+        <DataGrid 
+            x:Name="dgSupply"
+            AutoGenerateColumns="False"
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch" 
+            Margin="0, 40, 0, 40">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=RowIndex}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox 
+                                SelectionChanged="ovenSelectionChanged"
+                                Width="150"
+                                ItemsSource="{Binding Path=Ovens}"
+                                SelectedValuePath="Id"
+                                DisplayMemberPath="Name"
+                                IsReadOnly="True"></ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox 
+                                SelectionChanged="detailsSelectionChanged"
+                                Width="150"
+                                ItemsSource="{Binding Path=Details}"
+                                SelectedValuePath="Id"
+                                DisplayMemberPath="Name"
+                                IsReadOnly="True"></ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=VendorCode}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <nud:NumericUpDown Value="{Binding Path=DetailsCount}" MinValue="1"></nud:NumericUpDown>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="removeRecord"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnSaveSupply" Content="Сохранить поступление" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
+    </Grid>
+</Page>

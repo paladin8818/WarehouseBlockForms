@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NumericUpDown">
+      <HintPath>libs\NumericUpDown.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>libs\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -64,7 +67,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\DetailsSaveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OvenSaveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\DetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\OvenPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\RecipientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\SupplyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipientsSaveWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,14 +108,54 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classess\DataBase.cs" />
+    <Compile Include="Classess\FindItem.cs" />
+    <Compile Include="Classess\IniFile.cs" />
     <Compile Include="Classess\Log.cs" />
+    <Compile Include="Classess\PasswordValidate.cs" />
     <Compile Include="Controllers\Base\Controller.cs" />
     <Compile Include="Controllers\Base\IController.cs" />
+    <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\OvenController.cs" />
+    <Compile Include="Controllers\RecipientsController.cs" />
+    <Compile Include="Controllers\SupplyController.cs" />
+    <Compile Include="Controllers\SupplyDetailsController.cs" />
+    <Compile Include="Converters\TabSizeConverter.cs" />
+    <Compile Include="Helpers\SupplyDetailsHelper.cs" />
+    <Compile Include="Helpers\SupplyDetailsHelperCollection.cs" />
     <Compile Include="Models\base\Model.cs" />
+    <Compile Include="Models\Details.cs" />
     <Compile Include="Models\Oven.cs" />
+    <Compile Include="Models\Recipients.cs" />
+    <Compile Include="Models\Supply.cs" />
+    <Compile Include="Models\SupplyDetails.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailsSaveWindow.xaml.cs">
+      <DependentUpon>DetailsSaveWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OvenSaveWindow.xaml.cs">
+      <DependentUpon>OvenSaveWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\DetailsPage.xaml.cs">
+      <DependentUpon>DetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\OvenPage.xaml.cs">
+      <DependentUpon>OvenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\RecipientsPage.xaml.cs">
+      <DependentUpon>RecipientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SupplyPage.xaml.cs">
+      <DependentUpon>SupplyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipientsSaveWindow.xaml.cs">
+      <DependentUpon>RecipientsSaveWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
@@ -108,6 +179,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

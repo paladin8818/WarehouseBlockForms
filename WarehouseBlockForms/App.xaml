@@ -4,6 +4,18 @@
              xmlns:local="clr-namespace:WarehouseBlockForms"
              StartupUri="Views/StartWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="DataGrid" x:Key="styleDefaultDataGrid">
+            <Setter Property="Margin" Value="5, 5, 120, 5" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="GridLinesVisibility" Value="Horizontal" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="CanUserResizeColumns" Value="False" />
+            <Setter Property="MinRowHeight" Value="30" />
+            <Setter Property="HorizontalGridLinesBrush" Value="Silver" />
+        </Style>
+        <Style TargetType="DataGridCell" x:Key="styleDefaultDataGridCell">
+            
+        </Style>
     </Application.Resources>
 </Application>

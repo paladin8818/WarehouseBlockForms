@@ -35,7 +35,7 @@ namespace WarehouseBlockForms.Classes
 			{
 				try
 				{
-					SQLiteConnection connection = new SQLiteConnection(string.Format("Data Source={0};", _db_path));
+					SQLiteConnection connection = new SQLiteConnection(string.Format("Data Source={0}; Version=3;", _db_path));
 					connection.Open();
 					return connection;
 				}
@@ -60,7 +60,7 @@ namespace WarehouseBlockForms.Classes
 				"name text not null," +
 				"vendor_code text not null," +
 				"id_oven integer not null," +
-				"foreign key (id_oven) references oven (id) on delete set null);";
+				"foreign key (id_oven) references oven (id) on delete cascade);";
 			//recipients table (получатели)
 			query += "create table recipients (" +
 				"id integer primary key autoincrement not null," +

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WarehouseBlockForms"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Вход в систему" Height="215" Width="400">
-    <Grid Margin="20, 20, 20, 20" HorizontalAlignment="Stretch">
+        Title="Вход в систему" Height="195" Width="350">
+    <Grid Margin="10" HorizontalAlignment="Stretch">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"></RowDefinition>
@@ -23,17 +23,18 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <RadioButton 
+                        Margin="0, 0, 10, 0"
                         GroupName="ModeGroup"
                         x:Name="rbtnUserMode"
                         Grid.Column="0" 
                         Grid.Row="0" 
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center"/>
-                    <Label Content="Режим пользователя" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"></Label>
+                        HorizontalAlignment="Right"/>
+                    <Label Content="Режим пользователя" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
                 </Grid>
             </DockPanel>
             <DockPanel Grid.Row="1" Grid.Column="0" x:Name="row_rbtnAdministratorModeSelect">
@@ -42,16 +43,17 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <RadioButton 
+                        Margin="0, 0, 10, 0"
                         GroupName="ModeGroup" 
                         x:Name="rbtnAdministratorMode"
                         Grid.Column="0" Grid.Row="0"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center"></RadioButton>
-                    <Label Content="Режим администратора" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center"></Label>
+                        HorizontalAlignment="Right"></RadioButton>
+                    <Label Content="Режим администратора" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
                 </Grid>
             </DockPanel>
             <DockPanel Grid.Row="2" Grid.Column="0" Visibility="Collapsed" x:Name="dpPassword">
@@ -60,11 +62,11 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Введите пароль" Grid.Row="0" VerticalAlignment="Center" />
-                    <PasswordBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Stretch"></PasswordBox>
+                    <Label Content="Пароль" Grid.Row="0" VerticalAlignment="Center" />
+                    <PasswordBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="tbxPassword"></PasswordBox>
                 </Grid>
             </DockPanel>
         </Grid>

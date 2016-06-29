@@ -8,19 +8,40 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WarehouseBlockForms.Controllers;
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models.Base;
 
 namespace WarehouseBlockForms.Models
 {
-	/// <summary>
-	/// Description of Oven.
-	/// </summary>
 	public class Oven : Model
 	{
-		public string Name { get; set; }
-		public Oven() {}
+        private string name;
+		public string Name {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                base.RaisePropertyChaned("name", value);
+
+                DetailsController.instance().Collection.Where(x => x.IdOven == Id).All(z => { z.updateOvens(); return true; });
+
+            }
+        }
+
+        protected override string TableName
+        {
+            get
+            {
+                return "oven";
+            }
+        }
+
+        public Oven() {}
 		
 		protected override string prepareSaveQuery()
 		{
