@@ -1,15 +1,43 @@
-﻿<Page x:Class="WarehouseBlockForms.Views.Pages.SupplyPage"
+﻿<Page x:Class="WarehouseBlockForms.Views.Pages.WriteoffPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WarehouseBlockForms.Views.Pages"
-      xmlns:nud="clr-namespace:eisiWare;assembly=NumericUpDown"
-      xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="SupplyPage">
+      Title="WriteoffPage">
+
     <Grid>
+        <Grid 
+            Margin="0, 5, 170, 0"
+            Height="25"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Получатель" HorizontalAlignment="Left"></Label>
+            <ComboBox 
+                SelectedValuePath="Id"
+                DisplayMemberPath="FullName"
+                Grid.Row="0"
+                Width="250"
+                Grid.Column="1"
+                x:Name="cbxRecipients"
+                HorizontalAlignment="Left" 
+                Margin="5, 0, 10, 0"></ComboBox>
+            <Label Grid.Row="0" Grid.Column="2" Content="Номер заявки" HorizontalAlignment="Left"></Label>
+            <TextBox Grid.Row="0" Width="250" Grid.Column="3" x:Name="tbxAppNumber" HorizontalAlignment="Left" Margin="5, 0, 10, 0"></TextBox>
+        </Grid>
         <Button x:Name="btnAddRow" Content="Добавить запись" VerticalAlignment="Top" HorizontalAlignment="Right" Height="35" Width="150"/>
         <DataGrid 
             x:Name="dgSupply"
@@ -117,6 +145,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnSaveSupply" Content="Сохранить поступление" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
+        <Button x:Name="btnSaveWriteoff" Content="Сохранить списание" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
+
     </Grid>
 </Page>

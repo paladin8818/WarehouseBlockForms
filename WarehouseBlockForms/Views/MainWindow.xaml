@@ -33,7 +33,7 @@
                 <Frame x:Name="frameSupply" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
             </TabItem>
             <TabItem Header="Списание" Style="{StaticResource styleRootTabControl}">
-                <Grid Background="#FFE5E5E5"/>
+                <Frame x:Name="frameWriteoff" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
             </TabItem>
             <TabItem Header="Наличие" Style="{StaticResource styleRootTabControl}">
                 <Grid Background="#FFE5E5E5"/>
@@ -54,13 +54,13 @@
                             <Frame x:Name="frameSettingsRecipients" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
                         <TabItem Header="Настройка выгрузки" Style="{StaticResource styleVerticalTabControl}">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Frame x:Name="frameSettingsReports" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
                         <TabItem Header="Резервное копирование" Style="{StaticResource styleVerticalTabControl}">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Frame x:Name="frameSettingsBackup" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
                         <TabItem Header="Безопасность" Style="{StaticResource styleVerticalTabControl}">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Frame x:Name="frameSettingsSecurity" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
                     </TabControl>
                 </Grid>

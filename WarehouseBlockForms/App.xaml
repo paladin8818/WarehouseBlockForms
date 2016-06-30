@@ -15,7 +15,12 @@
             <Setter Property="HorizontalGridLinesBrush" Value="Silver" />
         </Style>
         <Style TargetType="DataGridCell" x:Key="styleDefaultDataGridCell">
-            
+            <Style.Triggers>
+                <Trigger Property="DataGridCell.IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightGreen"></Setter>
+                    <Setter Property="BorderBrush" Value="LightGreen"></Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

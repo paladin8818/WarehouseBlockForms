@@ -49,6 +49,9 @@ namespace WarehouseBlockForms.Views
         {
             Uri supplyPageUri = new Uri("/Views/Pages/SupplyPage.xaml", UriKind.Relative);
             frameSupply.Source = supplyPageUri;
+
+            Uri writeoffPageUri = new Uri("/Views/Pages/WriteoffPage.xaml", UriKind.Relative);
+            frameWriteoff.Source = writeoffPageUri;
         }
 
         private void setSettingsPages ()
@@ -61,6 +64,15 @@ namespace WarehouseBlockForms.Views
 
             Uri recipientsPageUri = new Uri("/Views/Pages/RecipientsPage.xaml", UriKind.Relative);
             frameSettingsRecipients.Source = recipientsPageUri;
+
+            Uri reportPageUri = new Uri("/Views/Pages/ReportSettingsPage.xaml", UriKind.Relative);
+            frameSettingsReports.Source = reportPageUri;
+
+            Uri backupPageUri = new Uri("/Views/Pages/BackupSettingsPage.xaml", UriKind.Relative);
+            frameSettingsBackup.Source = backupPageUri;
+
+            Uri securityPageUri = new Uri("/Views/Pages/SecuritySettingsPage.xaml", UriKind.Relative);
+            frameSettingsSecurity.Source = securityPageUri;
 
         }
     }

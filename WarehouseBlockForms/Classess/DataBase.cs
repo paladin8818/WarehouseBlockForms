@@ -75,23 +75,23 @@ namespace WarehouseBlockForms.Classes
 				"details_count integer not null," +
 				"id_details integer not null," +
 				"id_supply integer not null," +
-				"foreign key (id_details) references details (id) on delete set null," +
-				"foreign key (id_supply) references supply (id) on delete set null);";
+				"foreign key (id_details) references details (id) on delete cascade," +
+				"foreign key (id_supply) references supply (id) on delete cascade);";
 			//writeoff table (списание деталей)
 			query += "create table writeoff (" +
 				"id integer primary key autoincrement not null," +
 				"writeoff_date datetime not null," +
 				"app_number text not null," +
 				"id_recipient integer not null," +
-				"foreign key (id_recipient) references recipients (id) on delete set null);";
+				"foreign key (id_recipient) references recipients (id) on delete cascade);";
 			//writeoff_details table (детали в списании)
 			query += "create table writeoff_details (" +
 				"id integer primary key autoincrement not null," +
 				"details_count integer not null," +
 				"id_details integer not null," +
 				"id_writeoff integer not null," +
-				"foreign key (id_details) references details (id) on delete set null," +
-				"foreign key (id_writeoff) references writeoff (id) on delete set null);";
+				"foreign key (id_details) references details (id) on delete cascade," +
+				"foreign key (id_writeoff) references writeoff (id) on delete cascade);";
 			
 			
 			SQLiteConnection.CreateFile(_db_path);

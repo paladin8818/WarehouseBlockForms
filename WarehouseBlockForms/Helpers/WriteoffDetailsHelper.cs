@@ -9,7 +9,7 @@ using WarehouseBlockForms.Models;
 
 namespace WarehouseBlockForms.Helpers
 {
-    class SupplyDetailsHelper : INotifyPropertyChanged
+    class WriteoffDetailsHelper : INotifyPropertyChanged
     {
 
         private int id_oven;
@@ -20,7 +20,7 @@ namespace WarehouseBlockForms.Helpers
         {
             get
             {
-                return SupplyDetailsHelperCollection.instance().getPos(this);
+                return WriteoffDetailsHelperCollection.instance().getPos(this);
             }
             set
             {

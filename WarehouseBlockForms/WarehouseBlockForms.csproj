@@ -50,6 +50,7 @@
     <Reference Include="System.Data.SQLite.Linq">
       <HintPath>libs\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +62,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>libs\extend_wpf_toolkit\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -79,6 +83,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\BackupSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\DetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,7 +99,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\ReportSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\SecuritySettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\SupplyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\WriteoffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,6 +131,7 @@
     <Compile Include="Classess\FindItem.cs" />
     <Compile Include="Classess\IniFile.cs" />
     <Compile Include="Classess\Log.cs" />
+    <Compile Include="Classess\OpenDirectoryDialog.cs" />
     <Compile Include="Classess\PasswordValidate.cs" />
     <Compile Include="Controllers\Base\Controller.cs" />
     <Compile Include="Controllers\Base\IController.cs" />
@@ -119,15 +140,21 @@
     <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Controllers\SupplyController.cs" />
     <Compile Include="Controllers\SupplyDetailsController.cs" />
+    <Compile Include="Controllers\WriteoffController.cs" />
+    <Compile Include="Controllers\WriteoffDetailsController.cs" />
     <Compile Include="Converters\TabSizeConverter.cs" />
     <Compile Include="Helpers\SupplyDetailsHelper.cs" />
     <Compile Include="Helpers\SupplyDetailsHelperCollection.cs" />
+    <Compile Include="Helpers\WriteoffDetailsHelper.cs" />
+    <Compile Include="Helpers\WriteoffDetailsHelperCollection.cs" />
     <Compile Include="Models\base\Model.cs" />
     <Compile Include="Models\Details.cs" />
     <Compile Include="Models\Oven.cs" />
     <Compile Include="Models\Recipients.cs" />
     <Compile Include="Models\Supply.cs" />
     <Compile Include="Models\SupplyDetails.cs" />
+    <Compile Include="Models\Writeoff.cs" />
+    <Compile Include="Models\WriteoffDetails.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -142,6 +169,9 @@
     <Compile Include="Views\OvenSaveWindow.xaml.cs">
       <DependentUpon>OvenSaveWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\BackupSettingsPage.xaml.cs">
+      <DependentUpon>BackupSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\DetailsPage.xaml.cs">
       <DependentUpon>DetailsPage.xaml</DependentUpon>
     </Compile>
@@ -151,8 +181,17 @@
     <Compile Include="Views\Pages\RecipientsPage.xaml.cs">
       <DependentUpon>RecipientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\ReportSettingsPage.xaml.cs">
+      <DependentUpon>ReportSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SecuritySettingsPage.xaml.cs">
+      <DependentUpon>SecuritySettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\SupplyPage.xaml.cs">
       <DependentUpon>SupplyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\WriteoffPage.xaml.cs">
+      <DependentUpon>WriteoffPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecipientsSaveWindow.xaml.cs">
       <DependentUpon>RecipientsSaveWindow.xaml</DependentUpon>

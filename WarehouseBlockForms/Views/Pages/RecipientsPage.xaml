@@ -16,9 +16,10 @@
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn 
-                    Width="120"
-                    IsReadOnly="True"
                     CanUserSort="True"
+                    SortMemberPath="Id"
+                    Width="120"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Код записи">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -27,9 +28,10 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn 
-                    Width="*"
-                    IsReadOnly="True"
                     CanUserSort="True"
+                    SortMemberPath="FullName"
+                    Width="*"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="ФИО получателя">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
