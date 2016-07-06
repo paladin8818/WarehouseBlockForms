@@ -1,4 +1,4 @@
-﻿<Page x:Class="WarehouseBlockForms.Views.Pages.SupplyPage"
+﻿<Page xmlns:Controls="clr-namespace:WarehouseBlockForms.Controls"  x:Class="WarehouseBlockForms.Views.Pages.SupplyPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,12 +10,18 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SupplyPage">
     <Grid>
-        <Button x:Name="btnAddRow" Content="Добавить запись" VerticalAlignment="Top" HorizontalAlignment="Right" Height="35" Width="150"/>
+        <Button x:Name="btnAddRow"
+                Visibility="Collapsed"
+                Content="Добавить запись"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Height="35" Width="150"/>
         <DataGrid 
             x:Name="dgSupply"
             ItemsSource="{Binding Collection}"
             Style="{StaticResource styleDefaultDataGrid}"
-            Margin="0, 40, 0, 40">
+            PreviewKeyDown="dgSupply_PreviewKeyDown"
+            Margin="0, 0, 0, 40">
             <DataGrid.Columns>
                 <DataGridTemplateColumn
                     CanUserSort="True"
@@ -93,12 +99,13 @@
                     Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <xceed:DecimalUpDown 
-                                Width="Auto"
-                                Margin="5, 0, 5, 0"
+                            <Controls:IntSpinnerControl 
+                                Minimum="1"
+                                Margin="5, 0, 5, 0" 
                                 Value="{Binding Path=DetailsCount}"
                                 ValueChanged="countValueChange"
-                                Minimum="1"></xceed:DecimalUpDown>
+                                Width="Auto">
+                            </Controls:IntSpinnerControl>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

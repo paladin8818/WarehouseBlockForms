@@ -1,7 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using WarehouseBlockForms.Classess;
+using WarehouseBlockForms.Controllers;
+using WarehouseBlockForms.Controls;
 using WarehouseBlockForms.Helpers;
 using WarehouseBlockForms.Models;
 using Xceed.Wpf.Toolkit;
@@ -25,11 +29,15 @@ namespace WarehouseBlockForms.Views.Pages
                 Collection = sdh_collection.Collection
             };
 
-            btnAddRow.Click += delegate
+            SupplyDetailsHelper supplyDetails = new SupplyDetailsHelper();
+            sdh_collection.add(supplyDetails);
+
+            //Add button hide
+            /*btnAddRow.Click += delegate
             {
                 SupplyDetailsHelper supplyDetails = new SupplyDetailsHelper();
                 sdh_collection.add(supplyDetails);
-            };
+            };*/
 
             btnSaveSupply.Click += delegate
             {
@@ -121,7 +129,19 @@ namespace WarehouseBlockForms.Views.Pages
                         return;
                     }
                 }
+
+                ///Update current count
+
+                for (int i = 0; i < sdh_collection.Collection.Count; i++)
+                {
+                    sdh_collection.Collection[i].Detail.CurrentCount = 0;
+                }
+
                 sdh_collection.clear();
+
+                SupplyDetailsHelper newSupplyDetails = new SupplyDetailsHelper();
+                sdh_collection.add(newSupplyDetails);
+
             }
             else
             {
@@ -131,9 +151,20 @@ namespace WarehouseBlockForms.Views.Pages
 
         }
 
-        private void countValueChange(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void dgSupply_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            DecimalUpDown updown = sender as DecimalUpDown;
+            DataGrid dg = sender as DataGrid;
+            if (dg == null) return;
+            if(e.Key == Key.Enter)
+            {
+                SupplyDetailsHelper supplyDetails = new SupplyDetailsHelper();
+                sdh_collection.add(supplyDetails);
+            }
+        }
+
+        private void countValueChange(object sender, PropertyChangedEventArgs e)
+        {
+            IntSpinnerControl updown = sender as IntSpinnerControl;
             if (updown == null) return;
 
             DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(updown);

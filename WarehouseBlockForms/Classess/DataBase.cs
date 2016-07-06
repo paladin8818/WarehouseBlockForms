@@ -53,18 +53,21 @@ namespace WarehouseBlockForms.Classes
 			//oven table (печи)
 			string query = "create table oven (" +
 				"id integer primary key autoincrement not null," +
-				"name text not null);";
+				"name text not null, " +
+                "row_order integer not null unique);";
 			//details table (детали)
 			query += "create table details (" +
 				"id integer primary key autoincrement not null," +
 				"name text not null," +
-				"vendor_code text not null," +
+				"vendor_code text not null unique," +
 				"id_oven integer not null," +
+                "row_order integer not null unique, " +
 				"foreign key (id_oven) references oven (id) on delete cascade);";
 			//recipients table (получатели)
 			query += "create table recipients (" +
 				"id integer primary key autoincrement not null," +
-				"full_name text not null);";
+				"full_name text not null, " +
+                "row_order integer not null unique);";
 			//supply table (поступление деталей)
 			query += "create table supply (" +
 				"id integer primary key autoincrement not null," +
@@ -81,7 +84,7 @@ namespace WarehouseBlockForms.Classes
 			query += "create table writeoff (" +
 				"id integer primary key autoincrement not null," +
 				"writeoff_date datetime not null," +
-				"app_number text not null," +
+				"app_number text not null unique," +
 				"id_recipient integer not null," +
 				"foreign key (id_recipient) references recipients (id) on delete cascade);";
 			//writeoff_details table (детали в списании)

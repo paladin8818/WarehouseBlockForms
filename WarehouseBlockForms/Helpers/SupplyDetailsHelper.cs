@@ -39,7 +39,17 @@ namespace WarehouseBlockForms.Helpers
         {
             get
             {
-                return DetailsController.instance().Collection.Where(x => x.IdOven == IdOven).ToList();
+                List<Details> details = DetailsController.instance().Collection.Where(x => x.IdOven == IdOven).ToList();
+                List<Details> currentDetails = SupplyDetailsHelperCollection.instance()
+                    .Collection.Where(x => x.IdOven == IdOven).Select(z => z.Detail).ToList();
+                //Если уже установлена деталь и таже печь
+                if(Detail != null && Detail.IdOven == IdOven)
+                {
+                    List<Details> existDetail = details.Except(currentDetails).ToList();
+                    existDetail.Add(Detail);
+                    return existDetail;
+                }
+                return details.Except(currentDetails).ToList();
             }
         }
 
@@ -88,6 +98,14 @@ namespace WarehouseBlockForms.Helpers
             {
                 details_count = value;
                 RaisePropertyChaned("DetailsCount", value);
+            }
+        }
+
+        public Details Detail
+        {
+            get
+            {
+                return DetailsController.instance().getById(IdDetails);
             }
         }
 

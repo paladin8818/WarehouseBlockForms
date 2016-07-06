@@ -15,6 +15,7 @@ using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models;
 using WarehouseBlockForms.Classes;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace WarehouseBlockForms.Controllers
 {
@@ -24,7 +25,10 @@ namespace WarehouseBlockForms.Controllers
 	public class OvenController : Controller, IController
 	{
 		private static OvenController _instance = null;
-		private ObservableCollection<Oven> _collection;
+		private ObservableCollection<Oven> _collection = new ObservableCollection<Oven>();
+
+        public CollectionViewSource ViewSource { get; set; }
+
 		public ObservableCollection<Oven> Collection { 
 			get
 			{
@@ -38,21 +42,23 @@ namespace WarehouseBlockForms.Controllers
 		protected override string LoadQuery
 		{
 			get {
-				return "select id, name from oven";
+				return "select id, name, row_order from oven order by row_order asc";
 			}
 		}
 		
 		private OvenController()
 		{
-			_collection = new ObservableCollection<Oven>();
-			load();
-		}
+            ViewSource = new CollectionViewSource();
+            ViewSource.Source = _collection;
+            load();
+        }
 		
 		protected override void populate(SQLiteDataReader reader)
 		{
 			Oven oven = new Oven();
 			oven.Id = reader.GetInt32(0);
 			oven.Name = reader.GetString(1);
+            oven.RowOrder = reader.GetInt32(2);
 			add(oven);
 		}
 		
@@ -107,6 +113,41 @@ namespace WarehouseBlockForms.Controllers
         public Oven getById (int id)
         {
             return _collection.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public int maxRowOrderIndex ()
+        {
+            Oven oven = _collection.OrderByDescending(x => x.RowOrder).FirstOrDefault();
+            if(oven == null)
+            {
+                return 0;
+            }
+            return oven.RowOrder;
+        }
+
+        public int prevRowOrderIndex (int currentIndex)
+        {
+            Oven oven = _collection.Where(x => x.RowOrder < currentIndex).OrderByDescending(y => y.RowOrder).FirstOrDefault();
+            if(oven == null)
+            {
+                return 0;
+            }
+            return oven.RowOrder;
+        }
+
+        public int nextRowOrderIndex (int currentIndex)
+        { 
+            Oven oven = _collection.Where(x => x.RowOrder > currentIndex).OrderBy(y => y.RowOrder).FirstOrDefault();
+            if(oven == null)
+            {
+                return 0;
+            }
+            return oven.RowOrder;
+        }
+
+        public Oven getByOrderIndex (int orderIndex)
+        {
+            return _collection.Where(x => x.RowOrder == orderIndex).FirstOrDefault();
         }
 	}
 }

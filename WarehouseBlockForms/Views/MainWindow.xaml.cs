@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WarehouseBlockForms.Classes;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Models;
 
 namespace WarehouseBlockForms.Views
@@ -22,10 +23,9 @@ namespace WarehouseBlockForms.Views
     public partial class MainWindow : Window
     {
         private bool administratorMode = false;
-        public MainWindow(bool administratorMode = false)
+        public MainWindow()
         {
             InitializeComponent();
-            this.administratorMode = administratorMode;
 
             if(DataBase.Connect() == null)
             {
@@ -33,16 +33,35 @@ namespace WarehouseBlockForms.Views
                 Close();
                 return;
             }
-
             setWorkPages();
+            setSettingsPages();
 
-            if (this.administratorMode)
+            /*if (this.administratorMode)
             {
                 Title += " (режим администрирования)";
-
                 tiSettings.Visibility = Visibility.Visible;
-                setSettingsPages();
-            }
+            }*/
+
+            btnLoginAdmin.Click += delegate
+            {
+                if(tbxPassword.Password == "")
+                {
+                    MessageBox.Show("Введите пароль!");
+                    return;
+                }
+                if(PasswordValidate.Validate(tbxPassword.Password))
+                {
+                    administratorMode = true;
+                    grdLoginAdmin.Visibility = Visibility.Collapsed;
+                    tcSettings.Visibility = Visibility.Visible;
+                    Title += " (режим администрирования)";
+                }
+                else
+                {
+                    MessageBox.Show("Введенный пароль некорректен!");
+                }
+            };
+
         }
 
         private void setWorkPages()
@@ -52,6 +71,12 @@ namespace WarehouseBlockForms.Views
 
             Uri writeoffPageUri = new Uri("/Views/Pages/WriteoffPage.xaml", UriKind.Relative);
             frameWriteoff.Source = writeoffPageUri;
+
+            Uri availabilityPageUri = new Uri("/Views/Pages/AvailabilityPage.xaml", UriKind.Relative);
+            frameAvailability.Source = availabilityPageUri;
+
+            Uri sheetPageUri = new Uri("/Views/Pages/SheetPage.xaml", UriKind.Relative);
+            frameSheet.Source = sheetPageUri;
         }
 
         private void setSettingsPages ()
@@ -73,7 +98,6 @@ namespace WarehouseBlockForms.Views
 
             Uri securityPageUri = new Uri("/Views/Pages/SecuritySettingsPage.xaml", UriKind.Relative);
             frameSettingsSecurity.Source = securityPageUri;
-
         }
     }
 }

@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Controllers;
 using WarehouseBlockForms.Models;
 
@@ -24,7 +15,8 @@ namespace WarehouseBlockForms.Views.Pages
         public OvenPage()
         {
             InitializeComponent();
-            DataContext = new { Collection = OvenController.instance().Collection };
+            DataContext = new { Collection = OvenController.instance().ViewSource.View };
+            OvenController.instance().ViewSource.SortDescriptions.Add(new SortDescription("RowOrder", ListSortDirection.Ascending));
 
             btnAdd.Click += delegate
             {
@@ -57,6 +49,41 @@ namespace WarehouseBlockForms.Views.Pages
                     selectedOven.remove();
                 }
             };
+        }
+
+        private void rowUp(object sender, RoutedEventArgs e)
+        {
+            Button upButton = sender as Button;
+            if (upButton == null) return;
+
+            DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(upButton);
+            if (dgrow == null) return;
+
+            Oven oven = (Oven)dgrow.Item;
+            if (oven == null) return;
+
+            if(!oven.up())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+
+        }
+
+        private void rowDown(object sender, RoutedEventArgs e)
+        {
+            Button downButton = sender as Button;
+            if (downButton == null) return;
+
+            DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(downButton);
+            if (dgrow == null) return;
+
+            Oven oven = (Oven)dgrow.Item;
+            if (oven == null) return;
+
+            if (!oven.down())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
         }
     }
 }

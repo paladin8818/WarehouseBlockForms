@@ -8,7 +8,7 @@ using WarehouseBlockForms.Models.Base;
 
 namespace WarehouseBlockForms.Models
 {
-    public class Recipients : Model
+    public class Recipients : Model, IRowChangeable
     {
         private string full_name;
         public string FullName
@@ -55,15 +55,18 @@ namespace WarehouseBlockForms.Models
         {
             if(Id == 0)
             {
+                RowOrder = GetNewRowOrder();
                 return new Dictionary<string, object>()
                 {
-                    { "@full_name", FullName}
+                    { "@full_name", FullName},
+                    {"@row_order",  RowOrder}
                 };
             }
             return new Dictionary<string, object>()
             {
                 {"@full_name", FullName },
-                {"@id", Id }
+                {"@id", Id },
+                {"@row_order",  RowOrder}
             };
         }
 
@@ -71,9 +74,41 @@ namespace WarehouseBlockForms.Models
         {
             if(Id == 0)
             {
-                return "insert into " + TableName + " (full_name) values(@full_name)";
+                return "insert into " + TableName + " (full_name, row_order) values(@full_name, @row_order)";
             }
-            return "update " + TableName + " set full_name = @full_name where id = @id";
+            return "update " + TableName + " set full_name = @full_name, row_order = @row_order where id = @id";
         }
+
+        public static int GetNewRowOrder()
+        {
+            return (RecipientsController.instance().maxRowOrderIndex() + 1);
+        }
+
+        public bool up()
+        {
+            int index = RecipientsController.instance().prevRowOrderIndex(RowOrder);
+            if (index == 0) return true;
+            Recipients recipient = RecipientsController.instance().getByOrderIndex(index);
+
+            if (orderChange(recipient))
+            {
+                RecipientsController.instance().ViewSource.View.Refresh();
+                return true;
+            }
+            return false;
+        }
+        public bool down()
+        {
+            int index = DetailsController.instance().nextRowOrderIndex(RowOrder);
+            if (index == 0) return true;
+            Recipients recipient = RecipientsController.instance().getByOrderIndex(index);
+            if (orderChange(recipient))
+            {
+                RecipientsController.instance().ViewSource.View.Refresh();
+                return true;
+            }
+            return false;
+        }
+
     }
 }

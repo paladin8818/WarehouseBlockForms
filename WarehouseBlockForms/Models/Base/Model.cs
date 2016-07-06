@@ -23,6 +23,7 @@ namespace WarehouseBlockForms.Models.Base
 	public abstract class Model : INotifyPropertyChanged
 	{
 		public int Id { get; set; }
+        public int RowOrder { get; set; }
 		
         protected abstract string TableName { get; }
 
@@ -149,5 +150,31 @@ namespace WarehouseBlockForms.Models.Base
                 command.Parameters.AddWithValue(parameter.Key, parameter.Value);
             }
 		}
+
+        protected bool orderChange (Model model)
+        {
+            if (model == null) return true;
+            int currentRowIndex = RowOrder;
+            int newRowIndex = model.RowOrder;
+
+            RowOrder = 0;
+            model.RowOrder = currentRowIndex;
+
+            if(save() && model.save())
+            {
+                RowOrder = newRowIndex;
+                if(save())
+                {
+                    return true;
+                }
+                RowOrder = currentRowIndex;
+                model.RowOrder = newRowIndex;
+                return false;
+            }
+            RowOrder = currentRowIndex;
+            model.RowOrder = newRowIndex;
+            return false;
+        }
+
 	}
 }

@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NumericUpDown">
       <HintPath>libs\NumericUpDown.dll</HintPath>
@@ -50,6 +53,7 @@
     <Reference Include="System.Data.SQLite.Linq">
       <HintPath>libs\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\IntSpinnerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetailsSaveWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -80,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OvenSaveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AvailabilityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\SheetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\SupplyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,10 +134,6 @@
     <Page Include="Views\RecipientsSaveWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\StartWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -142,11 +154,15 @@
     <Compile Include="Controllers\SupplyDetailsController.cs" />
     <Compile Include="Controllers\WriteoffController.cs" />
     <Compile Include="Controllers\WriteoffDetailsController.cs" />
+    <Compile Include="Controls\IntSpinnerControl.xaml.cs">
+      <DependentUpon>IntSpinnerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\TabSizeConverter.cs" />
     <Compile Include="Helpers\SupplyDetailsHelper.cs" />
     <Compile Include="Helpers\SupplyDetailsHelperCollection.cs" />
     <Compile Include="Helpers\WriteoffDetailsHelper.cs" />
     <Compile Include="Helpers\WriteoffDetailsHelperCollection.cs" />
+    <Compile Include="Models\base\IRowChangeable.cs" />
     <Compile Include="Models\base\Model.cs" />
     <Compile Include="Models\Details.cs" />
     <Compile Include="Models\Oven.cs" />
@@ -169,6 +185,9 @@
     <Compile Include="Views\OvenSaveWindow.xaml.cs">
       <DependentUpon>OvenSaveWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\AvailabilityPage.xaml.cs">
+      <DependentUpon>AvailabilityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\BackupSettingsPage.xaml.cs">
       <DependentUpon>BackupSettingsPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +206,9 @@
     <Compile Include="Views\Pages\SecuritySettingsPage.xaml.cs">
       <DependentUpon>SecuritySettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\SheetPage.xaml.cs">
+      <DependentUpon>SheetPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\SupplyPage.xaml.cs">
       <DependentUpon>SupplyPage.xaml</DependentUpon>
     </Compile>
@@ -195,10 +217,6 @@
     </Compile>
     <Compile Include="Views\RecipientsSaveWindow.xaml.cs">
       <DependentUpon>RecipientsSaveWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -220,7 +238,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -232,7 +250,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ArrowUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

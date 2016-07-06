@@ -38,7 +38,40 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+                <DataGridTemplateColumn 
+                    Width="80"
+                    CanUserSort="True"
+                    SortMemberPath="RowOrder"
+                    Header="Порядок"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Row="0" Grid.Column="0" Margin="5" Click="rowUp">
+                                    <Image 
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Source="/WarehouseBlockForms;component/Images/ArrowUp.png"
+                                        Stretch="Fill"></Image>
+                                </Button>
+                                <Button Grid.Row="0" Grid.Column="1" Margin="5" Click="rowDown">
+                                    <Image 
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Source="/WarehouseBlockForms;component/Images/ArrowDown.png"
+                                        Stretch="Fill"></Image>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="110" Margin="5">

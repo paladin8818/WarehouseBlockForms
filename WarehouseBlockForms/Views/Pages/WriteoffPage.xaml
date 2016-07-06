@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:WarehouseBlockForms.Views.Pages"
         xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       mc:Ignorable="d" 
+      xmlns:Controls="clr-namespace:WarehouseBlockForms.Controls"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="WriteoffPage">
 
@@ -20,9 +21,9 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Получатель" HorizontalAlignment="Left"></Label>
@@ -30,13 +31,12 @@
                 SelectedValuePath="Id"
                 DisplayMemberPath="FullName"
                 Grid.Row="0"
-                Width="250"
+                HorizontalAlignment="Stretch"
                 Grid.Column="1"
                 x:Name="cbxRecipients"
-                HorizontalAlignment="Left" 
                 Margin="5, 0, 10, 0"></ComboBox>
             <Label Grid.Row="0" Grid.Column="2" Content="Номер заявки" HorizontalAlignment="Left"></Label>
-            <TextBox Grid.Row="0" Width="250" Grid.Column="3" x:Name="tbxAppNumber" HorizontalAlignment="Left" Margin="5, 0, 10, 0"></TextBox>
+            <TextBox Grid.Row="0" Width="250" Grid.Column="3" x:Name="tbxAppNumber" HorizontalAlignment="Stretch" Margin="5, 0, 10, 0"></TextBox>
         </Grid>
         <Button x:Name="btnAddRow" Content="Добавить запись" VerticalAlignment="Top" HorizontalAlignment="Right" Height="35" Width="150"/>
         <DataGrid 
@@ -121,12 +121,14 @@
                     Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <xceed:DecimalUpDown 
-                                Width="Auto"
-                                Margin="5, 0, 5, 0"
+                            <Controls:IntSpinnerControl 
                                 Value="{Binding Path=DetailsCount}"
+                                Minimum="0"
+                                Maximum="{Binding Path=Detail.CurrentCount}"
+                                Margin="5, 0, 5, 0" 
                                 ValueChanged="countValueChange"
-                                Minimum="1"></xceed:DecimalUpDown>
+                                Width="Auto">
+                            </Controls:IntSpinnerControl>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

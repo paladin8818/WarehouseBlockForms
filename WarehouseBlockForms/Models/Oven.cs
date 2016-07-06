@@ -15,9 +15,10 @@ using WarehouseBlockForms.Models.Base;
 
 namespace WarehouseBlockForms.Models
 {
-	public class Oven : Model
+	public class Oven : Model, IRowChangeable
 	{
         private string name;
+
 		public string Name {
             get
             {
@@ -27,9 +28,7 @@ namespace WarehouseBlockForms.Models
             {
                 name = value;
                 base.RaisePropertyChaned("name", value);
-
                 DetailsController.instance().Collection.Where(x => x.IdOven == Id).All(z => { z.updateOvens(); return true; });
-
             }
         }
 
@@ -47,9 +46,9 @@ namespace WarehouseBlockForms.Models
 		{
 			if(Id == 0)
 			{
-				return "insert into oven (name) values (@name)";
+				return "insert into oven (name, row_order) values (@name, @row_order)";
 			}
-			return "update oven set name = @name where id = @id";
+			return "update oven set name = @name, row_order = @row_order where id = @id";
 		}
 		
 		protected override string prepareRemoveQuery()
@@ -62,13 +61,16 @@ namespace WarehouseBlockForms.Models
 		{
 			if(Id == 0) 
 			{
-				return new Dictionary<string, object> () {
-					{"@name", Name}
+                RowOrder = GetNewRowOrder();
+                return new Dictionary<string, object> () {
+					{"@name", Name},
+                    {"@row_order",  RowOrder}
 				};
 			}
 			return new Dictionary<string, object> () {
 				{"@id", Id},
-				{"@name", Name}
+				{"@name", Name},
+                {"@row_order", RowOrder }
 			};
 		}
 		
@@ -83,5 +85,39 @@ namespace WarehouseBlockForms.Models
 		{
 			return OvenController.instance();
 		}
+
+        public static int GetNewRowOrder ()
+        {
+            return (OvenController.instance().maxRowOrderIndex() + 1);
+        }
+
+
+        public bool up()
+        {
+            int index = OvenController.instance().prevRowOrderIndex(RowOrder);
+            if (index == 0) return true;
+            Oven oven = OvenController.instance().getByOrderIndex(index);
+
+            if(orderChange(oven))
+            {
+                OvenController.instance().ViewSource.View.Refresh();
+                return true;
+            }
+            return false;
+        }
+        public bool down ()
+        {
+            int index = OvenController.instance().nextRowOrderIndex(RowOrder);
+            if (index == 0) return true;
+            Oven oven = OvenController.instance().getByOrderIndex(index);
+            if (orderChange(oven))
+            {
+                OvenController.instance().ViewSource.View.Refresh();
+                return true;
+            }
+            return false;
+        }
+
+ 
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
+using System.Windows.Data;
 using WarehouseBlockForms.Classes;
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models;
@@ -25,6 +26,7 @@ namespace WarehouseBlockForms.Controllers
                 _collection = value;
             }
         }
+        public CollectionViewSource ViewSource { get; set; }
 
         public static RecipientsController instance()
         {
@@ -38,6 +40,9 @@ namespace WarehouseBlockForms.Controllers
         private RecipientsController()
         {
             _collection = new ObservableCollection<Recipients>();
+            ViewSource = new CollectionViewSource();
+            ViewSource.Source = _collection;
+
             load();
         }
 
@@ -45,7 +50,7 @@ namespace WarehouseBlockForms.Controllers
         {
             get
             {
-                return "select id, full_name from recipients";
+                return "select id, full_name, row_order from recipients";
             }
         }
 
@@ -95,7 +100,44 @@ namespace WarehouseBlockForms.Controllers
             Recipients recipient = new Recipients();
             recipient.Id = reader.GetInt32(0);
             recipient.FullName = reader.GetString(1);
+            recipient.RowOrder = reader.GetInt32(2);
             add(recipient);
         }
+
+        public int maxRowOrderIndex()
+        {
+            Recipients recipient = _collection.OrderByDescending(x => x.RowOrder).FirstOrDefault();
+            if (recipient == null)
+            {
+                return 0;
+            }
+            return recipient.RowOrder;
+        }
+
+        public int prevRowOrderIndex(int currentIndex)
+        {
+            Recipients recipient = _collection.Where(x => x.RowOrder < currentIndex).OrderByDescending(y => y.RowOrder).FirstOrDefault();
+            if (recipient == null)
+            {
+                return 0;
+            }
+            return recipient.RowOrder;
+        }
+
+        public int nextRowOrderIndex(int currentIndex)
+        {
+            Recipients recipient = _collection.Where(x => x.RowOrder > currentIndex).OrderBy(y => y.RowOrder).FirstOrDefault();
+            if (recipient == null)
+            {
+                return 0;
+            }
+            return recipient.RowOrder;
+        }
+
+        public Recipients getByOrderIndex(int orderIndex)
+        {
+            return _collection.Where(x => x.RowOrder == orderIndex).FirstOrDefault();
+        }
+
     }
 }

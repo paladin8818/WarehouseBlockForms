@@ -64,6 +64,7 @@ namespace WarehouseBlockForms.Controllers
             {
                 SupplyDetails supplyDetails = model as SupplyDetails;
                 _collection.Add(supplyDetails);
+
                 return true;
             }
             catch (Exception ex)
@@ -100,5 +101,16 @@ namespace WarehouseBlockForms.Controllers
             supplyDetails.IdSupply = reader.GetInt32(3);
             add(supplyDetails);
         }
+
+        public List<SupplyDetails> getByIdDetail (int id_detail)
+        {
+            return _collection.Where(x => x.IdDetails == id_detail).ToList();
+        }
+
+        public int allSupply (int id_detail)
+        {
+            return getByIdDetail(id_detail).Sum(x => x.DetailsCount);
+        }
+
     }
 }

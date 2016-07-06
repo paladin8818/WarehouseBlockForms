@@ -1,0 +1,121 @@
+﻿<Page x:Class="WarehouseBlockForms.Views.Pages.AvailabilityPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WarehouseBlockForms.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="AvailabilityPage">
+
+    <Grid>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" Margin="0, 5, 170, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Печь" Grid.Row="0" Grid.Column="0"></Label>
+            <ComboBox 
+                SelectedValuePath="Id"
+                DisplayMemberPath="Name"
+                x:Name="cbxOvenFilter" 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch"
+                Margin="5, 0, 10, 0"></ComboBox>
+            <Button x:Name="btnClearOvenFilter" Grid.Row="0" Grid.Column="2" Content="X" Margin="0, 0, 5, 0"></Button>
+            
+            <Label Content="Быстрый фильтр" Grid.Row="0" Grid.Column="3"></Label>
+            <TextBox x:Name="tbxFastFilter" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="5, 0, 10, 0"></TextBox>
+            <Button x:Name="btnClearFastFilter" Grid.Row="0" Grid.Column="5" Content="X" Margin="0, 0, 5, 0"></Button>
+        </Grid>
+        <DataGrid 
+            x:Name="dgAvailability"
+            ItemsSource="{Binding Collection}"
+            Style="{StaticResource styleDefaultDataGrid}"
+            Margin="0, 40, 0, 40">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Header="№ п/п"
+                    Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=RowIndex}" Margin="5, 0, 0, 0"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Header="Печь"
+                    Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=OvenName}" Margin="5, 0, 0, 0"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Header="Артикул"
+                    Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=VendorCode}" Margin="5, 0, 0, 0"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Header="Название детали"
+                    Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=Name}" Margin="5, 0, 0, 0"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Header="Текущее количество"
+                    Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=CurrentCount}" Margin="5, 0, 0, 0"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Header="Видимый"
+                    Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=IsVisible}" Margin="5, 0, 0, 0"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnCreateReport" Content="Сформировать отчет" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
+    </Grid>
+</Page>

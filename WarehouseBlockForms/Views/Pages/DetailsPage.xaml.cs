@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Controllers;
 using WarehouseBlockForms.Models;
 
@@ -27,9 +29,9 @@ namespace WarehouseBlockForms.Views.Pages
 
             DataContext = new
             {
-                Collection = DetailsController.instance().Collection
+                Collection = DetailsController.instance().ViewSource.View
             };
-
+            DetailsController.instance().ViewSource.SortDescriptions.Add(new SortDescription("RowOrder", ListSortDirection.Ascending));
             btnAdd.Click += delegate
             {
                 DetailsSaveWindow detailsSaveWindow = new DetailsSaveWindow();
@@ -62,5 +64,41 @@ namespace WarehouseBlockForms.Views.Pages
                 }
             };
         }
+
+        private void rowUp(object sender, RoutedEventArgs e)
+        {
+            Button upButton = sender as Button;
+            if (upButton == null) return;
+
+            DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(upButton);
+            if (dgrow == null) return;
+
+            Details detail = (Details)dgrow.Item;
+            if (detail == null) return;
+
+            if (!detail.up())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+
+        }
+
+        private void rowDown(object sender, RoutedEventArgs e)
+        {
+            Button downButton = sender as Button;
+            if (downButton == null) return;
+
+            DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(downButton);
+            if (dgrow == null) return;
+
+            Details detail = (Details)dgrow.Item;
+            if (detail == null) return;
+
+            if (!detail.down())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+        }
+
     }
 }

@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace WarehouseBlockForms.Classes
+namespace WarehouseBlockForms.Classess
 {
 	/// <summary>
 	/// Класс для работы с ini файлом

@@ -46,7 +46,7 @@ namespace WarehouseBlockForms.Controllers
         {
             get
             {
-                return "select id, details_count, id_details, id_writeoff";
+                return "select id, details_count, id_details, id_writeoff from writeoff_details";
             }
         }
 
@@ -64,6 +64,7 @@ namespace WarehouseBlockForms.Controllers
             {
                 WriteoffDetails writeoffDetails = model as WriteoffDetails;
                 _collection.Add(writeoffDetails);
+
                 return true;
             }
             catch (Exception ex)
@@ -100,5 +101,17 @@ namespace WarehouseBlockForms.Controllers
             writeoffDetails.IdWriteoff = reader.GetInt32(3);
             add(writeoffDetails);
         }
+
+        public List<WriteoffDetails> getByIdDetail(int id_detail)
+        {
+            return _collection.Where(x => x.IdDetails == id_detail).ToList();
+        }
+
+        public int allWriteoff(int id_detail)
+        {
+            return getByIdDetail(id_detail).Sum(x => x.DetailsCount);
+        }
+
+
     }
 }

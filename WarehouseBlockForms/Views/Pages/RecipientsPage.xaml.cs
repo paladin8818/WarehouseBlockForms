@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Controllers;
 using WarehouseBlockForms.Models;
 
@@ -26,9 +20,9 @@ namespace WarehouseBlockForms.Views.Pages
             InitializeComponent();
             DataContext = new
             {
-                Collection = RecipientsController.instance().Collection
+                Collection = RecipientsController.instance().ViewSource.View
             };
-
+            RecipientsController.instance().ViewSource.SortDescriptions.Add(new SortDescription("RowOrder", ListSortDirection.Ascending));
             btnAdd.Click += delegate
             {
                 RecipientsSaveWindow recipientsSaveWindow = new RecipientsSaveWindow();
@@ -58,6 +52,41 @@ namespace WarehouseBlockForms.Views.Pages
                     selectedRecipient.remove();
                 }
             };
+        }
+
+        private void rowUp(object sender, RoutedEventArgs e)
+        {
+            Button upButton = sender as Button;
+            if (upButton == null) return;
+
+            DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(upButton);
+            if (dgrow == null) return;
+
+            Recipients recipient = (Recipients)dgrow.Item;
+            if (recipient == null) return;
+
+            if (!recipient.up())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+
+        }
+
+        private void rowDown(object sender, RoutedEventArgs e)
+        {
+            Button downButton = sender as Button;
+            if (downButton == null) return;
+
+            DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(downButton);
+            if (dgrow == null) return;
+
+            Recipients recipient = (Recipients)dgrow.Item;
+            if (recipient == null) return;
+
+            if (!recipient.down())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
         }
     }
 }

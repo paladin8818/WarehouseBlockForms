@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Controllers;
+using WarehouseBlockForms.Controls;
 using WarehouseBlockForms.Helpers;
 using WarehouseBlockForms.Models;
 using Xceed.Wpf.Toolkit;
@@ -25,6 +27,7 @@ namespace WarehouseBlockForms.Views.Pages
                 Collection = wodh_collection.Collection
             };
             cbxRecipients.ItemsSource = RecipientsController.instance().Collection;
+
             btnAddRow.Click += delegate
             {
                 WriteoffDetailsHelper writeoffDetails = new WriteoffDetailsHelper();
@@ -53,13 +56,17 @@ namespace WarehouseBlockForms.Views.Pages
 
             writeoffDetailHelper.IdOven = (int)comboBox.SelectedValue;
             writeoffDetailHelper.IdDetails = 0;
+            writeoffDetailHelper.DetailsCount = 0;
         }
 
         private void detailsSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
             if (comboBox == null) return;
-            if (comboBox.SelectedIndex == -1) return;
+            if (comboBox.SelectedIndex == -1)
+            {
+                return;
+            }
             if (comboBox.SelectedValue == null) return;
 
             DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(comboBox);
@@ -69,6 +76,7 @@ namespace WarehouseBlockForms.Views.Pages
             if (writeoffDetailHelper == null) return;
 
             writeoffDetailHelper.IdDetails = (int)comboBox.SelectedValue;
+            writeoffDetailHelper.DetailsCount = (writeoffDetailHelper.Detail.CurrentCount > 0) ? 1 : 0;
         }
 
         private void removeRecord(object sender, System.Windows.RoutedEventArgs e)
@@ -134,7 +142,17 @@ namespace WarehouseBlockForms.Views.Pages
                         return;
                     }
                 }
+
+                ///Update current count
+
+                for (int i = 0; i < wodh_collection.Collection.Count; i++)
+                {
+                    wodh_collection.Collection[i].Detail.CurrentCount = 0;
+                }
+
                 wodh_collection.clear();
+                cbxRecipients.SelectedIndex = -1;
+                tbxAppNumber.Text = "";
             }
             else
             {
@@ -144,9 +162,9 @@ namespace WarehouseBlockForms.Views.Pages
 
         }
 
-        private void countValueChange(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void countValueChange(object sender, PropertyChangedEventArgs e)
         {
-            DecimalUpDown updown = sender as DecimalUpDown;
+            IntSpinnerControl updown = sender as IntSpinnerControl;
             if (updown == null) return;
 
             DataGridRow dgrow = FindItem.FindParentItem<DataGridRow>(updown);
@@ -156,6 +174,7 @@ namespace WarehouseBlockForms.Views.Pages
             if (writeoffDetailHelper == null) return;
 
             writeoffDetailHelper.DetailsCount = (int)updown.Value;
+
         }
 
     }

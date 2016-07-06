@@ -8,12 +8,25 @@ using WarehouseBlockForms.Models.Base;
 
 namespace WarehouseBlockForms.Models
 {
-    public class Details : Model
+    public class Details : Model, IRowChangeable
     {
 
         private string name;
         private string vendor_code;
         private int id_oven;
+        private bool is_visible = true;
+
+        public int RowIndex
+        {
+            get
+            {
+                return DetailsController.instance().getPos(this);
+            }
+            set
+            {
+                RaisePropertyChaned("RowIndex", null);
+            }
+        }
 
         public string Name
         {
@@ -76,6 +89,33 @@ namespace WarehouseBlockForms.Models
             }
         }
 
+
+        public int CurrentCount
+        {
+            get
+            {
+                int currentCount = (SupplyDetailsController.instance().allSupply(Id)
+                    - WriteoffDetailsController.instance().allWriteoff(Id));
+                return (currentCount < 0) ? 0 : currentCount;
+            }
+            set
+            {
+                base.RaisePropertyChaned("CurrentCount", null);
+            }
+        }
+
+        public bool IsVisible {
+            get
+            {
+                return is_visible;
+            }
+            set
+            {
+                is_visible = value;
+                base.RaisePropertyChaned("IsVisible", value);
+            }
+        }
+
         public void updateOvens ()
         {
             base.RaisePropertyChaned("OvenName", null);
@@ -111,11 +151,13 @@ namespace WarehouseBlockForms.Models
         {
             if(Id == 0)
             {
+                RowOrder = GetNewRowOrder();
                 return new Dictionary<string, object>()
                 {
                     {"@name", Name},
                     {"@vendor_code", VendorCode },
-                    {"@id_oven", IdOven }
+                    {"@id_oven", IdOven },
+                    {"@row_order",  RowOrder}
                 };
             }
             return new Dictionary<string, object>()
@@ -123,7 +165,8 @@ namespace WarehouseBlockForms.Models
                 {"@name", Name},
                 {"@vendor_code", VendorCode },
                 {"@id_oven", IdOven },
-                {"@id", Id }
+                {"@id", Id },
+                {"@row_order",  RowOrder}
             };
         }
 
@@ -131,9 +174,42 @@ namespace WarehouseBlockForms.Models
         {
             if(Id == 0)
             {
-                return "insert into " + TableName + " (name, vendor_code, id_oven) values(@name, @vendor_code, @id_oven)";
+                return "insert into " + TableName + " (name, vendor_code, id_oven, row_order) values(@name, @vendor_code, @id_oven, @row_order)";
             }
-            return "update " + TableName + " set name = @name, vendor_code = @vendor_code, id_oven = @id_oven where id = @id ";
+            return "update " + TableName + " set name = @name, vendor_code = @vendor_code, id_oven = @id_oven, row_order = @row_order where id = @id ";
         }
+
+        public static int GetNewRowOrder()
+        {
+            return (DetailsController.instance().maxRowOrderIndex() + 1);
+        }
+
+
+        public bool up()
+        {
+            int index = DetailsController.instance().prevRowOrderIndex(RowOrder);
+            if (index == 0) return true;
+            Details detail = DetailsController.instance().getByOrderIndex(index);
+
+            if (orderChange(detail))
+            {
+                DetailsController.instance().ViewSource.View.Refresh();
+                return true;
+            }
+            return false;
+        }
+        public bool down()
+        {
+            int index = DetailsController.instance().nextRowOrderIndex(RowOrder);
+            if (index == 0) return true;
+            Details detail = DetailsController.instance().getByOrderIndex(index);
+            if (orderChange(detail))
+            {
+                DetailsController.instance().ViewSource.View.Refresh();
+                return true;
+            }
+            return false;
+        }
+
     }
 }
