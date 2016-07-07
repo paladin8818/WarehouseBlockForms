@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WarehouseBlockForms.Classess;
@@ -28,11 +29,8 @@ namespace WarehouseBlockForms.Views.Pages
             };
             cbxRecipients.ItemsSource = RecipientsController.instance().Collection;
 
-            btnAddRow.Click += delegate
-            {
-                WriteoffDetailsHelper writeoffDetails = new WriteoffDetailsHelper();
-                wodh_collection.add(writeoffDetails);
-            };
+            WriteoffDetailsHelper writeoffDetailsHelper = new WriteoffDetailsHelper();
+            wodh_collection.add(writeoffDetailsHelper);
 
             btnSaveWriteoff.Click += delegate
             {
@@ -77,6 +75,17 @@ namespace WarehouseBlockForms.Views.Pages
 
             writeoffDetailHelper.IdDetails = (int)comboBox.SelectedValue;
             writeoffDetailHelper.DetailsCount = (writeoffDetailHelper.Detail.CurrentCount > 0) ? 1 : 0;
+
+
+            int notFillRowCount = WriteoffDetailsHelperCollection.instance()
+                .Collection.Where(x => x.IdDetails == 0).Count();
+
+            if (writeoffDetailHelper.IdDetails != 0 && notFillRowCount == 0)
+            {
+                WriteoffDetailsHelper writeoffDetailsHelper = new WriteoffDetailsHelper();
+                wodh_collection.add(writeoffDetailsHelper);
+            }
+
         }
 
         private void removeRecord(object sender, System.Windows.RoutedEventArgs e)
@@ -144,8 +153,8 @@ namespace WarehouseBlockForms.Views.Pages
                 }
 
                 ///Update current count
-
-                for (int i = 0; i < wodh_collection.Collection.Count; i++)
+                //wodh_collection.Collection.Count-1 - т.к. последняя строка пустая
+                for (int i = 0; i < wodh_collection.Collection.Count-1; i++)
                 {
                     wodh_collection.Collection[i].Detail.CurrentCount = 0;
                 }
@@ -153,6 +162,10 @@ namespace WarehouseBlockForms.Views.Pages
                 wodh_collection.clear();
                 cbxRecipients.SelectedIndex = -1;
                 tbxAppNumber.Text = "";
+
+                WriteoffDetailsHelper newWriteoffDetailsHelper = new WriteoffDetailsHelper();
+                wodh_collection.add(newWriteoffDetailsHelper);
+
             }
             else
             {

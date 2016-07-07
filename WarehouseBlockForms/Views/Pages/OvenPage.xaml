@@ -11,6 +11,7 @@
         <DataGrid 
             Style="{StaticResource styleDefaultDataGrid}"
             x:Name="dgOven"
+            Margin="5, 5, 125, 5"
             ItemsSource="{Binding Collection}">
             <DataGrid.Columns>
 
@@ -83,9 +84,15 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button x:Name="btnAdd" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Добавить" Margin="0, 0, 0, 10"></Button>
-            <Button x:Name="btnEdit" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Редактировать" Margin="0, 0, 0, 10"></Button>
-            <Button x:Name="btnDelete" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Удалить" Margin="0, 0, 0, 10"></Button>
+            <Button 
+                Style="{StaticResource styleDefaultButton}"
+                x:Name="btnAdd" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Добавить" Margin="0, 0, 0, 10"/>
+            <Button 
+                Style="{StaticResource styleDefaultButton}"
+                x:Name="btnEdit" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Редактировать" Margin="0, 0, 0, 10"></Button>
+            <Button 
+                Style="{StaticResource styleDefaultButton}"
+                x:Name="btnDelete" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Удалить" Margin="0, 0, 0, 10"></Button>
         </Grid>
     </Grid>
 </Page>

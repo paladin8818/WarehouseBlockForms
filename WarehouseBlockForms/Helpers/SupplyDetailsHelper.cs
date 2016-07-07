@@ -74,6 +74,7 @@ namespace WarehouseBlockForms.Helpers
             set
             {
                 id_detail = value;
+                RaisePropertyChaned("IdDetails", null);
                 RaisePropertyChaned("VendorCode", null);
                 RaisePropertyChaned("DetailsCount", null);
             }
@@ -109,6 +110,22 @@ namespace WarehouseBlockForms.Helpers
             }
         }
 
+        public bool IsLastRow
+        {
+            get
+            {
+                if (RowIndex == SupplyDetailsHelperCollection.instance().Collection.Count)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                RaisePropertyChaned("IsLastRow", null);
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void RaisePropertyChaned(string name, object v)
@@ -119,5 +136,9 @@ namespace WarehouseBlockForms.Helpers
             }
         }
 
+        public void updateLastRow ()
+        {
+            RaisePropertyChaned("IsLastRow", null);
+        }
     }
 }

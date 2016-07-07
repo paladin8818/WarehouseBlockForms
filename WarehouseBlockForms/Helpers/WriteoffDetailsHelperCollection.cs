@@ -32,6 +32,7 @@ namespace WarehouseBlockForms.Helpers
         public void add(WriteoffDetailsHelper wod_helper)
         {
             _collection.Add(wod_helper);
+            updateLastRow();
         }
         public void remove(WriteoffDetailsHelper wod_helper)
         {
@@ -39,6 +40,7 @@ namespace WarehouseBlockForms.Helpers
             {
                 _collection.Remove(wod_helper);
                 _collection.All(x => { x.RowIndex = 1; return true; });
+                updateLastRow();
             }
         }
         public void clear()
@@ -57,11 +59,18 @@ namespace WarehouseBlockForms.Helpers
         public bool isAllCorrect()
         {
             int incorrectcount = _collection.Where(x => (x.IdDetails == 0) || (x.DetailsCount == 0)).ToList().Count;
-            if (incorrectcount > 0)
+
+            //incorrectcount <= 1  т.к. последняя строка пустая
+            if (incorrectcount <= 1 && _collection.Count > 1)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
+        }
+
+        private void updateLastRow()
+        {
+            _collection.ToList().ForEach(x => x.updateLastRow());
         }
     }
 }

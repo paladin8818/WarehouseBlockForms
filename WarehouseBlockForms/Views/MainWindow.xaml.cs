@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WarehouseBlockForms.Classes;
 using WarehouseBlockForms.Classess;
+using WarehouseBlockForms.Helpers;
 using WarehouseBlockForms.Models;
 
 namespace WarehouseBlockForms.Views
@@ -22,7 +23,8 @@ namespace WarehouseBlockForms.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool administratorMode = false;
+        private bool administratorMode;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,6 +35,7 @@ namespace WarehouseBlockForms.Views
                 Close();
                 return;
             }
+
             setWorkPages();
             setSettingsPages();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -31,13 +32,6 @@ namespace WarehouseBlockForms.Views.Pages
 
             SupplyDetailsHelper supplyDetails = new SupplyDetailsHelper();
             sdh_collection.add(supplyDetails);
-
-            //Add button hide
-            /*btnAddRow.Click += delegate
-            {
-                SupplyDetailsHelper supplyDetails = new SupplyDetailsHelper();
-                sdh_collection.add(supplyDetails);
-            };*/
 
             btnSaveSupply.Click += delegate
             {
@@ -76,6 +70,16 @@ namespace WarehouseBlockForms.Views.Pages
             if (supplyDetailHelper == null) return;
 
             supplyDetailHelper.IdDetails = (int)comboBox.SelectedValue;
+
+            int notFillRowCount = SupplyDetailsHelperCollection.instance()
+                .Collection.Where(x => x.IdDetails == 0).Count();
+
+            if (supplyDetailHelper.IdDetails != 0 && notFillRowCount == 0)
+            {
+                SupplyDetailsHelper supplyDetails = new SupplyDetailsHelper();
+                sdh_collection.add(supplyDetails);
+            }
+
         }
 
         private void removeRecord(object sender, System.Windows.RoutedEventArgs e)
@@ -131,8 +135,8 @@ namespace WarehouseBlockForms.Views.Pages
                 }
 
                 ///Update current count
-
-                for (int i = 0; i < sdh_collection.Collection.Count; i++)
+                //sdh_collection.Collection.Count-1 - т.к. последняя строка пустая
+                for (int i = 0; i < sdh_collection.Collection.Count-1; i++)
                 {
                     sdh_collection.Collection[i].Detail.CurrentCount = 0;
                 }
@@ -149,17 +153,6 @@ namespace WarehouseBlockForms.Views.Pages
                 return;
             }
 
-        }
-
-        private void dgSupply_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            DataGrid dg = sender as DataGrid;
-            if (dg == null) return;
-            if(e.Key == Key.Enter)
-            {
-                SupplyDetailsHelper supplyDetails = new SupplyDetailsHelper();
-                sdh_collection.add(supplyDetails);
-            }
         }
 
         private void countValueChange(object sender, PropertyChangedEventArgs e)

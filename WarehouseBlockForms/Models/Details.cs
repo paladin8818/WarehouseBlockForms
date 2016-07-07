@@ -14,7 +14,6 @@ namespace WarehouseBlockForms.Models
         private string name;
         private string vendor_code;
         private int id_oven;
-        private bool is_visible = true;
 
         public int RowIndex
         {
@@ -101,18 +100,6 @@ namespace WarehouseBlockForms.Models
             set
             {
                 base.RaisePropertyChaned("CurrentCount", null);
-            }
-        }
-
-        public bool IsVisible {
-            get
-            {
-                return is_visible;
-            }
-            set
-            {
-                is_visible = value;
-                base.RaisePropertyChaned("IsVisible", value);
             }
         }
 

@@ -41,7 +41,7 @@ namespace WarehouseBlockForms.Views.Pages
             };
             tbxFastFilter.TextChanged += delegate
             {
-
+                DetailsController.instance().showFromText(tbxFastFilter.Text);
             };
             btnClearFastFilter.Click += delegate
             {

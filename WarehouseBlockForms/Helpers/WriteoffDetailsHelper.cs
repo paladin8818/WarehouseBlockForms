@@ -77,6 +77,8 @@ namespace WarehouseBlockForms.Helpers
                 RaisePropertyChaned("VendorCode", null);
                 RaisePropertyChaned("DetailsCount", null);
                 RaisePropertyChaned("Detail", null);
+                RaisePropertyChaned("MinCount", null);
+                RaisePropertyChaned("MaxCount", null);
             }
         }
 
@@ -102,11 +104,60 @@ namespace WarehouseBlockForms.Helpers
             }
         }
 
+
+        public int MinCount
+        {
+            get
+            {
+                if (Detail == null)
+                {
+                    return 0;
+                }
+                return 1;
+            }
+            set
+            {
+                RaisePropertyChaned("MinCount", null);
+            }
+        }
+
+        public int MaxCount
+        {
+            get
+            {
+                if(Detail == null)
+                {
+                    return 0;
+                }
+                return Detail.CurrentCount;
+            }
+            set
+            {
+                RaisePropertyChaned("MaxCount", null);
+            }
+        }
+
         public Details Detail
         {
             get
             {
                 return DetailsController.instance().getById(IdDetails);
+            }
+        }
+
+        public bool IsLastRow
+        {
+            get
+            {
+                if (RowIndex == WriteoffDetailsHelperCollection.instance().Collection.Count)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                RaisePropertyChaned("IsLastRow", null);
             }
         }
 
@@ -118,6 +169,11 @@ namespace WarehouseBlockForms.Helpers
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public void updateLastRow()
+        {
+            RaisePropertyChaned("IsLastRow", null);
         }
 
     }

@@ -21,7 +21,9 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Путь к папке выгрузки" VerticalAlignment="Center"></Label>
         <TextBox Height="23" VerticalAlignment="Center" x:Name="tbxCurrentDirectoryPath" Grid.Row="0" Grid.Column="1" IsEnabled="False" Width="450" Margin="0, 0, 40, 0"></TextBox>
-        <Button x:Name="btnOpenDirectoryPath" Grid.Row="0" Grid.Column="1"  Width="30" Height="23" VerticalAlignment="Center" Content="..." HorizontalAlignment="Right"></Button>
+        <Button 
+            Style="{StaticResource styleDefaultButton}"
+            x:Name="btnOpenDirectoryPath" Grid.Row="0" Grid.Column="1"  Width="30" Height="23" VerticalAlignment="Center" Content="..." HorizontalAlignment="Right"></Button>
 
         <Label Grid.Row="1" Grid.Column="0" Content="Расписание выгрузки" Margin="0, 10, 0, 0" Visibility="Collapsed"></Label>
         <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0" Visibility="Collapsed">
@@ -111,6 +113,7 @@
                 <xceed:TimePicker Grid.Column="1" Grid.Row="0" Margin="10, 0, 0, 0" x:Name="tbx_month_time" VerticalAlignment="Stretch"></xceed:TimePicker>
             </Grid>
             <Button 
+                Style="{StaticResource styleDefaultButton}"
                 x:Name="btnSaveReportPeriod"
                 Width="150"
                 Height="25"

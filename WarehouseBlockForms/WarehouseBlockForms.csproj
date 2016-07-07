@@ -158,8 +158,11 @@
       <DependentUpon>IntSpinnerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\TabSizeConverter.cs" />
+    <Compile Include="Helpers\SWDetailsHelper.cs" />
     <Compile Include="Helpers\SupplyDetailsHelper.cs" />
     <Compile Include="Helpers\SupplyDetailsHelperCollection.cs" />
+    <Compile Include="Helpers\SWCollection.cs" />
+    <Compile Include="Helpers\SWHelper.cs" />
     <Compile Include="Helpers\WriteoffDetailsHelper.cs" />
     <Compile Include="Helpers\WriteoffDetailsHelperCollection.cs" />
     <Compile Include="Models\base\IRowChangeable.cs" />

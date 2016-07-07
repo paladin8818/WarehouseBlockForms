@@ -8,7 +8,149 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SheetPage">
 
-    <Grid>
-        
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"> 
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <DataGrid
+                SelectionChanged="dgAvailability_SelectionChanged"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                x:Name="dgAvailability"
+                ItemsSource="{Binding SWCollection}"
+                Style="{StaticResource styleDefaultDataGrid}">
+                <DataGrid.Columns>
+
+
+                    <DataGridTemplateColumn 
+                        CanUserSort="True"
+                        CellStyle="{StaticResource styleDefaultDataGridCell}"
+                        Width="50"
+                        SortMemberPath="TId"
+                        Header="Код">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=TId}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+                    <DataGridTemplateColumn 
+                        CanUserSort="True"
+                        CellStyle="{StaticResource styleDefaultDataGridCell}"
+                        Width="100"
+                        SortMemberPath="TName"
+                        Header="Тип операции">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=TName}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    <DataGridTemplateColumn 
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="*"
+                    SortMemberPath="OperationDate"
+                    Header="Дата операции">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=OperationDate, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn 
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="*"
+                    SortMemberPath="IdRecipient"
+                    Header="Получатель">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Recipient.FullName}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn 
+                    CanUserSort="True"
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="100"
+                    SortMemberPath="AppNumber"
+                    Header="Номер заявки">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=AppNumber}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <DataGrid   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                x:Name="dgDetailed"
+                Style="{StaticResource styleDefaultDataGrid}">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn 
+                        CanUserSort="True"
+                        CellStyle="{StaticResource styleDefaultDataGridCell}"
+                        Width="100"
+                        SortMemberPath="OvenName"
+                        Header="Печь">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=OvenName}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn 
+                        CanUserSort="True"
+                        CellStyle="{StaticResource styleDefaultDataGridCell}"
+                        Width="100"
+                        SortMemberPath="VendorCode"
+                        Header="Артикул">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=VendorCode}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn 
+                        CanUserSort="True"
+                        CellStyle="{StaticResource styleDefaultDataGridCell}"
+                        Width="*"
+                        SortMemberPath="Name"
+                        Header="Деталь">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn 
+                        CanUserSort="True"
+                        CellStyle="{StaticResource styleDefaultDataGridCell}"
+                        Width="100"
+                        SortMemberPath="Count"
+                        Header="Количество">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Count}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </Page>

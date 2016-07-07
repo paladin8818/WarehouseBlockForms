@@ -10,6 +10,15 @@ namespace WarehouseBlockForms.Models
     {
 
         private DateTime supply_date;
+
+        public string TName
+        {
+            get
+            {
+                return "Поступление";
+            }
+        }
+
         public DateTime SupplyDate
         {
             get

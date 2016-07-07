@@ -14,6 +14,14 @@ namespace WarehouseBlockForms.Models
         private string app_number;
         private int id_recipient;
 
+        public string TName
+        {
+            get
+            {
+                return "Списание";
+            }
+        }
+
         public DateTime WriteoffDate
         {
             get

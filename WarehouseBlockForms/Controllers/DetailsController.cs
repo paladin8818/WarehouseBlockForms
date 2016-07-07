@@ -122,18 +122,19 @@ namespace WarehouseBlockForms.Controllers
         public int getPos(Details detail)
         {
             List<Details> details = _collection.ToList();
-            
-            details.Sort(DetailNameCompare);
-            if (_collection.Contains(detail))
+            details.Sort(DetailRowOrderCompare);
+            if (details.Contains(detail))
             {
-                return _collection.IndexOf(detail) + 1;
+                return details.IndexOf(detail) + 1;
             }
             return -1;
         }
 
-        private static int DetailNameCompare (Details x, Details y)
+        private static int DetailRowOrderCompare (Details x, Details y)
         {
-            return x.Name.CompareTo(y.Name);
+            if (x.RowOrder > y.RowOrder) return 1;
+            if (x.RowOrder < y.RowOrder) return -1;
+            return 0;
         }
 
         public int maxRowOrderIndex()
@@ -171,29 +172,25 @@ namespace WarehouseBlockForms.Controllers
             return _collection.Where(x => x.RowOrder == orderIndex).FirstOrDefault();
         }
 
-        private void hide (Details detail)
-        {
-            detail.IsVisible = false;
-        }
-
-        private void show (Details detail)
-        {
-            detail.IsVisible = true;
-        }
-
         public void showFromOvenId(int id_oven)
         {
-            _collection.ToList().ForEach(x => show(x));
+            _collection.ToList().ForEach(x => x.setFilter("IdOven", true));
             if(id_oven != 0)
             {
-                _collection.Where(x => x.IdOven != id_oven).ToList().ForEach(y => hide(y));
+                _collection.Where(x => x.IdOven != id_oven).ToList().ForEach(y => y.setFilter("IdOven", false));
             }
             ViewSource.View.Refresh();
         }
 
         public void showFromText(string text)
         {
-            
+            string[] properties = new string[] {"Name", "VendorCode"};
+            _collection.ToList().ForEach(x => x.setFilters(properties, false));
+            text = text.ToLower();
+            _collection.Where(x => (x.Name.ToLower().IndexOf(text) != -1) | (x.VendorCode.ToLower().IndexOf(text) != -1) )
+                .ToList().ForEach(y => y.setFilters(properties, true));
+
+            ViewSource.View.Refresh();
         }
 
     }

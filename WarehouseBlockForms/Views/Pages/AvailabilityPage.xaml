@@ -31,11 +31,11 @@
                 VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch"
                 Margin="5, 0, 10, 0"></ComboBox>
-            <Button x:Name="btnClearOvenFilter" Grid.Row="0" Grid.Column="2" Content="X" Margin="0, 0, 5, 0"></Button>
+            <Button  Style="{StaticResource styleDefaultButton}" x:Name="btnClearOvenFilter" Grid.Row="0" Grid.Column="2" Content="X" Margin="0, 0, 5, 0"></Button>
             
             <Label Content="Быстрый фильтр" Grid.Row="0" Grid.Column="3"></Label>
             <TextBox x:Name="tbxFastFilter" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="5, 0, 10, 0"></TextBox>
-            <Button x:Name="btnClearFastFilter" Grid.Row="0" Grid.Column="5" Content="X" Margin="0, 0, 5, 0"></Button>
+            <Button Style="{StaticResource styleDefaultButton}" x:Name="btnClearFastFilter" Grid.Row="0" Grid.Column="5" Content="X" Margin="0, 0, 5, 0"></Button>
         </Grid>
         <DataGrid 
             x:Name="dgAvailability"
@@ -44,6 +44,7 @@
             Margin="0, 40, 0, 40">
             <DataGrid.Columns>
                 <DataGridTemplateColumn
+                    SortMemberPath="RowIndex"
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="№ п/п"
@@ -55,6 +56,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn
+                    SortMemberPath="OvenName"
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Печь"
@@ -66,6 +68,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn
+                    SortMemberPath="VendorCode"
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Артикул"
@@ -77,6 +80,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn
+                    SortMemberPath="Name"
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Название детали"
@@ -88,6 +92,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn
+                    SortMemberPath="CurrentCount"
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Текущее количество"
@@ -98,24 +103,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-
-                <DataGridTemplateColumn
-                    CanUserSort="True"
-                    CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Видимый"
-                    Width="150">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=IsVisible}" Margin="5, 0, 0, 0"></TextBlock>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-
-
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnCreateReport" Content="Сформировать отчет" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
+        <Button Style="{StaticResource styleDefaultButton}" x:Name="btnCreateReport" Content="Сформировать отчет" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
     </Grid>
 </Page>

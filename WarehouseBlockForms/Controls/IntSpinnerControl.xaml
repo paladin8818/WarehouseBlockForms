@@ -6,6 +6,56 @@
              xmlns:local="clr-namespace:WarehouseBlockForms.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+
+        <Style TargetType="RepeatButton" x:Key="StISCRepeatButton">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderBrush" Value="#D4D6D8"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border 
+                            CornerRadius="0"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="#D4D6D8" 
+                            BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="LightGray"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="StISCTextBox">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderBrush" Value="#D4D6D8"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Border 
+                                CornerRadius="0"
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="#D4D6D8" 
+                                BorderThickness="1">
+                            </Border>
+                            <TextBox 
+                                VerticalContentAlignment="Center"
+                                Text="{TemplateBinding Text}"></TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -20,18 +70,39 @@
                  Grid.Row="0" 
                  TextAlignment="Right"
                  VerticalAlignment="Stretch"
-                 Padding="0"
                  VerticalContentAlignment="Center"
-                 Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type local:IntSpinnerControl}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                 Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type local:IntSpinnerControl}}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        </TextBox>
         <RepeatButton 
             x:Name="btnMinus"
             Grid.Column="1"
             Grid.Row="0" Content="-">
+            <RepeatButton.Style>
+                <Style TargetType="RepeatButton" BasedOn="{StaticResource StISCRepeatButton}">
+                    <Setter Property="Background" Value="#FFB4A0"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFA08C"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RepeatButton.Style>
         </RepeatButton>
         <RepeatButton 
             x:Name="btnPlus"
             Grid.Column="2"
             Grid.Row="0"
-            Content="+"></RepeatButton>
+            Content="+">
+            <RepeatButton.Style>
+                <Style TargetType="RepeatButton" BasedOn="{StaticResource StISCRepeatButton}">
+                    <Setter Property="Background" Value="#B4FFA0"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#8CFF78"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RepeatButton.Style>
+        </RepeatButton>
     </Grid>
 </UserControl>

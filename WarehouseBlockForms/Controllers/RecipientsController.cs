@@ -104,6 +104,11 @@ namespace WarehouseBlockForms.Controllers
             add(recipient);
         }
 
+        public Recipients getById(int id)
+        {
+            return _collection.Where(x => x.Id == id).FirstOrDefault();
+        }
+
         public int maxRowOrderIndex()
         {
             Recipients recipient = _collection.OrderByDescending(x => x.RowOrder).FirstOrDefault();

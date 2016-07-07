@@ -22,8 +22,47 @@ namespace WarehouseBlockForms.Models.Base
 	/// </summary>
 	public abstract class Model : INotifyPropertyChanged
 	{
-		public int Id { get; set; }
-        public int RowOrder { get; set; }
+        private int id;
+        private int rowOrder;
+        private bool isVisible = true;
+        private Dictionary<string, bool> filters = new Dictionary<string, bool>();
+
+		public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                RaisePropertyChaned("Id", value);
+            }
+        }
+        public int RowOrder
+        {
+            get
+            {
+                return rowOrder;
+            }
+            set
+            {
+                rowOrder = value;
+                RaisePropertyChaned("RowOrder", value);
+            }
+        }
+        public bool IsVisible
+        {
+            get
+            {
+                return isVisible;
+            }
+            set
+            {
+                isVisible = value;
+                RaisePropertyChaned("IsVisible", value);
+            }
+        }
 		
         protected abstract string TableName { get; }
 
@@ -174,6 +213,40 @@ namespace WarehouseBlockForms.Models.Base
             RowOrder = currentRowIndex;
             model.RowOrder = newRowIndex;
             return false;
+        }
+
+        public void setFilter (string propertyName, bool visible)
+        {
+            if(filters.ContainsKey(propertyName))
+            {
+                filters[propertyName] = visible;
+            }
+            else
+            {
+                filters.Add(propertyName, visible);
+            }
+            updateFilter();
+        }
+
+        public void setFilters(string[] properties, bool visible)
+        {
+            for(int i = 0; i < properties.Length; i++)
+            {
+                setFilter(properties[i], visible);
+            }
+        }
+
+        private void updateFilter ()
+        {
+            foreach(KeyValuePair<string, bool> filterValue in filters)
+            {
+                if (filterValue.Value == false)
+                {
+                    IsVisible = false;
+                    return;
+                }
+            }
+            isVisible = true;
         }
 
 	}

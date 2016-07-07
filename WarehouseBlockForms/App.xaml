@@ -5,7 +5,7 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="DataGrid" x:Key="styleDefaultDataGrid">
-            <Setter Property="Margin" Value="5, 5, 120, 5" />
+            <Setter Property="Margin" Value="5, 5, 5, 5" />
             <Setter Property="SelectionMode" Value="Single" />
             <Setter Property="GridLinesVisibility" Value="Horizontal" />
             <Setter Property="IsReadOnly" Value="True" />
@@ -14,13 +14,103 @@
             <Setter Property="MinRowHeight" Value="30" />
             <Setter Property="HorizontalGridLinesBrush" Value="Silver" />
         </Style>
+        
+        
+        
+        <Style TargetType="Button" x:Key="styleDefaultButton">
+            <Setter Property="Background" Value="#0068B3"></Setter>
+            <Setter Property="BorderBrush" Value="#0068B3"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            CornerRadius="0"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="#0068B3" 
+                            BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D4D6D8"></Setter>
+                    <Setter Property="BorderBrush" Value="#D4D6D8"></Setter>
+                    <Setter Property="Foreground" Value="Black"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="styleWhiteButton">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="BorderBrush" Value="#D4D6D8"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            CornerRadius="0"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="#D4D6D8" 
+                            BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D4D6D8"></Setter>
+                    <Setter Property="BorderBrush" Value="#D4D6D8"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style TargetType="Button" x:Key="styleRedButton">
+            <Setter Property="Background" Value="#FFB4A0"></Setter>
+            <Setter Property="BorderBrush" Value="#FFB4A0"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            CornerRadius="0"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="#FFB4A0" 
+                            BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFA08C"></Setter>
+                    <Setter Property="BorderBrush" Value="#FFA08C"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
         <Style TargetType="DataGridCell" x:Key="styleDefaultDataGridCell">
             <Style.Triggers>
                 <Trigger Property="DataGridCell.IsSelected" Value="True">
-                    <Setter Property="Background" Value="LightGreen"></Setter>
-                    <Setter Property="BorderBrush" Value="LightGreen"></Setter>
+                    <Setter Property="Background" Value="#0068B3"></Setter>
+                    <Setter Property="BorderBrush" Value="#0068B3"></Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>
+    
+    <!--
+        
+        Gray D4D6D8
+        Blue 0068B3
+        -->
