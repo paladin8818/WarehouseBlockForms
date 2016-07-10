@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WarehouseBlockForms.Controllers;
+using WarehouseBlockForms.Reports;
 
 namespace WarehouseBlockForms.Views.Pages
 {
@@ -47,6 +48,39 @@ namespace WarehouseBlockForms.Views.Pages
             {
                 tbxFastFilter.Text = "";
             };
+
+            btnCreateReport.Click += delegate
+            {
+               /* try
+                {*/
+                    AvailabilityReport report = new AvailabilityReport();
+                    report.Postfix = "сформирован вручную";
+
+                    report.H1 = report.ReportName;
+                    report.H2 = "Тест хедера 1";
+                    report.H3 = "Тест хедера 2";
+                    report.HeaderRow = new string[] { "№", "Печь", "Артикул", "Наименование", "Количество"};
+
+                    report.F1 = "Тест футера";
+                    report.F2 = "";
+                    report.F3 = "";
+
+                    if (report.Save())
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("При формировании отчета произошли ошибки!");
+                    }
+               /* }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }*/
+
+            };
+
         }
     }
 }
