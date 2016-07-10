@@ -39,30 +39,9 @@ namespace WarehouseBlockForms.Views
             setWorkPages();
             setSettingsPages();
 
-            /*if (this.administratorMode)
-            {
-                Title += " (режим администрирования)";
-                tiSettings.Visibility = Visibility.Visible;
-            }*/
-
             btnLoginAdmin.Click += delegate
             {
-                if(tbxPassword.Password == "")
-                {
-                    MessageBox.Show("Введите пароль!");
-                    return;
-                }
-                if(PasswordValidate.Validate(tbxPassword.Password))
-                {
-                    administratorMode = true;
-                    grdLoginAdmin.Visibility = Visibility.Collapsed;
-                    tcSettings.Visibility = Visibility.Visible;
-                    Title += " (режим администрирования)";
-                }
-                else
-                {
-                    MessageBox.Show("Введенный пароль некорректен!");
-                }
+                Login();
             };
 
         }
@@ -101,6 +80,34 @@ namespace WarehouseBlockForms.Views
 
             Uri securityPageUri = new Uri("/Views/Pages/SecuritySettingsPage.xaml", UriKind.Relative);
             frameSettingsSecurity.Source = securityPageUri;
+        }
+
+        private void Login ()
+        {
+            if (tbxPassword.Password == "")
+            {
+                MessageBox.Show("Введите пароль!");
+                return;
+            }
+            if (PasswordValidate.Validate(tbxPassword.Password))
+            {
+                administratorMode = true;
+                grdLoginAdmin.Visibility = Visibility.Collapsed;
+                tcSettings.Visibility = Visibility.Visible;
+                Title += " (режим администрирования)";
+            }
+            else
+            {
+                MessageBox.Show("Введенный пароль некорректен!");
+            }
+        }
+
+        private void tbxPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Login();
+            }
         }
     }
 }

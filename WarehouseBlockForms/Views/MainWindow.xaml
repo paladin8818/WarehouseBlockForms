@@ -57,9 +57,12 @@
                             Width="100" 
                             HorizontalAlignment="Left"></Label>
                         <PasswordBox 
+                            KeyUp="tbxPassword_KeyUp"
                             x:Name="tbxPassword"
                             VerticalAlignment="Top" 
                             Margin="120, 0, 0, 0" 
+                            Height="25"
+                            VerticalContentAlignment="Center"
                             HorizontalAlignment="Stretch"></PasswordBox>
                         <Button x:Name="btnLoginAdmin" Content="OK" Width="100" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Button>
                     </Grid>
