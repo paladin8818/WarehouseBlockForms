@@ -9,7 +9,7 @@ namespace WarehouseBlockForms.Reports
         {
             get
             {
-                return "d:";
+                return "z:";
             }
 
         }
@@ -18,7 +18,7 @@ namespace WarehouseBlockForms.Reports
         {
             get
             {
-                return "Отчет о наличии " + DateTime.Now.ToString("dd.MM.yyyy") + " (" + Postfix + ")" ;
+                return "Отчет о наличии " + DateTime.Now.ToString("dd.MM.yyyy HH_mm") + " (" + Postfix + ")" ;
             }
         }
 

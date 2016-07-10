@@ -140,6 +140,7 @@ namespace WarehouseBlockForms.Views.Pages
                 for (int i = 0; i < wodh_collection.Collection.Count; i++)
                 {
                     WriteoffDetailsHelper wodh = wodh_collection.Collection[i];
+                    if (wodh.IdDetails == 0) continue;
                     WriteoffDetails writeoffDetails = new WriteoffDetails();
                     writeoffDetails.IdDetails = wodh.IdDetails;
                     writeoffDetails.IdWriteoff = writeoff.Id;

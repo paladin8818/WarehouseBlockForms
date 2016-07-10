@@ -14,10 +14,10 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="110"></ColumnDefinition>
                 <ColumnDefinition Width="250"></ColumnDefinition>
                 <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="110"></ColumnDefinition>
                 <ColumnDefinition Width="250"></ColumnDefinition>
                 <ColumnDefinition Width="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
             <Button  Style="{StaticResource styleDefaultButton}" x:Name="btnClearOvenFilter" Grid.Row="0" Grid.Column="2" Content="X" Margin="0, 0, 5, 0"></Button>
             
             <Label Content="Быстрый фильтр" Grid.Row="0" Grid.Column="3"></Label>
-            <TextBox x:Name="tbxFastFilter" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="5, 0, 10, 0"></TextBox>
+            <TextBox VerticalContentAlignment="Center" x:Name="tbxFastFilter" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="5, 0, 10, 0"></TextBox>
             <Button Style="{StaticResource styleDefaultButton}" x:Name="btnClearFastFilter" Grid.Row="0" Grid.Column="5" Content="X" Margin="0, 0, 5, 0"></Button>
         </Grid>
         <DataGrid 

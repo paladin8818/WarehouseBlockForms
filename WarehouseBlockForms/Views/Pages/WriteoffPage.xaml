@@ -20,9 +20,9 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="110"></ColumnDefinition>
                 <ColumnDefinition Width="250"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="110"></ColumnDefinition>
                 <ColumnDefinition Width="250"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
@@ -36,7 +36,7 @@
                 x:Name="cbxRecipients"
                 Margin="5, 0, 10, 0"></ComboBox>
             <Label Grid.Row="0" Grid.Column="2" Content="Номер заявки" HorizontalAlignment="Left"></Label>
-            <TextBox Grid.Row="0" Width="250" Grid.Column="3" x:Name="tbxAppNumber" HorizontalAlignment="Stretch" Margin="5, 0, 10, 0"></TextBox>
+            <TextBox VerticalContentAlignment="Center" Grid.Row="0" Width="220" Grid.Column="3" x:Name="tbxAppNumber" HorizontalAlignment="Stretch" Margin="5, 0, 10, 0"></TextBox>
         </Grid>
         <DataGrid 
             x:Name="dgSupply"

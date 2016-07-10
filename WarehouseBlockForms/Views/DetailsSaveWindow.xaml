@@ -11,9 +11,16 @@
 
         <Button 
             Style="{StaticResource styleDefaultButton}"
-            x:Name="btnSave" Content="Ok" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+            x:Name="btnSave"
+            Content="Ok" 
+            HorizontalAlignment="Right"
+            Margin="0,0,10,10"
+            VerticalAlignment="Bottom" 
+            Height="25"
+            Width="75"/>
         <Button 
             Style="{StaticResource styleDefaultButton}"
+            Height="25"
             x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75"/>
         
         <Label x:Name="label" Content="Название детали" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>

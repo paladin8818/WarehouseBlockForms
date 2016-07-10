@@ -52,11 +52,8 @@ namespace WarehouseBlockForms.Reports.Base
             if(H1 != null)
             {
                 excelWorkSheet.Cells[lastTopIndex, 1] = H1;
-                int lastColumn = (ColumnCount() == 0) ? 2 : ColumnCount();
-                excelWorkSheet.Range[
-                    excelWorkSheet.Cells[lastTopIndex, 1],
-                    excelWorkSheet.Cells[lastTopIndex+1, ColumnCount()]
-                    ].Merge();
+                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
+                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
                 lastTopIndex += 2;
             }
         }
@@ -64,10 +61,9 @@ namespace WarehouseBlockForms.Reports.Base
         {
             if (H2 != null)
             {
-                excelWorkSheet.Range[
-                    excelWorkSheet.Cells[lastTopIndex, 1],
-                    excelWorkSheet.Cells[lastTopIndex+1, ColumnCount()]
-                    ].Merge();
+                excelWorkSheet.Cells[lastTopIndex, 1] = H2;
+                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
+                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
                 lastTopIndex += 2;
             }
         }
@@ -75,10 +71,9 @@ namespace WarehouseBlockForms.Reports.Base
         {
             if (H3 != null)
             {
-                excelWorkSheet.Range[
-                    excelWorkSheet.Cells[lastTopIndex, 1],
-                    excelWorkSheet.Cells[lastTopIndex+1, ColumnCount()]
-                    ].Merge();
+                excelWorkSheet.Cells[lastTopIndex, 1] = H3;
+                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
+                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
                 lastTopIndex += 2;
             }
         }
@@ -109,10 +104,9 @@ namespace WarehouseBlockForms.Reports.Base
         {
             if(F1 != null)
             {
-                excelWorkSheet.Range[
-                    excelWorkSheet.Cells[lastTopIndex, 1],
-                    excelWorkSheet.Cells[lastTopIndex+1, ColumnCount()]
-                    ].Merge();
+                excelWorkSheet.Cells[lastTopIndex, 1] = F1;
+                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
+                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
                 lastTopIndex += 2;
             }
         }
@@ -134,6 +128,14 @@ namespace WarehouseBlockForms.Reports.Base
             return 0;
         }
 
+
+        private void merge(int r1, int r2, int c1, int c2)
+        {
+            excelWorkSheet.Range[
+                excelWorkSheet.Cells[r1, c1],
+                excelWorkSheet.Cells[r2, c2]
+                ].Merge();
+        }
 
         private void releaseObject(object obj)
         {

@@ -12,9 +12,11 @@
         <TextBox x:Name="tbxName" Height="23" Margin="108,13,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Button 
             Style="{StaticResource styleDefaultButton}"
+            Height="25"
             x:Name="btnSave" Content="Ok" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
         <Button 
             Style="{StaticResource styleDefaultButton}"
+            Height="25"
             x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75"/>
 
     </Grid>

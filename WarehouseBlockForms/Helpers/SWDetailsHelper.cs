@@ -53,6 +53,7 @@ namespace WarehouseBlockForms.Helpers
                 swdHelper.Count = writeoffDetails[i].DetailsCount;
 
                 Details detail = DetailsController.instance().getById(writeoffDetails[i].IdDetails);
+                if (detail == null) continue;
                 swdHelper.Name = detail.Name;
                 swdHelper.VendorCode = detail.VendorCode;
                 swdHelper.OvenName = detail.OvenName;

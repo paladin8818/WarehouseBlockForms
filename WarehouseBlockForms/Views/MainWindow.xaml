@@ -8,7 +8,7 @@
         xmlns:local1="clr-namespace:WarehouseBlockForms.Converters"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="Склад блок-форм" Height="600" Width="800">
+        Title="Склад блок-форм" Height="768" Width="1366">
     <Window.Resources>
         <local1:TabSizeConverter x:Key="tabSizeConverter"></local1:TabSizeConverter>
         <Style TargetType="TabItem" x:Key="styleRootTabControl">

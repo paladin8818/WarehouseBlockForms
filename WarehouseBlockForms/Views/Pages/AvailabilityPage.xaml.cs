@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WarehouseBlockForms.Controllers;
+using WarehouseBlockForms.Models;
 using WarehouseBlockForms.Reports;
 
 namespace WarehouseBlockForms.Views.Pages
@@ -57,17 +48,23 @@ namespace WarehouseBlockForms.Views.Pages
                     report.Postfix = "сформирован вручную";
 
                     report.H1 = report.ReportName;
-                    report.H2 = "Тест хедера 1";
-                    report.H3 = "Тест хедера 2";
                     report.HeaderRow = new string[] { "№", "Печь", "Артикул", "Наименование", "Количество"};
-
-                    report.F1 = "Тест футера";
-                    report.F2 = "";
-                    report.F3 = "";
+                    string[][] data = new string[DetailsController.instance().Collection.Count][];
+                    for (int i = 0; i < DetailsController.instance().Collection.Count; i++)
+                    {
+                        Details detail = DetailsController.instance().Collection[i];
+                        data[i] = new string[5];
+                        data[i][0] = detail.RowIndex.ToString();
+                        data[i][1] = detail.OvenName;
+                        data[i][2] = detail.VendorCode;
+                        data[i][3] = detail.Name;
+                        data[i][4] = detail.CurrentCount.ToString();
+                    }
+                report.Data = data;
 
                     if (report.Save())
                     {
-
+                    MessageBox.Show("Отчет сохранен!");
                     }
                     else
                     {

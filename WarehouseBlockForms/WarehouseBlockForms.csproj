@@ -39,9 +39,6 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NumericUpDown">
-      <HintPath>libs\NumericUpDown.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>libs\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -67,7 +64,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>libs\extend_wpf_toolkit\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>libs\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
