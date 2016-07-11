@@ -113,5 +113,15 @@ namespace WarehouseBlockForms.Controllers
         }
 
 
+        public int getCountByIdDetailAndWriteoffList(int id_detail, List<Writeoff> writeoffList)
+        {
+            int detailsCount = 0;
+            for (int i = 0; i < writeoffList.Count; i++)
+            {
+                detailsCount += _collection.Where(x => (x.IdWriteoff == writeoffList[i].Id) && (x.IdDetails == id_detail)).Sum(x => x.DetailsCount);
+            }
+            return detailsCount;
+        }
+
     }
 }

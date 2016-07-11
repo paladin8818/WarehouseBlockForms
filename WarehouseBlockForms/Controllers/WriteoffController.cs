@@ -101,5 +101,11 @@ namespace WarehouseBlockForms.Controllers
             writeoff.IdRecipient = reader.GetInt32(3);
             add(writeoff);
         }
+
+        public List<Writeoff> getByPeriod(DateTime startDate, DateTime endDate)
+        {
+            return _collection.Where(x => (x.WriteoffDate >= startDate) && (x.WriteoffDate <= endDate)).ToList();
+        }
+
     }
 }

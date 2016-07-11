@@ -105,6 +105,13 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Style="{StaticResource styleDefaultButton}" x:Name="btnCreateReport" Content="Сформировать отчет" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
+        <Button 
+            Style="{StaticResource styleDefaultButton}" 
+            x:Name="btnCreateAvailabilityReport" 
+            Content="Отчет наличия" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Right" 
+            Height="35" 
+            Width="150"></Button>
     </Grid>
 </Page>

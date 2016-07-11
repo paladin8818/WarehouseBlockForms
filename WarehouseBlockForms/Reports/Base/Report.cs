@@ -12,14 +12,13 @@ namespace WarehouseBlockForms.Reports.Base
         public string Postfix { get; set; }
 
 
-        
-
         public string H1 { get; set; }
         public string H2 { get; set; }
         public string H3 { get; set; }
 
         public string[] HeaderRow { get; set; }
-        public string[][] Data { get; set; }
+
+        public List<ReportRow> Data { get; set; }
 
         public string F1 { get; set; }
         public string F2 { get; set; }

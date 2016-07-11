@@ -130,6 +130,13 @@ namespace WarehouseBlockForms.Controllers
             return -1;
         }
 
+        public List<Details> getSortedByRowOrder ()
+        {
+            List<Details> details = _collection.ToList();
+            details.Sort(DetailRowOrderCompare);
+            return details;
+        }
+
         private static int DetailRowOrderCompare (Details x, Details y)
         {
             if (x.RowOrder > y.RowOrder) return 1;

@@ -172,8 +172,11 @@
     <Compile Include="Models\Writeoff.cs" />
     <Compile Include="Models\WriteoffDetails.cs" />
     <Compile Include="Reports\AvailabilityReport.cs" />
+    <Compile Include="Reports\Base\ReportRow.cs" />
     <Compile Include="Reports\Base\ExcelReport.cs" />
     <Compile Include="Reports\Base\Report.cs" />
+    <Compile Include="Reports\SupplyReport.cs" />
+    <Compile Include="Reports\TurnReport.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -20,6 +20,7 @@
             <DataGrid
                 SelectionChanged="dgAvailability_SelectionChanged"
                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                Margin="0, 0, 0, 45"
                 x:Name="dgAvailability"
                 ItemsSource="{Binding SWCollection}"
                 Style="{StaticResource styleDefaultDataGrid}">
@@ -94,6 +95,33 @@
 
                 </DataGrid.Columns>
             </DataGrid>
+            <Button 
+                Style="{StaticResource styleDefaultButton}" 
+                x:Name="btnCreateSupplyReport" 
+                Content="Журнал поступления" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left" 
+                Height="35" 
+                Margin="0, 0, 0, 5"
+                Width="150"></Button>
+            <Button 
+                Style="{StaticResource styleDefaultButton}" 
+                x:Name="btnCreateWriteoffReport" 
+                Content="Журнал списания" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left" 
+                Height="35" 
+                Margin="160, 0, 0, 5"
+                Width="150"></Button>
+            <Button 
+                Style="{StaticResource styleDefaultButton}" 
+                x:Name="btnCreateTurnReport" 
+                Content="Отчет оборота" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Right" 
+                Height="35" 
+                Margin="0, 0, 0, 5"
+                Width="150"></Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
             <DataGrid   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"

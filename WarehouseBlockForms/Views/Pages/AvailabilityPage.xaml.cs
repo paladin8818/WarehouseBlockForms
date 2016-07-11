@@ -1,9 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WarehouseBlockForms.Controllers;
 using WarehouseBlockForms.Models;
 using WarehouseBlockForms.Reports;
+using WarehouseBlockForms.Reports.Base;
 
 namespace WarehouseBlockForms.Views.Pages
 {
@@ -40,44 +43,51 @@ namespace WarehouseBlockForms.Views.Pages
                 tbxFastFilter.Text = "";
             };
 
-            btnCreateReport.Click += delegate
+            btnCreateAvailabilityReport.Click += delegate
             {
-               /* try
-                {*/
-                    AvailabilityReport report = new AvailabilityReport();
-                    report.Postfix = "сформирован вручную";
-
-                    report.H1 = report.ReportName;
-                    report.HeaderRow = new string[] { "№", "Печь", "Артикул", "Наименование", "Количество"};
-                    string[][] data = new string[DetailsController.instance().Collection.Count][];
-                    for (int i = 0; i < DetailsController.instance().Collection.Count; i++)
-                    {
-                        Details detail = DetailsController.instance().Collection[i];
-                        data[i] = new string[5];
-                        data[i][0] = detail.RowIndex.ToString();
-                        data[i][1] = detail.OvenName;
-                        data[i][2] = detail.VendorCode;
-                        data[i][3] = detail.Name;
-                        data[i][4] = detail.CurrentCount.ToString();
-                    }
-                report.Data = data;
-
-                    if (report.Save())
-                    {
-                    MessageBox.Show("Отчет сохранен!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("При формировании отчета произошли ошибки!");
-                    }
-               /* }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }*/
-
+                createAvailabilityReport();
             };
 
         }
+
+        private void createAvailabilityReport ()
+        {
+            try
+            {
+                AvailabilityReport report = new AvailabilityReport();
+                report.Postfix = "сформирован вручную";
+
+                report.H1 = report.ReportName;
+                report.HeaderRow = new string[] { "№", "Печь", "Артикул", "Наименование", "Количество" };
+
+                List<Details> details = DetailsController.instance().getSortedByRowOrder();
+                List<ReportRow> reportData = new List<ReportRow>();
+                for (int i = 0; i < details.Count; i++)
+                {
+                    ReportRow reportRow = new ReportRow();
+                    Details detail = details[i];
+                    reportRow.Row.Add(detail.RowIndex.ToString());
+                    reportRow.Row.Add(detail.OvenName);
+                    reportRow.Row.Add(detail.VendorCode);
+                    reportRow.Row.Add(detail.Name);
+                    reportData.Add(reportRow);
+                }
+                report.Data = reportData;
+
+                if (report.Save())
+                {
+                    MessageBox.Show("Отчет сохранен!");
+                }
+                else
+                {
+                    MessageBox.Show("При формировании отчета произошли ошибки!\nПодробности см. в логе ошибок.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using WarehouseBlockForms.Reports.Base;
 
 namespace WarehouseBlockForms.Reports
 {
-    class AvailabilityReport : ExcelReport
+    class TurnReport : ExcelReport
     {
         public override string Path
         {
@@ -11,23 +14,19 @@ namespace WarehouseBlockForms.Reports
             {
                 return "d:";
             }
-
         }
 
         public override string ReportName
         {
             get
             {
-                return "Отчет о наличии " + DateTime.Now.ToString("dd.MM.yyyy HH_mm") + " (" + Postfix + ")" ;
+                return "Отчет оборота " + DateTime.Now.ToString("dd.MM.yyyy HH_mm") + " (" + Postfix + ")";
             }
         }
-
 
         public override bool Save()
         {
             return Create();
         }
-
-
     }
 }

@@ -99,5 +99,10 @@ namespace WarehouseBlockForms.Controllers
             supply.SupplyDate = reader.GetDateTime(1);
             add(supply);
         }
+
+        public List<Supply> getByPeriod (DateTime startDate, DateTime endDate)
+        {
+            return _collection.Where(x => (x.SupplyDate >= startDate) && (x.SupplyDate <= endDate)).ToList();
+        }
     }
 }
