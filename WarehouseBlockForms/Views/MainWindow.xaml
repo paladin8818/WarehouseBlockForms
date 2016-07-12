@@ -35,7 +35,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="baseTabControlSelectionChanged" >
             <TabItem x:Name="tiSupply" Header="Поступление" Style="{StaticResource styleRootTabControl}">
                 <Frame x:Name="frameSupply" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
             </TabItem>
@@ -52,9 +52,9 @@
                 <Grid Background="#FFE5E5E5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid Width="400" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="grdLoginAdmin">
                         <Label 
-                            Content="Введите пароль" 
+                            Content="ВВЕДИТЕ ПАРОЛЬ" 
                             VerticalAlignment="Top" 
-                            Width="100" 
+                            Width="120" 
                             HorizontalAlignment="Left"></Label>
                         <PasswordBox 
                             KeyUp="tbxPassword_KeyUp"

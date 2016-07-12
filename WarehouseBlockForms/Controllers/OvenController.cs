@@ -13,7 +13,7 @@ using System.Linq;
 
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models;
-using WarehouseBlockForms.Classes;
+using WarehouseBlockForms.Classess;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 

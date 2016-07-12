@@ -5,7 +5,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
-using WarehouseBlockForms.Classes;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models;
 

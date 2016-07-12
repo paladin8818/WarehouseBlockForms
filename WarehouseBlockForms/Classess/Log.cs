@@ -10,7 +10,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace WarehouseBlockForms.Classes
+namespace WarehouseBlockForms.Classess
 {
 	/// <summary>
 	/// Description of Log.

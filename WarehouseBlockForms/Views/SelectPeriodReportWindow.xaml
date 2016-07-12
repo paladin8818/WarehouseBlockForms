@@ -1,0 +1,25 @@
+﻿<Window x:Class="WarehouseBlockForms.Views.SelectPeriodReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseBlockForms.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Выбор периода формирования отчета" Height="150" Width="350">
+    <Grid Margin="10">
+        <Label x:Name="label" Content="Дата с" HorizontalAlignment="Left" VerticalAlignment="Top" Width="91"/>
+        <DatePicker x:Name="dtpStart" Margin="96,2,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Дата по" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top" Width="91"/>
+        <DatePicker x:Name="dtpEnd" Margin="96,31,0,0" VerticalAlignment="Top"/>
+        <Button 
+            Style="{StaticResource styleDefaultButton}"
+            Height="30"
+            x:Name="btnOk" Content="Ок" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"></Button>
+        <Button 
+            Style="{StaticResource styleDefaultButton}"
+            Height="30"
+            x:Name="btnCancel" Content="Отмена" Margin="0,0,80,0" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>

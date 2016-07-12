@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WarehouseBlockForms.Classes;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Helpers;
 using WarehouseBlockForms.Models;
@@ -23,8 +23,8 @@ namespace WarehouseBlockForms.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool administratorMode;
 
+        private bool administratorMode = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -91,10 +91,9 @@ namespace WarehouseBlockForms.Views
             }
             if (PasswordValidate.Validate(tbxPassword.Password))
             {
-                administratorMode = true;
                 grdLoginAdmin.Visibility = Visibility.Collapsed;
                 tcSettings.Visibility = Visibility.Visible;
-                Title += " (режим администрирования)";
+                administratorMode = true;
             }
             else
             {
@@ -107,6 +106,18 @@ namespace WarehouseBlockForms.Views
             if(e.Key == Key.Enter)
             {
                 Login();
+            }
+        }
+
+        private void baseTabControlSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(administratorMode == true 
+                && e.Source is TabControl && tiSettings.IsSelected == false)
+            {
+                administratorMode = false;
+                grdLoginAdmin.Visibility = Visibility.Visible;
+                tcSettings.Visibility = Visibility.Collapsed;
+                tbxPassword.Password = "";
             }
         }
     }

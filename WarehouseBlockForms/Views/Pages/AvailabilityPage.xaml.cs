@@ -56,24 +56,6 @@ namespace WarehouseBlockForms.Views.Pages
             {
                 AvailabilityReport report = new AvailabilityReport();
                 report.Postfix = "сформирован вручную";
-
-                report.H1 = report.ReportName;
-                report.HeaderRow = new string[] { "№", "Печь", "Артикул", "Наименование", "Количество" };
-
-                List<Details> details = DetailsController.instance().getSortedByRowOrder();
-                List<ReportRow> reportData = new List<ReportRow>();
-                for (int i = 0; i < details.Count; i++)
-                {
-                    ReportRow reportRow = new ReportRow();
-                    Details detail = details[i];
-                    reportRow.Row.Add(detail.RowIndex.ToString());
-                    reportRow.Row.Add(detail.OvenName);
-                    reportRow.Row.Add(detail.VendorCode);
-                    reportRow.Row.Add(detail.Name);
-                    reportData.Add(reportRow);
-                }
-                report.Data = reportData;
-
                 if (report.Save())
                 {
                     MessageBox.Show("Отчет сохранен!");

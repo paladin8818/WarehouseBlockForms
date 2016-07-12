@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
-using WarehouseBlockForms.Classes;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models;
 
@@ -105,6 +105,11 @@ namespace WarehouseBlockForms.Controllers
         public List<WriteoffDetails> getByIdDetail(int id_detail)
         {
             return _collection.Where(x => x.IdDetails == id_detail).ToList();
+        }
+
+        public List<WriteoffDetails> getByIdWriteoff(int id_writeoff)
+        {
+            return _collection.Where(x => x.IdWriteoff == id_writeoff).ToList();
         }
 
         public int allWriteoff(int id_detail)

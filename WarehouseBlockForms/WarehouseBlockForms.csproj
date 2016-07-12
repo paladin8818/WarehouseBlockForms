@@ -72,6 +72,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Reports\WriteoffReport.cs" />
+    <Compile Include="Views\SelectPeriodReportWindow.xaml.cs">
+      <DependentUpon>SelectPeriodReportWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\IntSpinnerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,6 +228,10 @@
     <Compile Include="Views\RecipientsSaveWindow.xaml.cs">
       <DependentUpon>RecipientsSaveWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\SelectPeriodReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -32,11 +32,12 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ComboBox Width="490" Height="23" Grid.Row="0" Grid.Column="0" SelectionChanged="changeCreateBackupPeriod">
+            <ComboBox x:Name="cbxBackupPeriod" Width="490" Height="23" Grid.Row="0" Grid.Column="0" SelectionChanged="changeCreateBackupPeriod">
                 <ComboBoxItem Tag="cbxValue_day">Каждый день</ComboBoxItem>
                 <ComboBoxItem Tag="cbxValue_week">Каждая неделя</ComboBoxItem>
                 <ComboBoxItem Tag="cbxValue_month">Каждый месяц</ComboBoxItem>
@@ -75,7 +76,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch">
+                <ComboBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch" x:Name="cbx_month_day">
                     <ComboBoxItem>1</ComboBoxItem>
                     <ComboBoxItem>2</ComboBoxItem>
                     <ComboBoxItem>3</ComboBoxItem>
@@ -118,7 +119,31 @@
                 Grid.Row="4" 
                 Content="Сохранить" 
                 HorizontalAlignment="Right" 
+                x:Name="btnSavePeriodBackup"
+                Click="btnSavePeriodBackup_Click"
                 Margin="0, 10, 0 , 0"></Button>
+            <Button 
+                Style="{StaticResource styleDefaultButton}"
+                HorizontalAlignment="Right" 
+                Margin="0, 10, 160 , 0"
+                Content="Восстановить бэкап"
+                Height="25"
+                Width="150"
+                Grid.Column="0" 
+                Grid.Row="5" 
+                Click="btnRestoreBackup_Click"
+                x:Name="btnRestoreBackup"></Button>
+            <Button 
+                Style="{StaticResource styleDefaultButton}"
+                HorizontalAlignment="Right" 
+                Margin="0, 10, 0 , 0"
+                Content="Сделать бэкап"
+                Height="25"
+                Width="150"
+                Grid.Column="0" 
+                Grid.Row="5" 
+                Click="btnCreateBackupNow_Click"
+                x:Name="btnCreateBackupNow"></Button>
         </Grid>
     </Grid>
 </Page>

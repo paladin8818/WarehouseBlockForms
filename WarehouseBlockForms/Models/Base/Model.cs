@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 
 using WarehouseBlockForms.Controllers.Base;
-using WarehouseBlockForms.Classes;
+using WarehouseBlockForms.Classess;
 using System.Diagnostics;
 using System.ComponentModel;
 

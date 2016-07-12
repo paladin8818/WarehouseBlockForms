@@ -8,7 +8,7 @@ using WarehouseBlockForms.Reports.Base;
 
 namespace WarehouseBlockForms.Reports
 {
-    class SupplyReport : ExcelReport
+    class WriteoffReport : ExcelReport
     {
         public override string Path
         {
@@ -22,7 +22,7 @@ namespace WarehouseBlockForms.Reports
         {
             get
             {
-                return "Журнал поступления " + DateTime.Now.ToString("dd.MM.yyyy HH_mm") + " (" + Postfix + ")";
+                return "Журнал списания " + DateTime.Now.ToString("dd.MM.yyyy HH_mm") + " (" + Postfix + ")";
             }
         }
 
@@ -33,9 +33,9 @@ namespace WarehouseBlockForms.Reports
 
         public override bool Save(DateTime startDate, DateTime endDate)
         {
-            List<Supply> supplysForPeriod = SupplyController.instance().getByPeriod(startDate, endDate);
+            List<Writeoff> writeoffForPeriod = WriteoffController.instance().getByPeriod(startDate, endDate);
             List<ReportRow> reportData = new List<ReportRow>();
-            foreach (Supply supply in supplysForPeriod)
+            foreach (Writeoff writeoff in writeoffForPeriod)
             {
                 ReportRow emptyRow = new ReportRow();
                 emptyRow.Row.Add("");
@@ -48,9 +48,13 @@ namespace WarehouseBlockForms.Reports
                 ReportRow reportRow = new ReportRow();
 
                 reportRow.Row.Add("№ накладной");
-                reportRow.Row.Add(supply.Id.ToString());
+                reportRow.Row.Add(writeoff.Id.ToString());
                 reportRow.Row.Add("Дата");
-                reportRow.Row.Add(supply.SupplyDate.ToString("dd.MM.yyyy"));
+                reportRow.Row.Add(writeoff.WriteoffDate.ToString("dd.MM.yyyy"));
+                reportRow.Row.Add("№ заявки");
+                reportRow.Row.Add(writeoff.AppNumber);
+                reportRow.Row.Add("Получатель");
+                reportRow.Row.Add(RecipientsController.instance().getById(writeoff.IdRecipient).FullName);
 
                 reportData.Add(reportRow);
                 reportRow.Style.Add(ReportRow.RowStyle.Bold);
@@ -69,10 +73,10 @@ namespace WarehouseBlockForms.Reports
                 reportRowHead.Style.Add(ReportRow.RowStyle.Bold);
                 reportRowHead.Style.Add(ReportRow.RowStyle.TextAlignCenter);
 
-                List<SupplyDetails> supplyDetails = SupplyDetailsController.instance().getByIdSupply(supply.Id);
-                for (int i = 0; i < supplyDetails.Count; i++)
+                List<WriteoffDetails> writeoffDetails = WriteoffDetailsController.instance().getByIdWriteoff(writeoff.Id);
+                for (int i = 0; i < writeoffDetails.Count; i++)
                 {
-                    Details currentDetail = DetailsController.instance().getById(supplyDetails[i].IdDetails);
+                    Details currentDetail = DetailsController.instance().getById(writeoffDetails[i].IdDetails);
                     if (currentDetail == null) continue;
 
                     ReportRow detailRow = new ReportRow();
@@ -81,7 +85,7 @@ namespace WarehouseBlockForms.Reports
                     detailRow.Row.Add(currentDetail.OvenName);
                     detailRow.Row.Add(currentDetail.VendorCode);
                     detailRow.Row.Add(currentDetail.Name);
-                    detailRow.Row.Add(supplyDetails[i].DetailsCount.ToString());
+                    detailRow.Row.Add(writeoffDetails[i].DetailsCount.ToString());
 
                     reportData.Add(detailRow);
 

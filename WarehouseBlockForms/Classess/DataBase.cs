@@ -10,7 +10,7 @@ using System;
 using System.Data.SQLite;
 using System.IO;
 
-namespace WarehouseBlockForms.Classes
+namespace WarehouseBlockForms.Classess
 {
 	/// <summary>
 	/// Description of DataBase.
@@ -47,6 +47,29 @@ namespace WarehouseBlockForms.Classes
 			}
 			return _connection;
 		}
+
+        public static void Backup(string path, string postfix = "")
+        {
+            if(Directory.Exists(path))
+            {
+                string name = "\\backup_db_" + DateTime.Now.ToString("dd_MM_yyyy__HH_mm_ss") + postfix + ".sqlite";
+                if(File.Exists(path + name))
+                {
+                    throw new Exception("File " + path + name + " exist!");
+                }
+                File.Copy(_db_path, (path + name));
+                return;
+            }
+            throw new Exception("Directory " + path + " not exist!");
+        }
+
+        public static void Restore(string backupFile)
+        {
+            if(File.Exists(backupFile))
+            {
+                File.Copy(backupFile, _db_path, true);
+            }
+        }
 		
 		private static bool createDb () 
 		{

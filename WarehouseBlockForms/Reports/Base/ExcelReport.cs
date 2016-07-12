@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.Office.Interop.Excel;
-using WarehouseBlockForms.Classes;
+using WarehouseBlockForms.Classess;
 using System.Collections.Generic;
+using WarehouseBlockForms.Classess;
 
 namespace WarehouseBlockForms.Reports.Base
 {
@@ -14,6 +15,24 @@ namespace WarehouseBlockForms.Reports.Base
         private object misValue = System.Reflection.Missing.Value;
 
         private int lastTopIndex = 1;
+
+        IniFile iniFile = new IniFile("settings.ini");
+        protected string DefaultPath
+        {
+            get
+            {
+                if(iniFile.KeyExists("report_directory_path"))
+                {
+                    string path = iniFile.Read("report_directory_path");
+                    if(path[path.Length-1] == '\\')
+                    {
+                        path = path.Substring(0, path.Length - 1);
+                    }
+                    return path;
+                }
+                return "c:";
+            }
+        }
 
         public ExcelReport ()
         {
@@ -69,26 +88,6 @@ namespace WarehouseBlockForms.Reports.Base
                 bold(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
                 wrap(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
                 centerAlign(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
-                lastTopIndex += 2;
-            }
-        }
-        protected void SetH2()
-        {
-            if (H2 != null)
-            {
-                excelWorkSheet.Cells[lastTopIndex, 1] = H2;
-                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
-                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
-                lastTopIndex += 2;
-            }
-        }
-        protected void SetH3()
-        {
-            if (H3 != null)
-            {
-                excelWorkSheet.Cells[lastTopIndex, 1] = H3;
-                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
-                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
                 lastTopIndex += 2;
             }
         }
