@@ -39,105 +39,12 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SQLite.Designer">
-      <HintPath>libs\SQLite.Designer.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>libs\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>libs\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>libs\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Controllers\ReportsSettingController.cs" />
-    <Compile Include="Models\ReportsSetting.cs" />
     <Compile Include="Reports\WriteoffReport.cs" />
     <Compile Include="Views\SelectPeriodReportWindow.xaml.cs">
       <DependentUpon>SelectPeriodReportWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\IntSpinnerControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DetailsSaveWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\OvenSaveWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\AvailabilityPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\BackupSettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\DetailsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\OvenPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\RecipientsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\ReportSettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\SecuritySettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\SheetPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\SupplyPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\WriteoffPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RecipientsSaveWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -230,10 +137,6 @@
     <Compile Include="Views\RecipientsSaveWindow.xaml.cs">
       <DependentUpon>RecipientsSaveWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\SelectPeriodReportWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -267,13 +170,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ArrowDown.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ArrowUp.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -315,4 +215,53 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\PresentationFramework.dll" />
+    <ReferencePath Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\libs\SQLite.Designer.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" />
+    <ReferencePath Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\libs\System.Data.SQLite.dll" />
+    <ReferencePath Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\libs\System.Data.SQLite.Linq.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\WindowsBase.dll" />
+    <ReferencePath Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\bin\Debug\Xceed.Wpf.Toolkit.dll" />
+    <ReferencePath Include="C:\Windows\assembly\GAC_MSIL\Office\15.0.0.0__71e9bce111e9429c\Office.dll">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </ReferencePath>
+    <ReferencePath Include="C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </ReferencePath>
+    <ReferencePath Include="C:\Windows\assembly\GAC_MSIL\Microsoft.Vbe.Interop\15.0.0.0__71e9bce111e9429c\Microsoft.Vbe.Interop.dll">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </ReferencePath>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Controls\IntSpinnerControl.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\DetailsSaveWindow.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\MainWindow.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\OvenSaveWindow.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\AvailabilityPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\BackupSettingsPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\DetailsPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\OvenPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\RecipientsPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\ReportSettingsPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\SecuritySettingsPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\SheetPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\SupplyPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\Pages\WriteoffPage.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\RecipientsSaveWindow.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\Views\SelectPeriodReportWindow.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\App.g.cs" />
+    <Compile Include="D:\Projects\WarehouseBlockForms\WarehouseBlockForms\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
 </Project>

@@ -186,11 +186,25 @@ namespace WarehouseBlockForms.Views.Pages
 
         private void btnRestoreBackup_Click(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("Восстановление резервной копии.", 
+            if(MessageBox.Show(
                 "После восстановления резервной копии приложение будет закрыто. Продолжить?",
-                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                "Восстановление резервной копии.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-
+                System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
+                ofd.Filter = "database file|*.sqlite";
+                if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+                        DataBase.Restore(ofd.FileName);
+                        MessageBox.Show("Резервная копия восстановлена. Приложение будет закрыто.");
+                        MainWindow.ExitApp();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Не удалось восстановить резервную копию БД\n" + ex.Message);
+                    }
+                }
             }
         }
     }

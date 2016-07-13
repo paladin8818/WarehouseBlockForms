@@ -2,7 +2,6 @@
 using Microsoft.Office.Interop.Excel;
 using WarehouseBlockForms.Classess;
 using System.Collections.Generic;
-using WarehouseBlockForms.Classess;
 
 namespace WarehouseBlockForms.Reports.Base
 {
@@ -15,6 +14,9 @@ namespace WarehouseBlockForms.Reports.Base
         private object misValue = System.Reflection.Missing.Value;
 
         private int lastTopIndex = 1;
+
+        protected Dictionary<int, double> columnsWidth = new Dictionary<int, double>();
+
 
         IniFile iniFile = new IniFile("settings.ini");
         protected string DefaultPath
@@ -50,12 +52,23 @@ namespace WarehouseBlockForms.Reports.Base
             bool result = false;
             try
             {
+
+                
+
                 SetH1();
                 SetHeaderRow();
                 SetData();
                 SetF1();
 
-                excelWorkSheet.Columns.AutoFit();
+                
+
+                foreach(KeyValuePair<int, double> w in columnsWidth)
+                {
+
+                    excelWorkSheet.Columns[w.Key].ColumnWidth = w.Value;
+
+                    //setColumnWidth(w.Key, w.Value);
+                }
 
                 excelWorkbook.SaveAs(Path + @"\" + ReportName + ".xlsx");
 
@@ -99,6 +112,7 @@ namespace WarehouseBlockForms.Reports.Base
                 {
                     excelWorkSheet.Cells[lastTopIndex, i + 1] = HeaderRow[i];
                     bold(lastTopIndex, lastTopIndex, i + 1, i + 1);
+                    border(lastTopIndex, lastTopIndex, i + 1, i + 1);
                 }
                 lastTopIndex += 1;
             }
@@ -146,7 +160,7 @@ namespace WarehouseBlockForms.Reports.Base
         }
 
 
-        private void merge(int r1, int r2, int c1, int c2)
+        protected void merge(int r1, int r2, int c1, int c2)
         {
             excelWorkSheet.Range[
                 excelWorkSheet.Cells[r1, c1],
@@ -172,7 +186,7 @@ namespace WarehouseBlockForms.Reports.Base
                 ].Cells.WrapText = true;
         }
 
-        private void selection(int r1, int r2, int c1, int c2)
+        protected void selection(int r1, int r2, int c1, int c2)
         {
 
             excelWorkSheet.Range[
@@ -190,6 +204,19 @@ namespace WarehouseBlockForms.Reports.Base
                 ].Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
         }
 
+        protected void border(int r1, int r2, int c1, int c2)
+        {
+            excelWorkSheet.Range[
+                excelWorkSheet.Cells[r1, c1],
+                excelWorkSheet.Cells[r2, c2]
+                ].Cells.Borders.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
+        }
+
+        protected void setLandscapeOrientation ()
+        {
+            excelWorkSheet.PageSetup.Orientation = XlPageOrientation.xlLandscape;
+        }
+
         private void setRowStyle (List<ReportRow.RowStyle> styles)
         {
             if (styles == null) return;
@@ -199,7 +226,8 @@ namespace WarehouseBlockForms.Reports.Base
                 {
                     case ReportRow.RowStyle.Bold: bold(lastTopIndex, lastTopIndex, 1, Data.Count); break;
                     case ReportRow.RowStyle.TextAlignCenter: centerAlign(lastTopIndex, lastTopIndex, 1, Data.Count); break;
-                    case ReportRow.RowStyle.Selection: selection(lastTopIndex, lastTopIndex, 1, Data.Count); break;
+                    case ReportRow.RowStyle.Selection: selection(lastTopIndex, lastTopIndex, 1, Data[0].Row.Count); break;
+                    case ReportRow.RowStyle.Border: border(lastTopIndex, lastTopIndex, 1, Data[0].Row.Count); break;
                 }
             }
         }

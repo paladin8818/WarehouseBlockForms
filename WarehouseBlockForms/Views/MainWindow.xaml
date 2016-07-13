@@ -8,7 +8,7 @@
         xmlns:local1="clr-namespace:WarehouseBlockForms.Converters"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="Склад блок-форм" Height="768" Width="1366">
+        Title="Склад блок-форм" Height="768" Width="1366" Closing="Window_Closing">
     <Window.Resources>
         <local1:TabSizeConverter x:Key="tabSizeConverter"></local1:TabSizeConverter>
         <Style TargetType="TabItem" x:Key="styleRootTabControl">
@@ -35,7 +35,16 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="baseTabControlSelectionChanged" >
+        <Menu 
+            Background="#D4D6D8"
+            Height="22"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Stretch">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" Click="MenuItem_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl Margin="0, 27, 0, 0" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="baseTabControlSelectionChanged" >
             <TabItem x:Name="tiSupply" Header="Поступление" Style="{StaticResource styleRootTabControl}">
                 <Frame x:Name="frameSupply" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
             </TabItem>

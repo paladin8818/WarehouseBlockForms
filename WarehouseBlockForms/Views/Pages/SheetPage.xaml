@@ -124,7 +124,7 @@
                 Width="150"></Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
-            <DataGrid   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+            <DataGrid Margin="5, 0, 0, 5"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                 x:Name="dgDetailed"
                 Style="{StaticResource styleDefaultDataGrid}">
 

@@ -80,7 +80,7 @@ namespace WarehouseBlockForms.Controllers
             }
             catch (Exception ex)
             {
-                Log.WriteError("Класс DetailsController, строка 65, " + ex.Message);
+                Log.WriteError(ex.Message);
                 return false;
             }
         }

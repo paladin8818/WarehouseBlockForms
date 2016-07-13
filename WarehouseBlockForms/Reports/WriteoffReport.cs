@@ -33,8 +33,27 @@ namespace WarehouseBlockForms.Reports
 
         public override bool Save(DateTime startDate, DateTime endDate)
         {
+
+            setLandscapeOrientation();
+
+            columnsWidth.Add(1, 14);
+            columnsWidth.Add(2, 9.29);
+            columnsWidth.Add(3, 11.29);
+            columnsWidth.Add(4, 14.29);
+            columnsWidth.Add(5, 10.86);
+
+            columnsWidth.Add(6, 5.29);
+            columnsWidth.Add(7, 11);
+            columnsWidth.Add(8, 29.86);
+            columnsWidth.Add(9, 16.86);
+
             List<Writeoff> writeoffForPeriod = WriteoffController.instance().getByPeriod(startDate, endDate);
             List<ReportRow> reportData = new List<ReportRow>();
+
+            int currentRowIndex = 3;
+
+            merge(1, 2, 1, 9);
+
             foreach (Writeoff writeoff in writeoffForPeriod)
             {
                 ReportRow emptyRow = new ReportRow();
@@ -44,6 +63,7 @@ namespace WarehouseBlockForms.Reports
                 emptyRow.Row.Add("");
                 emptyRow.Row.Add("");
                 reportData.Add(emptyRow);
+                currentRowIndex++;
 
                 ReportRow reportRow = new ReportRow();
 
@@ -56,10 +76,14 @@ namespace WarehouseBlockForms.Reports
                 reportRow.Row.Add("Получатель");
                 reportRow.Row.Add(RecipientsController.instance().getById(writeoff.IdRecipient).FullName);
 
+                selection(currentRowIndex, currentRowIndex, 1, 9);
+
                 reportData.Add(reportRow);
+                currentRowIndex++;
+
                 reportRow.Style.Add(ReportRow.RowStyle.Bold);
                 reportRow.Style.Add(ReportRow.RowStyle.TextAlignCenter);
-                reportRow.Style.Add(ReportRow.RowStyle.Selection);
+                
 
                 ReportRow reportRowHead = new ReportRow();
 
@@ -67,11 +91,22 @@ namespace WarehouseBlockForms.Reports
                 reportRowHead.Row.Add("Печь");
                 reportRowHead.Row.Add("Артикул");
                 reportRowHead.Row.Add("Наименование");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("Количество");
 
-                reportData.Add(reportRowHead);
+                merge(currentRowIndex, currentRowIndex, 4, 8);
+                border(currentRowIndex, currentRowIndex, 1, 9);
                 reportRowHead.Style.Add(ReportRow.RowStyle.Bold);
                 reportRowHead.Style.Add(ReportRow.RowStyle.TextAlignCenter);
+
+                
+
+                reportData.Add(reportRowHead);
+                currentRowIndex++;
+
 
                 List<WriteoffDetails> writeoffDetails = WriteoffDetailsController.instance().getByIdWriteoff(writeoff.Id);
                 for (int i = 0; i < writeoffDetails.Count; i++)
@@ -85,10 +120,19 @@ namespace WarehouseBlockForms.Reports
                     detailRow.Row.Add(currentDetail.OvenName);
                     detailRow.Row.Add(currentDetail.VendorCode);
                     detailRow.Row.Add(currentDetail.Name);
+
+                    detailRow.Row.Add("");
+                    detailRow.Row.Add("");
+                    detailRow.Row.Add("");
+                    detailRow.Row.Add("");
+
                     detailRow.Row.Add(writeoffDetails[i].DetailsCount.ToString());
 
-                    reportData.Add(detailRow);
+                    merge(currentRowIndex, currentRowIndex, 4, 8);
+                    border(currentRowIndex, currentRowIndex, 1, 9);
 
+                    reportData.Add(detailRow);
+                    currentRowIndex++;
                 }
             }
 

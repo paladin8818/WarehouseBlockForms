@@ -10,119 +10,90 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ReportSettingsPage">
 
-    <Grid Margin="0, 10, 0, 10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Путь к папке выгрузки" VerticalAlignment="Center"></Label>
-        <TextBox Height="23" VerticalAlignment="Center" x:Name="tbxCurrentDirectoryPath" Grid.Row="0" Grid.Column="1" IsEnabled="False" Width="450" Margin="0, 0, 40, 0"></TextBox>
-        <Button 
-            Style="{StaticResource styleDefaultButton}"
-            x:Name="btnOpenDirectoryPath" Grid.Row="0" Grid.Column="1"  Width="30" Height="23" VerticalAlignment="Center" Content="..." HorizontalAlignment="Right"></Button>
-
-        <Label Grid.Row="1" Grid.Column="0" Content="Расписание выгрузки" Margin="0, 10, 0, 0" Visibility="Collapsed"></Label>
-        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0" Visibility="Collapsed">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <ComboBox Width="490" Height="23" Grid.Row="0" Grid.Column="0" x:Name="cbxReportPeriod" SelectionChanged="changeCreateReportPeriod">
-                <ComboBoxItem Tag="cbxValue_day">Каждый день</ComboBoxItem>
-                <ComboBoxItem Tag="cbxValue_week">Каждая неделя</ComboBoxItem>
-                <ComboBoxItem Tag="cbxValue_month">Каждый месяц</ComboBoxItem>
-            </ComboBox>
-            <Grid Grid.Row="1" Grid.Column="0" Visibility="Collapsed" x:Name="g_day" Margin="0, 10, 0, 0" Height="25">
-                <xceed:TimePicker x:Name="tbx_day_time" VerticalAlignment="Stretch"></xceed:TimePicker>
-            </Grid>
-            <Grid Grid.Row="2" Grid.Column="0" Visibility="Collapsed" x:Name="g_week" Margin="0, 10, 0, 0" Height="25">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Grid.Row="0" x:Name="cbx_week_day" VerticalAlignment="Stretch">
-                    <ComboBoxItem>Понедельник</ComboBoxItem>
-                    <ComboBoxItem>Вторник</ComboBoxItem>
-                    <ComboBoxItem>Среда</ComboBoxItem>
-                    <ComboBoxItem>Четверг</ComboBoxItem>
-                    <ComboBoxItem>Пятница</ComboBoxItem>
-                    <ComboBoxItem>Суббота</ComboBoxItem>
-                    <ComboBoxItem>Воскресенье</ComboBoxItem>
-                </ComboBox>
-                <xceed:TimePicker 
-                    x:Name="tbx_week_time"
-                    Grid.Column="1" Grid.Row="0"
-                    VerticalAlignment="Stretch"
-                    Margin="10, 0, 0, 0"></xceed:TimePicker>
-            </Grid>
-            <Grid Grid.Row="3" Grid.Column="0" Visibility="Collapsed"  x:Name="g_month" Margin="0, 10, 0, 0" Height="25">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch" x:Name="cbx_month_day">
-                    <ComboBoxItem>1</ComboBoxItem>
-                    <ComboBoxItem>2</ComboBoxItem>
-                    <ComboBoxItem>3</ComboBoxItem>
-                    <ComboBoxItem>4</ComboBoxItem>
-                    <ComboBoxItem>5</ComboBoxItem>
-                    <ComboBoxItem>6</ComboBoxItem>
-                    <ComboBoxItem>7</ComboBoxItem>
-                    <ComboBoxItem>8</ComboBoxItem>
-                    <ComboBoxItem>9</ComboBoxItem>
-                    <ComboBoxItem>10</ComboBoxItem>
-                    <ComboBoxItem>11</ComboBoxItem>
-                    <ComboBoxItem>12</ComboBoxItem>
-                    <ComboBoxItem>13</ComboBoxItem>
-                    <ComboBoxItem>14</ComboBoxItem>
-                    <ComboBoxItem>15</ComboBoxItem>
-                    <ComboBoxItem>16</ComboBoxItem>
-                    <ComboBoxItem>17</ComboBoxItem>
-                    <ComboBoxItem>18</ComboBoxItem>
-                    <ComboBoxItem>19</ComboBoxItem>
-                    <ComboBoxItem>20</ComboBoxItem>
-                    <ComboBoxItem>21</ComboBoxItem>
-                    <ComboBoxItem>22</ComboBoxItem>
-                    <ComboBoxItem>23</ComboBoxItem>
-                    <ComboBoxItem>24</ComboBoxItem>
-                    <ComboBoxItem>25</ComboBoxItem>
-                    <ComboBoxItem>26</ComboBoxItem>
-                    <ComboBoxItem>27</ComboBoxItem>
-                    <ComboBoxItem>28</ComboBoxItem>
-                    <ComboBoxItem>29</ComboBoxItem>
-                    <ComboBoxItem>30</ComboBoxItem>
-                    <ComboBoxItem>31</ComboBoxItem>
-                    <ComboBoxItem>Последний день месяца</ComboBoxItem>
-                </ComboBox>
-                <xceed:TimePicker Grid.Column="1" Grid.Row="0" Margin="10, 0, 0, 0" x:Name="tbx_month_time" VerticalAlignment="Stretch"></xceed:TimePicker>
-            </Grid>
-            <Button 
-                Style="{StaticResource styleDefaultButton}"
-                x:Name="btnSaveReportPeriod"
-                Width="150"
-                Height="25"
-                Grid.Column="0" 
-                Grid.Row="4" 
-                Content="Сохранить" 
-                HorizontalAlignment="Right" 
-                Click="btnSaveReportPeriod_Click"
-                Margin="0, 10, 0 , 0"></Button>
-        </Grid>
+    <Grid>
+        <DataGrid
+            Style="{StaticResource styleDefaultDataGrid}"
+            x:Name="dgReportsSetting"
+            Margin="5"
+            ItemsSource="{Binding Collection}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn 
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="150"
+                    Header="Название отчета">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=ReportName}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn 
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="*"
+                    Header="Путь к папке выгрузки">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="35"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Grid.Column="0" Grid.Row="0"
+                                    Text="{Binding Path=ReportPath}" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5, 0, 0, 0" />
+                                <Button 
+                                    Margin="0, 0, 5, 0"
+                                    Click="Button_Click"
+                                    Width="30"
+                                    Grid.Column="1" Grid.Row="0"
+                                    Content="..."></Button>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn 
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="160"
+                    Header="Периодичность выгрузки">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox Margin="5, 0, 0, 0" 
+                                      SelectionChanged="ComboBox_SelectionChanged"
+                                      SelectedValue="{Binding Path=Period}" 
+                                      SelectedValuePath="Tag">
+                                <ComboBoxItem Tag="period_day">Каждый день</ComboBoxItem>
+                                <ComboBoxItem Tag="period_week">Каждая неделя</ComboBoxItem>
+                                <ComboBoxItem Tag="period_month">Каждый месяц</ComboBoxItem>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn 
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="160"
+                    Header="День выгрузки">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Day}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn 
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="160"
+                    Header="Время выгрузки">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Time}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

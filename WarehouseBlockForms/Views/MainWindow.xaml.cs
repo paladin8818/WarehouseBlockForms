@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WarehouseBlockForms.Classess;
-using WarehouseBlockForms.Classess;
-using WarehouseBlockForms.Helpers;
-using WarehouseBlockForms.Models;
 
 namespace WarehouseBlockForms.Views
 {
@@ -25,9 +14,34 @@ namespace WarehouseBlockForms.Views
     {
 
         private bool administratorMode = false;
+        private bool realClosing = false;
+        private static MainWindow _mainWindow;
+
+        private System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+
         public MainWindow()
         {
+
             InitializeComponent();
+
+            if(CheckSingleProcess() == false)
+            {
+                realClosing = true;
+                Close();
+                return;
+            }
+
+            _mainWindow = this;
+
+            //Notify
+
+            notifyIcon.Text = "Склад блок-форм";
+            notifyIcon.Icon = new System.Drawing.Icon("logo.ico");
+
+            notifyIcon.Click += delegate
+            {
+                this.Visibility = Visibility.Visible;
+            };
 
             if(DataBase.Connect() == null)
             {
@@ -43,7 +57,6 @@ namespace WarehouseBlockForms.Views
             {
                 Login();
             };
-
         }
 
         private void setWorkPages()
@@ -119,6 +132,56 @@ namespace WarehouseBlockForms.Views
                 tcSettings.Visibility = Visibility.Collapsed;
                 tbxPassword.Password = "";
             }
+        }
+
+        public static void ExitApp()
+        {
+            _mainWindow.realClosing = true;
+            _mainWindow.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(!realClosing)
+            {
+                e.Cancel = true;
+                ShowInTaskbar = false;
+                this.Visibility = Visibility.Hidden;
+                notifyIcon.Visible = true;
+                notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+                notifyIcon.BalloonTipText = "Программа свернута в трей";
+                notifyIcon.BalloonTipTitle = "Программа 'Склад блок-форм' свернута в трей";
+                notifyIcon.ShowBalloonTip(10);
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            realClosing = true;
+            Close();
+        }
+
+        private bool CheckSingleProcess ()
+        {
+            Process pThis = Process.GetCurrentProcess();
+
+            Process[] ps = Process.GetProcessesByName(pThis.ProcessName);
+
+            bool flag = false;
+
+            foreach (Process p in ps)
+
+                if (p.StartInfo.FileName == pThis.StartInfo.FileName)
+
+                    if (flag)
+
+                        return false;
+
+                    else
+
+                        flag = true;
+
+            return true;
         }
     }
 }

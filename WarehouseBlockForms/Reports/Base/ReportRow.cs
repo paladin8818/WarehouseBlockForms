@@ -14,7 +14,8 @@ namespace WarehouseBlockForms.Reports.Base
             TextAlignLeft,
             TextAlignRight,
             TextAlignCenter,
-            Selection
+            Selection,
+            Border
         }
         public List<string> Row = new List<string>();
         public List<RowStyle> Style = new List<RowStyle>();

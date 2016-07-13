@@ -33,6 +33,13 @@ namespace WarehouseBlockForms.Reports
 
         public override bool Save(DateTime startDate, DateTime endDate)
         {
+
+            columnsWidth.Add(1, 13.14);
+            columnsWidth.Add(2, 8.29);
+            columnsWidth.Add(3, 8.29);
+            columnsWidth.Add(4, 42.57);
+            columnsWidth.Add(5, 10.86);
+
             List<Supply> supplysForPeriod = SupplyController.instance().getByPeriod(startDate, endDate);
             List<ReportRow> reportData = new List<ReportRow>();
             foreach (Supply supply in supplysForPeriod)
@@ -68,6 +75,7 @@ namespace WarehouseBlockForms.Reports
                 reportData.Add(reportRowHead);
                 reportRowHead.Style.Add(ReportRow.RowStyle.Bold);
                 reportRowHead.Style.Add(ReportRow.RowStyle.TextAlignCenter);
+                reportRowHead.Style.Add(ReportRow.RowStyle.Border);
 
                 List<SupplyDetails> supplyDetails = SupplyDetailsController.instance().getByIdSupply(supply.Id);
                 for (int i = 0; i < supplyDetails.Count; i++)
@@ -82,6 +90,8 @@ namespace WarehouseBlockForms.Reports
                     detailRow.Row.Add(currentDetail.VendorCode);
                     detailRow.Row.Add(currentDetail.Name);
                     detailRow.Row.Add(supplyDetails[i].DetailsCount.ToString());
+
+                    detailRow.Style.Add(ReportRow.RowStyle.Border);
 
                     reportData.Add(detailRow);
 
