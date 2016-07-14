@@ -23,15 +23,6 @@ namespace WarehouseBlockForms.Reports.Base
         {
             get
             {
-                if(iniFile.KeyExists("report_directory_path"))
-                {
-                    string path = iniFile.Read("report_directory_path");
-                    if(path[path.Length-1] == '\\')
-                    {
-                        path = path.Substring(0, path.Length - 1);
-                    }
-                    return path;
-                }
                 return "c:";
             }
         }

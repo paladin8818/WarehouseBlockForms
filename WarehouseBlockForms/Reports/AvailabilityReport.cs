@@ -13,6 +13,11 @@ namespace WarehouseBlockForms.Reports
         {
             get
             {
+                string path = ReportsSettingController.instance().getPathByProgramName("AvailabilityReport");
+                if(path != "")
+                {
+                    return path;
+                }
                 return DefaultPath;
             }
 

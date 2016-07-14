@@ -115,5 +115,16 @@ namespace WarehouseBlockForms.Controllers
             }
             add(reportsSetting);
         }
+
+        public string getPathByProgramName (string program_name)
+        {
+            ReportsSetting reportsSetting = _collection.Where(x => x.ProgramName == program_name).FirstOrDefault();
+            if(reportsSetting != null)
+            {
+                return reportsSetting.ReportPath;
+            }
+            return "";
+        }
+
     }
 }

@@ -14,6 +14,11 @@ namespace WarehouseBlockForms.Reports
         {
             get
             {
+                string path = ReportsSettingController.instance().getPathByProgramName("WriteoffReport");
+                if (path != "")
+                {
+                    return path;
+                }
                 return DefaultPath;
             }
         }

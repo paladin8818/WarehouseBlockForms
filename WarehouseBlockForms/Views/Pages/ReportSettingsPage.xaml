@@ -79,7 +79,83 @@
                     Header="День выгрузки">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=Day}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            <Grid>
+                                <ComboBox 
+                                    SelectionChanged="cbxWeekDay_SelectionChanged"
+                                    Grid.Column="0" Grid.Row="0" 
+                                    x:Name="cbxWeekDay" 
+                                    SelectedValue="{Binding Path=Day}" 
+                                    SelectedValuePath="Tag"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch">
+                                    <ComboBoxItem Tag="1">Понедельник</ComboBoxItem>
+                                    <ComboBoxItem Tag="2">Вторник</ComboBoxItem>
+                                    <ComboBoxItem Tag="3">Среда</ComboBoxItem>
+                                    <ComboBoxItem Tag="4">Четверг</ComboBoxItem>
+                                    <ComboBoxItem Tag="5">Пятница</ComboBoxItem>
+                                    <ComboBoxItem Tag="6">Суббота</ComboBoxItem>
+                                    <ComboBoxItem Tag="7">Воскресенье</ComboBoxItem>
+                                    <ComboBox.Style>
+                                        <Style TargetType="{x:Type ComboBox}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=PeriodIsWeek}" Value="False">
+                                                    <Setter Property="Visibility"  Value="Collapsed"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ComboBox.Style>
+                                </ComboBox>
+                                <ComboBox 
+                                    SelectionChanged="cbxWeekDay_SelectionChanged"
+                                    Grid.Column="0" Grid.Row="0" 
+                                    SelectedValue="{Binding Path=Day}" 
+                                    SelectedValuePath="Tag"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    x:Name="cbxMonthDay">
+                                    <ComboBoxItem Tag="1">1</ComboBoxItem>
+                                    <ComboBoxItem Tag="2">2</ComboBoxItem>
+                                    <ComboBoxItem Tag="3">3</ComboBoxItem>
+                                    <ComboBoxItem Tag="4">4</ComboBoxItem>
+                                    <ComboBoxItem Tag="5">5</ComboBoxItem>
+                                    <ComboBoxItem Tag="6">6</ComboBoxItem>
+                                    <ComboBoxItem Tag="7">7</ComboBoxItem>
+                                    <ComboBoxItem Tag="8">8</ComboBoxItem>
+                                    <ComboBoxItem Tag="9">9</ComboBoxItem>
+                                    <ComboBoxItem Tag="10">10</ComboBoxItem>
+                                    <ComboBoxItem Tag="11">11</ComboBoxItem>
+                                    <ComboBoxItem Tag="12">12</ComboBoxItem>
+                                    <ComboBoxItem Tag="13">13</ComboBoxItem>
+                                    <ComboBoxItem Tag="14">14</ComboBoxItem>
+                                    <ComboBoxItem Tag="15">15</ComboBoxItem>
+                                    <ComboBoxItem Tag="16">16</ComboBoxItem>
+                                    <ComboBoxItem Tag="17">17</ComboBoxItem>
+                                    <ComboBoxItem Tag="18">18</ComboBoxItem>
+                                    <ComboBoxItem Tag="19">19</ComboBoxItem>
+                                    <ComboBoxItem Tag="20">20</ComboBoxItem>
+                                    <ComboBoxItem Tag="21">21</ComboBoxItem>
+                                    <ComboBoxItem Tag="22">22</ComboBoxItem>
+                                    <ComboBoxItem Tag="23">23</ComboBoxItem>
+                                    <ComboBoxItem Tag="24">24</ComboBoxItem>
+                                    <ComboBoxItem Tag="25">25</ComboBoxItem>
+                                    <ComboBoxItem Tag="26">26</ComboBoxItem>
+                                    <ComboBoxItem Tag="27">27</ComboBoxItem>
+                                    <ComboBoxItem Tag="28">28</ComboBoxItem>
+                                    <ComboBoxItem Tag="29">29</ComboBoxItem>
+                                    <ComboBoxItem Tag="30">30</ComboBoxItem>
+                                    <ComboBoxItem Tag="31">31</ComboBoxItem>
+                                    <ComboBoxItem Tag="0">Последний день месяца</ComboBoxItem>
+                                    <ComboBox.Style>
+                                        <Style TargetType="{x:Type ComboBox}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=PeriodIsMonth}" Value="False">
+                                                    <Setter Property="Visibility"  Value="Collapsed"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ComboBox.Style>
+                                </ComboBox>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -89,7 +165,24 @@
                     Header="Время выгрузки">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=Time}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
+                            <xceed:TimePicker 
+                                ValueChanged="tbxTime_ValueChanged"
+                                Text="{Binding Path=Time}" 
+                                Grid.Column="1" Grid.Row="0" 
+                                Margin="5, 0, 0, 0"
+                                x:Name="tbxTime" VerticalAlignment="Stretch"></xceed:TimePicker>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn 
+                    Width="100" 
+                    CellStyle="{StaticResource styleDefaultDataGridCell}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button 
+                                Click="Button_Click_1"
+                                Style="{StaticResource styleDefaultButton}"
+                                Content="Сохранить"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

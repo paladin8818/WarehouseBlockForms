@@ -48,7 +48,7 @@ namespace WarehouseBlockForms.Models
             set
             {
                 report_path = value;
-                base.RaisePropertyChaned("ReportPath", value);
+                RaisePropertyChaned("ReportPath", value);
             }
         }
 
@@ -63,6 +63,8 @@ namespace WarehouseBlockForms.Models
             {
                 period = value;
                 base.RaisePropertyChaned("Period", value);
+                RaisePropertyChaned("PeriodIsWeek", null);
+                RaisePropertyChaned("PeriodIsMonth", null);
             }
         }
 
@@ -92,6 +94,84 @@ namespace WarehouseBlockForms.Models
                 time = value;
                 base.RaisePropertyChaned("Time", value);
             }
+        }
+
+        public bool PeriodIsWeek
+        {
+            get
+            {
+                if(Period == "period_week")
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                RaisePropertyChaned("PeriodIsWeek", null);
+            }
+        }
+
+        public bool PeriodIsMonth
+        {
+            get
+            {
+                if (Period == "period_month")
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                RaisePropertyChaned("PeriodIsMonth", null);
+            }
+        }
+
+
+        public DateTime? calculateNextDate()
+        {
+            if (Period == null) return null;
+            if (Time == null) return null;
+            switch(Period)
+            {
+                case "period_day": return calculateNextDateDay();
+                case "period_week": return calculateNextDateWeek();
+                case "period_month": return calculateNextDateMonth();
+            }
+            return null;
+        }
+
+        private DateTime calculateNextDateDay()
+        {
+            string current = DateTime.Now.ToString("dd.MM.yyyy");
+            current += " " + Time + ":00";
+            DateTime currentDate = DateTime.Parse(current);
+            if(currentDate < DateTime.Now)
+            {
+                return currentDate.AddDays(1);
+            }
+            return currentDate;
+        }
+
+        private DateTime calculateNextDateWeek()
+        {
+            throw new NotImplementedException();
+            /*int currentDayInWeek = (int)DateTime.Now.DayOfWeek;
+            DateTime date = DateTime.Now.AddDays();
+
+
+            if(Day < currentDayInWeek)
+            {
+                
+            }*/
+
+
+        }
+
+        private DateTime calculateNextDateMonth()
+        {
+            return DateTime.Now;
         }
 
         protected override string TableName
