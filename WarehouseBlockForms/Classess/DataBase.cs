@@ -125,7 +125,8 @@ namespace WarehouseBlockForms.Classess
                 "report_path text, " +
                 "period text, " +
                 "day int, " +
-                "time text );";
+                "time text, " +
+                "next_date_created datetime );";
 
             //inserted if not exist rows reports_setting
             query += "insert into reports_setting(program_name, report_name)" +
@@ -136,13 +137,9 @@ namespace WarehouseBlockForms.Classess
                 " select 'SupplyReport', 'Журнал поступления' where not exists (select 1 from reports_setting where program_name = 'SupplyReport');";
             query += "insert into reports_setting(program_name, report_name)" +
                 " select 'WriteoffReport', 'Журнал списания' where not exists (select 1 from reports_setting where program_name = 'WriteoffReport');";
+            query += "insert into reports_setting(program_name, report_name)" +
+                " select 'DBBackup', 'Резервная копия БД' where not exists (select 1 from reports_setting where program_name = 'DBBackup');";
 
-            query += "create table if not exists reports_created ( " + 
-                " id integer primary key autoincrement not null, " + 
-                " id_report_setting integer not null, " + 
-                " next_date_created datetime not null, " + 
-                " is_created boolean not null, " +
-                " foreign key (id_report_setting) references reports_setting (id) on delete cascade)";
 
             SQLiteConnection connection = new SQLiteConnection(string.Format("Data Source={0};", _db_path));
 			SQLiteCommand command = new SQLiteCommand(query, connection);

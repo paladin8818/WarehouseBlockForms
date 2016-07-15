@@ -46,7 +46,7 @@ namespace WarehouseBlockForms.Controllers
         {
             get
             {
-                return "select id, program_name, report_name, report_path, period, day, time from reports_setting";
+                return "select id, program_name, report_name, report_path, period, day, time, next_date_created from reports_setting";
             }
         }
 
@@ -113,6 +113,10 @@ namespace WarehouseBlockForms.Controllers
             {
                 reportsSetting.Time = reader.GetString(6);
             }
+            if (!reader.IsDBNull(7))
+            {
+                reportsSetting.NextDateCreated = reader.GetDateTime(7);
+            }
             add(reportsSetting);
         }
 
@@ -124,6 +128,11 @@ namespace WarehouseBlockForms.Controllers
                 return reportsSetting.ReportPath;
             }
             return "";
+        }
+
+        public ReportsSetting getByProgramName (string program_name)
+        {
+            return _collection.Where(x => x.ProgramName == program_name).FirstOrDefault();
         }
 
     }

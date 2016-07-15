@@ -94,7 +94,7 @@
                                     <ComboBoxItem Tag="4">Четверг</ComboBoxItem>
                                     <ComboBoxItem Tag="5">Пятница</ComboBoxItem>
                                     <ComboBoxItem Tag="6">Суббота</ComboBoxItem>
-                                    <ComboBoxItem Tag="7">Воскресенье</ComboBoxItem>
+                                    <ComboBoxItem Tag="0">Воскресенье</ComboBoxItem>
                                     <ComboBox.Style>
                                         <Style TargetType="{x:Type ComboBox}">
                                             <Style.Triggers>

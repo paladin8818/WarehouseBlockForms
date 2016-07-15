@@ -86,20 +86,19 @@ namespace WarehouseBlockForms.Views.Pages
 
             ReportsSetting reportsSetting = (ReportsSetting)dgrow.Item;
             if (reportsSetting == null) return;
-            if(!reportsSetting.save())
+            if (!reportsSetting.save())
             {
                 System.Windows.MessageBox.Show("Не удалось сохранить настройку отчета. Подробности см. в логе ошибок!");
             }
             else
             {
-                System.Windows.MessageBox.Show("Настройка успешно сохранена!");
-                DateTime? nextDate = reportsSetting.calculateNextDate();
-                if(nextDate != null)
+                if(reportsSetting.NextDateCreated != null)
                 {
-                    DateTime date = (DateTime)nextDate;
-                    System.Windows.MessageBox.Show(date.ToString("dd.MM.yyyy HH:mm:ss"));
-                    //System.Windows.MessageBox.Show(((int)DateTime.Now.DayOfWeek).ToString());
-
+                    System.Windows.MessageBox.Show("Настройка выгрузки сохранена.\nСледующая дата выгрузки " + ((DateTime)reportsSetting.NextDateCreated).ToString());
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Настройка выгрузки сохранена.\nСледующая дата выгрузки - не установлено.");
                 }
             }
         }

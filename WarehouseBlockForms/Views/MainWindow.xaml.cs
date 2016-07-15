@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WarehouseBlockForms.Classess;
+using WarehouseBlockForms.Controllers;
+using WarehouseBlockForms.Models;
 
 namespace WarehouseBlockForms.Views
 {
@@ -41,6 +45,7 @@ namespace WarehouseBlockForms.Views
             notifyIcon.Click += delegate
             {
                 this.Visibility = Visibility.Visible;
+                ShowInTaskbar = true;
             };
 
             if(DataBase.Connect() == null)
@@ -57,6 +62,110 @@ namespace WarehouseBlockForms.Views
             {
                 Login();
             };
+
+            Task.Factory.StartNew(new Action(() =>
+            {
+                Thread.Sleep(300000);
+                while (true)
+                {
+                    createAvailabilityReportPeriod();
+                    createTurnReportPeriod();
+                    createSupplyRepoertPeriod();
+                    createWriteoffReportPeriod();
+                    createBackup();
+                    Thread.Sleep(300000);
+                }
+            }));
+        }
+
+        private void createAvailabilityReportPeriod ()
+        {
+            ReportsSetting reportSetting = ReportsSettingController.instance().getByProgramName("AvailabilityReport");
+            if (reportSetting.NextDateCreated == null) return;
+            DateTime nextDate = (DateTime)reportSetting.NextDateCreated;
+            DateTime current = DateTime.Now;
+            if (current < nextDate) return;
+
+            Reports.AvailabilityReport report = new Reports.AvailabilityReport();
+            report.Postfix = "сформирован автоматически";
+            report.H1 = "Отчет оборота на " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
+            if (report.Save())
+            {
+                reportSetting.save();
+            }
+        }
+
+        private void createTurnReportPeriod()
+        {
+            ReportsSetting reportSetting = ReportsSettingController.instance().getByProgramName("TurnReport");
+            if (reportSetting.NextDateCreated == null) return;
+            DateTime nextDate = (DateTime)reportSetting.NextDateCreated;
+            DateTime current = DateTime.Now;
+            if (current < nextDate) return;
+
+            DateTime prev = new DateTime(current.Year, current.Month, 1, 0, 0, 0);
+            Reports.TurnReport report = new Reports.TurnReport();
+            report.Postfix = "сформирован автоматически " + current.ToString("dd.MM.yyyy HH_mm_ss");
+            report.H1 = "Отчет оборота с " + prev.ToString("dd.MM.yyyy") + " по " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
+            if (report.Save(prev, nextDate))
+            {
+                reportSetting.save();
+            }
+        }
+
+        private void createSupplyRepoertPeriod()
+        {
+            ReportsSetting reportSetting = ReportsSettingController.instance().getByProgramName("SupplyReport");
+            if (reportSetting.NextDateCreated == null) return;
+            DateTime nextDate = (DateTime)reportSetting.NextDateCreated;
+            DateTime current = DateTime.Now;
+            if (current < nextDate) return;
+
+            DateTime prev = new DateTime(current.Year, current.Month, 1, 0, 0, 0);
+
+            Reports.SupplyReport report = new Reports.SupplyReport();
+            report.Postfix = "сформирован автоматически " + current.ToString("dd.MM.yyyy HH_mm_ss");
+            report.H1 = "Отчет оборота с " + prev.ToString("dd.MM.yyyy") + " по " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
+            if (report.Save(prev, nextDate))
+            {
+                reportSetting.save();
+            }
+        }
+        private void createWriteoffReportPeriod()
+        {
+            ReportsSetting reportSetting = ReportsSettingController.instance().getByProgramName("WriteoffReport");
+            if (reportSetting.NextDateCreated == null) return;
+            DateTime nextDate = (DateTime)reportSetting.NextDateCreated;
+            DateTime current = DateTime.Now;
+            if (current < nextDate) return;
+
+            DateTime prev = new DateTime(current.Year, current.Month, 1, 0, 0, 0);
+
+            Reports.WriteoffReport report = new Reports.WriteoffReport();
+            report.Postfix = "сформирован автоматически, " + current.ToString("dd.MM.yyyy HH_mm_ss");
+            report.H1 = "Отчет оборота с " + prev.ToString("dd.MM.yyyy") + " по " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
+            if (report.Save(prev, nextDate))
+            {
+                reportSetting.save();
+            }
+        }
+
+        private void createBackup()
+        {
+            ReportsSetting reportSetting = ReportsSettingController.instance().getByProgramName("DBBackup");
+            if (reportSetting.NextDateCreated == null) return;
+            DateTime nextDate = (DateTime)reportSetting.NextDateCreated;
+            DateTime current = DateTime.Now;
+            if (current < nextDate) return;
+            try
+            {
+                DataBase.Backup(reportSetting.ReportPath);
+                reportSetting.save();
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError("В ходе создания резервной копии произошли ошибки!\n" + ex.Message);
+            }
         }
 
         private void setWorkPages()
@@ -146,7 +255,7 @@ namespace WarehouseBlockForms.Views
             {
                 e.Cancel = true;
                 ShowInTaskbar = false;
-                this.Visibility = Visibility.Hidden;
+                Visibility = Visibility.Hidden;
                 notifyIcon.Visible = true;
                 notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
                 notifyIcon.BalloonTipText = "Программа свернута в трей";

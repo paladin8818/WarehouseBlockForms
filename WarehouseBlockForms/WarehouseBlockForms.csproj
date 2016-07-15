@@ -72,9 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\ReportsCreatedController.cs" />
     <Compile Include="Controllers\ReportsSettingController.cs" />
-    <Compile Include="Models\ReportsCreated.cs" />
     <Compile Include="Models\ReportsSetting.cs" />
     <Compile Include="Reports\WriteoffReport.cs" />
     <Compile Include="Views\SelectPeriodReportWindow.xaml.cs">

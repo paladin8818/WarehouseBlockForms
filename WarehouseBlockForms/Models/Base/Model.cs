@@ -83,7 +83,7 @@ namespace WarehouseBlockForms.Models.Base
 		
 		protected abstract IController controller ();
 		
-		public bool save ()
+		public virtual bool save ()
 		{
 			if(execQuery (prepareSaveQuery(), prepareSaveParams()))
 			{

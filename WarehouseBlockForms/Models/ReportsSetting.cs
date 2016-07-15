@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WarehouseBlockForms.Classess;
 using WarehouseBlockForms.Controllers;
 using WarehouseBlockForms.Controllers.Base;
 using WarehouseBlockForms.Models.Base;
@@ -21,7 +22,7 @@ namespace WarehouseBlockForms.Models
             set
             {
                 program_name = value;
-                base.RaisePropertyChaned("ProgramName", value);
+                RaisePropertyChaned("ProgramName", value);
             }
         }
         private string report_name;
@@ -34,7 +35,7 @@ namespace WarehouseBlockForms.Models
             set
             {
                 report_name = value;
-                base.RaisePropertyChaned("ReportName", value);
+                RaisePropertyChaned("ReportName", value);
             }
         }
 
@@ -62,7 +63,7 @@ namespace WarehouseBlockForms.Models
             set
             {
                 period = value;
-                base.RaisePropertyChaned("Period", value);
+                RaisePropertyChaned("Period", value);
                 RaisePropertyChaned("PeriodIsWeek", null);
                 RaisePropertyChaned("PeriodIsMonth", null);
             }
@@ -78,7 +79,7 @@ namespace WarehouseBlockForms.Models
             set
             {
                 day = value;
-                base.RaisePropertyChaned("Day", value);
+                RaisePropertyChaned("Day", value);
             }
         }
 
@@ -92,7 +93,21 @@ namespace WarehouseBlockForms.Models
             set
             {
                 time = value;
-                base.RaisePropertyChaned("Time", value);
+                RaisePropertyChaned("Time", value);
+            }
+        }
+
+        private DateTime? next_date_created;
+        public DateTime? NextDateCreated
+        {
+            get
+            {
+                return next_date_created;
+            }
+            set
+            {
+                next_date_created = value;
+                RaisePropertyChaned("NextDateCreated", value);
             }
         }
 
@@ -129,10 +144,11 @@ namespace WarehouseBlockForms.Models
         }
 
 
-        public DateTime? calculateNextDate()
+        private DateTime? calculateNextDate()
         {
-            if (Period == null) return null;
-            if (Time == null) return null;
+            if (Period == null || Period == "") return null;
+            if (Time == null || Time == "") return null;
+            if (Period != "period_day" && Day == null) return null; 
             switch(Period)
             {
                 case "period_day": return calculateNextDateDay();
@@ -142,36 +158,73 @@ namespace WarehouseBlockForms.Models
             return null;
         }
 
+        public override bool save()
+        {
+            NextDateCreated = calculateNextDate();
+            return base.save();
+        }
+
         private DateTime calculateNextDateDay()
         {
-            string current = DateTime.Now.ToString("dd.MM.yyyy");
-            current += " " + Time + ":00";
-            DateTime currentDate = DateTime.Parse(current);
-            if(currentDate < DateTime.Now)
+            string[] hh_mm = Time.Split(':');
+            DateTime currentDate = DateTime.Now;
+            DateTime nextDate = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day,
+                int.Parse(hh_mm[0]), int.Parse(hh_mm[1]), 0);
+            if(nextDate < currentDate)
             {
-                return currentDate.AddDays(1);
+                return nextDate.AddDays(1);
             }
-            return currentDate;
+            return nextDate;
         }
 
         private DateTime calculateNextDateWeek()
         {
-            throw new NotImplementedException();
-            /*int currentDayInWeek = (int)DateTime.Now.DayOfWeek;
-            DateTime date = DateTime.Now.AddDays();
+            string[] hh_mm = Time.Split(':');
+            DateTime currentDate = DateTime.Now;
+            DateTime nextDate = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day,
+                int.Parse(hh_mm[0]), int.Parse(hh_mm[1]), 0);
 
 
-            if(Day < currentDayInWeek)
+            if ((int)nextDate.DayOfWeek > Day)
             {
-                
-            }*/
-
-
+                int nextDay = ((7 - ((int)nextDate.DayOfWeek)) + (int)Day);
+                return nextDate.AddDays(Math.Abs(nextDay));
+            }
+            else if((int)nextDate.DayOfWeek < Day)
+            {
+                int nextDay = (((int)nextDate.DayOfWeek) - (int)Day);
+                return nextDate.AddDays(Math.Abs(nextDay));
+            }
+            else
+            {
+                if (nextDate < currentDate)
+                {
+                    return nextDate.AddDays(7);
+                }
+                return nextDate;
+            }
         }
 
         private DateTime calculateNextDateMonth()
         {
-            return DateTime.Now;
+            string[] hh_mm = Time.Split(':');
+            DateTime nextDate;
+            DateTime currentDate = DateTime.Now;
+            if(Day == 0)
+            {
+                nextDate = new DateTime(currentDate.Year, currentDate.Month+1, 1,
+                    int.Parse(hh_mm[0]), int.Parse(hh_mm[1]), 0).AddDays(-1);
+            }
+            else
+            {
+                nextDate = new DateTime(currentDate.Year, currentDate.Month, (int)Day,
+                                int.Parse(hh_mm[0]), int.Parse(hh_mm[1]), 0);
+            }
+            if (nextDate < currentDate)
+            {
+                return nextDate.AddMonths(1);
+            }
+            return nextDate;
         }
 
         protected override string TableName
@@ -181,6 +234,8 @@ namespace WarehouseBlockForms.Models
                 return "reports_setting";
             }
         }
+
+        
 
         protected override IController controller()
         {
@@ -210,6 +265,7 @@ namespace WarehouseBlockForms.Models
                 {"@period",  Period},
                 {"@day",  Day},
                 {"@time",  Time},
+                {"@next_date_created",  NextDateCreated},
                 {"@id", Id }
             };
         }
@@ -221,7 +277,7 @@ namespace WarehouseBlockForms.Models
                 throw new Exception("Добавление не разрешено!");
             }
             return "update " + TableName + " set report_name = @report_name, report_path = @report_path, " +
-                "period = @period, day = @day, time = @time where id = @id";
+                "period = @period, day = @day, time = @time, next_date_created = @next_date_created where id = @id";
         }
     }
 }
