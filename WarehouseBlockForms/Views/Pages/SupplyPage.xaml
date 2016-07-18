@@ -13,14 +13,14 @@
             x:Name="dgSupply"
             ItemsSource="{Binding Collection}"
             Style="{StaticResource styleDefaultDataGrid}"
-            Margin="0, 0, 0, 40">
+            Margin="0, 0, 0, 50">
             <DataGrid.Columns>
                 <DataGridTemplateColumn
                     CanUserSort="True"
                     SortMemberPath="RowIndex"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="№ п/п"
-                    Width="120">
+                    Width="70">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=RowIndex}" VerticalAlignment="Center" Margin="5, 0, 0, 0"></TextBlock>
@@ -32,10 +32,11 @@
                     SortMemberPath="IdOven"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Печь"
-                    Width="*">
+                    Width="260">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox 
+                                VerticalContentAlignment="Center"
                                 SelectionChanged="ovenSelectionChanged"
                                 Width="Auto"
                                 Margin="5, 0, 5, 0"
@@ -57,6 +58,7 @@
                         <DataTemplate>
                             <ComboBox 
                                 SelectionChanged="detailsSelectionChanged"
+                                VerticalContentAlignment="Center"
                                 Width="Auto"
                                 Margin="5, 0, 5, 0"
                                 ItemsSource="{Binding Path=Details}"
@@ -72,7 +74,7 @@
                     SortMemberPath="VendorCode"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Артикул"
-                    Width="*">
+                    Width="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock                                 
@@ -88,7 +90,7 @@
                     SortMemberPath="DetailsCount"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Количество"
-                    Width="*">
+                    Width="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Controls:IntSpinnerControl 
@@ -129,6 +131,10 @@
         </DataGrid>
         <Button 
             Style="{StaticResource styleDefaultButton}"
-            x:Name="btnSaveSupply" Content="Сохранить поступление" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="150"></Button>
+            x:Name="btnSaveSupply"
+            Content="Сохранить поступление"
+            VerticalAlignment="Bottom" 
+            FontSize="16"
+            HorizontalAlignment="Right" Height="45" Width="200"></Button>
     </Grid>
 </Page>

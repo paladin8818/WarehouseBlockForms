@@ -9,24 +9,26 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="BackupSettingsPage">
 
-    <Grid>
+    <Grid Margin="10">
         <Button 
+            FontSize="16"
             Style="{StaticResource styleDefaultButton}" 
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
             Content="Сделать бэкап"
-            Height="25"
-            Width="150"
+            Height="45"
+            Width="200"
             Click="btnCreateBackupNow_Click"
             x:Name="btnCreateBackupNow"></Button>
         <Button 
+            FontSize="16"
             Style="{StaticResource styleDefaultButton}"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
             Content="Восстановить бэкап"
-            Height="25"
-            Width="150"
+            Height="45"
+            Width="200"
             Click="btnRestoreBackup_Click"
-            x:Name="btnRestoreBackup" Margin="160, 0, 0, 0"></Button>
+            x:Name="btnRestoreBackup" Margin="210, 0, 0, 0"></Button>
     </Grid>
 </Page>

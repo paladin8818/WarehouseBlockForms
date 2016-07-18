@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WarehouseBlockForms.Controllers;
 using WarehouseBlockForms.Models;
 using WarehouseBlockForms.Reports.Base;

@@ -11,12 +11,10 @@
             <Setter Property="IsReadOnly" Value="True" />
             <Setter Property="AutoGenerateColumns" Value="False" />
             <Setter Property="CanUserResizeColumns" Value="False" />
-            <Setter Property="MinRowHeight" Value="30" />
+            <Setter Property="MinRowHeight" Value="45" />
             <Setter Property="HorizontalGridLinesBrush" Value="Silver" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
-        
-        
-        
         <Style TargetType="Button" x:Key="styleDefaultButton">
             <Setter Property="Background" Value="#0068B3"></Setter>
             <Setter Property="BorderBrush" Value="#0068B3"></Setter>

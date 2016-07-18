@@ -15,29 +15,48 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160"></ColumnDefinition>
-            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="210"></ColumnDefinition>
+            <ColumnDefinition Width="350"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Content="Введите старый пароль" Grid.Column="0" Grid.Row="0"></Label>
-        <PasswordBox x:Name="tbxOldPassword"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch"></PasswordBox>
-        <Label Content="Введите новый пароль" Grid.Column="0" Grid.Row="1"></Label>
-        <PasswordBox x:Name="tbxNewPassword" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"></PasswordBox>
-        <Label Content="Повторите новый пароль" Grid.Column="0" Grid.Row="2"></Label>
-        <PasswordBox x:Name="tbxNewPasswordRepeat" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"></PasswordBox>
+        <Label FontSize="16" VerticalAlignment="Center" Content="Введите старый пароль" Grid.Column="0" Grid.Row="0"></Label>
+        <PasswordBox 
+            FontSize="16"
+            VerticalContentAlignment="Center"
+            x:Name="tbxOldPassword" 
+            Grid.Column="1" Grid.Row="0" 
+            HorizontalAlignment="Stretch"></PasswordBox>
+        <Label FontSize="16" VerticalAlignment="Center" Content="Введите новый пароль" Grid.Column="0" Grid.Row="1"></Label>
+        <PasswordBox 
+            FontSize="16"
+            VerticalContentAlignment="Center"
+            x:Name="tbxNewPassword" 
+            Grid.Column="1" Grid.Row="1" 
+            HorizontalAlignment="Stretch"></PasswordBox>
+        <Label 
+            FontSize="16"
+            VerticalAlignment="Center"
+            Content="Повторите новый пароль" Grid.Column="0" Grid.Row="2"></Label>
+        <PasswordBox 
+            FontSize="16"
+            VerticalContentAlignment="Center"
+            x:Name="tbxNewPasswordRepeat" 
+            Grid.Column="1" Grid.Row="2" 
+            HorizontalAlignment="Stretch"></PasswordBox>
         <Button 
-            Height="25"
+            FontSize="16"
+            Height="40"
             Style="{StaticResource styleDefaultButton}"
             x:Name="btnSave"
             Grid.Column="1"
             Grid.Row="3" 
             Content="Сохранить" 
             HorizontalAlignment="Right"
-            Width="150"></Button>
+            Width="200"></Button>
     </Grid>
 </Page>

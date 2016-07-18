@@ -56,6 +56,7 @@ namespace WarehouseBlockForms.Views.Pages
             {
                 AvailabilityReport report = new AvailabilityReport();
                 report.Postfix = "сформирован вручную";
+                report.H1 = report.ReportName;
                 if (report.Save())
                 {
                     MessageBox.Show("Отчет сохранен!");

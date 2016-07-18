@@ -39,7 +39,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="35"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock 
                                     Grid.Column="0" Grid.Row="0"
@@ -49,7 +49,7 @@
                                 <Button 
                                     Margin="0, 0, 5, 0"
                                     Click="Button_Click"
-                                    Width="30"
+                                    Width="45"
                                     Grid.Column="1" Grid.Row="0"
                                     Content="..."></Button>
                             </Grid>
@@ -63,6 +63,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox Margin="5, 0, 0, 0" 
+                                      VerticalContentAlignment="Center"
                                       SelectionChanged="ComboBox_SelectionChanged"
                                       SelectedValue="{Binding Path=Period}" 
                                       SelectedValuePath="Tag">
@@ -81,6 +82,7 @@
                         <DataTemplate>
                             <Grid>
                                 <ComboBox 
+                                    VerticalContentAlignment="Center"
                                     SelectionChanged="cbxWeekDay_SelectionChanged"
                                     Grid.Column="0" Grid.Row="0" 
                                     x:Name="cbxWeekDay" 
@@ -106,6 +108,7 @@
                                     </ComboBox.Style>
                                 </ComboBox>
                                 <ComboBox 
+                                    VerticalContentAlignment="Center"
                                     SelectionChanged="cbxWeekDay_SelectionChanged"
                                     Grid.Column="0" Grid.Row="0" 
                                     SelectedValue="{Binding Path=Day}" 

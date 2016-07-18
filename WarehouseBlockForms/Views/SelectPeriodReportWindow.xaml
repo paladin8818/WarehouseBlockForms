@@ -6,20 +6,46 @@
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Выбор периода формирования отчета" Height="150" Width="350">
+        Title="Выбор периода формирования отчета" Height="200" Width="500">
     <Grid Margin="10">
-        <Label x:Name="label" Content="Дата с" HorizontalAlignment="Left" VerticalAlignment="Top" Width="91"/>
-        <DatePicker x:Name="dtpStart" Margin="96,2,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Дата по" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top" Width="91"/>
-        <DatePicker x:Name="dtpEnd" Margin="96,31,0,0" VerticalAlignment="Top"/>
+        <Label 
+            FontSize="16"
+            x:Name="label" 
+            Content="Дата с" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" Width="91" Margin="0,6,0,0"/>
+        <DatePicker
+            VerticalContentAlignment="Center"
+            FontSize="16"
+            Height="40"
+            x:Name="dtpStart" 
+            Margin="96,2,0,0" 
+            VerticalAlignment="Top"/>
+        <Label 
+            FontSize="16"
+            x:Name="label1" 
+            Content="Дата по" 
+            HorizontalAlignment="Left"
+            Margin="0,51,0,0" 
+            VerticalAlignment="Top" 
+            Width="91"/>
+        <DatePicker 
+            VerticalContentAlignment="Center"
+            Height="40"
+            FontSize="16"
+            x:Name="dtpEnd"
+            Margin="96,47,0,0"
+            VerticalAlignment="Top"/>
         <Button 
+            FontSize="16"
             Style="{StaticResource styleDefaultButton}"
-            Height="30"
-            x:Name="btnOk" Content="Ок" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"></Button>
+            Height="40"
+            x:Name="btnOk" Content="Ок" HorizontalAlignment="Right" Width="100" VerticalAlignment="Bottom"></Button>
         <Button 
+            FontSize="16"
             Style="{StaticResource styleDefaultButton}"
-            Height="30"
-            x:Name="btnCancel" Content="Отмена" Margin="0,0,80,0" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"/>
+            Height="40"
+            x:Name="btnCancel" Content="Отмена" Margin="0,0,105,0" HorizontalAlignment="Right" Width="100" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

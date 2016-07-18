@@ -6,18 +6,39 @@
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
         
-        Title="Добавление печи" Height="150" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Добавление печи" Height="155" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="label" Content="Название печи" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbxName" Height="23" Margin="108,13,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label 
+            FontSize="16"
+            x:Name="label"
+            Content="Название печи" 
+            HorizontalAlignment="Left" 
+            Margin="10,10,0,0" 
+            VerticalAlignment="Top"/>
+        <TextBox 
+            FontSize="16"
+            Height="40"
+            VerticalContentAlignment="Center"
+            x:Name="tbxName" 
+            Margin="135,13,10,0" 
+            TextWrapping="Wrap"
+            Text="" VerticalAlignment="Top"/>
         <Button 
             Style="{StaticResource styleDefaultButton}"
-            Height="25"
-            x:Name="btnSave" Content="Ok" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+            Height="40"
+            FontSize="16"
+            x:Name="btnSave"
+            Content="Ok"
+            HorizontalAlignment="Right" 
+            Margin="0,0,10,10"
+            VerticalAlignment="Bottom" Width="100"/>
         <Button 
             Style="{StaticResource styleDefaultButton}"
-            Height="25"
-            x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75"/>
+            Height="40"
+            FontSize="16"
+            x:Name="btnCancel"
+            Content="Отмена"
+            HorizontalAlignment="Right" Margin="0,0,115,10" VerticalAlignment="Bottom" Width="100"/>
 
     </Grid>
 </Window>

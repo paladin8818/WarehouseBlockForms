@@ -12,9 +12,10 @@
     <Window.Resources>
         <local1:TabSizeConverter x:Key="tabSizeConverter"></local1:TabSizeConverter>
         <Style TargetType="TabItem" x:Key="styleRootTabControl">
-            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Height" Value="45"></Setter>
             <Setter Property="Background" Value="#0068B3"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="Width">
                 <Setter.Value>
                     <MultiBinding Converter="{StaticResource tabSizeConverter}">
@@ -30,21 +31,22 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="TabItem" x:Key="styleVerticalTabControl">
-            <Setter Property="Height" Value="30"></Setter>
-            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="45"></Setter>
+            <Setter Property="Width" Value="200"></Setter>
         </Style>
     </Window.Resources>
     <Grid>
         <Menu 
             Background="#D4D6D8"
-            Height="22"
+            Height="30"
             VerticalAlignment="Top" 
+            FontSize="16"
             HorizontalAlignment="Stretch">
-            <MenuItem Header="Файл">
-                <MenuItem Header="Выход" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Header="Файл" Height="30">
+                <MenuItem Header="Выход" Click="MenuItem_Click" Height="30"></MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl Margin="0, 27, 0, 0" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="baseTabControlSelectionChanged" >
+        <TabControl Margin="0, 35, 0, 0" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="baseTabControlSelectionChanged" >
             <TabItem x:Name="tiSupply" Header="Поступление" Style="{StaticResource styleRootTabControl}">
                 <Frame x:Name="frameSupply" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
             </TabItem>
@@ -59,21 +61,26 @@
             </TabItem>
             <TabItem Header="Настройки" x:Name="tiSettings" Style="{StaticResource styleRootTabControl}">
                 <Grid Background="#FFE5E5E5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <Grid Width="400" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="grdLoginAdmin">
+                    <Grid Width="500" Height="90" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="grdLoginAdmin">
                         <Label 
                             Content="ВВЕДИТЕ ПАРОЛЬ" 
                             VerticalAlignment="Top" 
-                            Width="120" 
+                            Width="180" 
+                            Margin="0, 5, 0, 0"
                             HorizontalAlignment="Left"></Label>
                         <PasswordBox 
                             KeyUp="tbxPassword_KeyUp"
                             x:Name="tbxPassword"
                             VerticalAlignment="Top" 
-                            Margin="120, 0, 0, 0" 
-                            Height="25"
+                            Margin="180, 0, 0, 0" 
+                            Height="40"
                             VerticalContentAlignment="Center"
                             HorizontalAlignment="Stretch"></PasswordBox>
-                        <Button x:Name="btnLoginAdmin" Content="OK" Width="100" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Button>
+                        <Button 
+                            x:Name="btnLoginAdmin" 
+                            Content="OK" 
+                            Width="150" Height="45" 
+                            VerticalAlignment="Bottom" HorizontalAlignment="Right"></Button>
                     </Grid>
                     <TabControl x:Name="tcSettings" TabStripPlacement="Left" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Collapsed">
                         <TabItem Header="Печи" Style="{StaticResource styleVerticalTabControl}">
@@ -88,7 +95,7 @@
                         <TabItem Header="Настройка выгрузки" Style="{StaticResource styleVerticalTabControl}">
                             <Frame x:Name="frameSettingsReports" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
-                        <TabItem Header="Резервное копирование" Style="{StaticResource styleVerticalTabControl}">
+                        <TabItem Header="Бэкап" Style="{StaticResource styleVerticalTabControl}">
                             <Frame x:Name="frameSettingsBackup" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
                         <TabItem Header="Безопасность" Style="{StaticResource styleVerticalTabControl}">

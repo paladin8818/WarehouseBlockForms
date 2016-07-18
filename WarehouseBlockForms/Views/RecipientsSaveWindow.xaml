@@ -5,18 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
-        Title="Добавление получателя" Height="150" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Добавление получателя" Height="155" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label x:Name="label" Content="ФИО получателя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbxFullName" Height="23" Margin="118,13,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label 
+            FontSize="16"
+            x:Name="label"
+            Content="ФИО получателя"
+            HorizontalAlignment="Left"
+            Margin="10,10,0,0" 
+            VerticalAlignment="Top"/>
+        <TextBox 
+            x:Name="tbxFullName" 
+            Height="40"
+            FontSize="16"
+            VerticalContentAlignment="Center"
+            Margin="148,13,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Button 
-            Height="25"
+            Height="40"
+            FontSize="16"
             Style="{StaticResource styleDefaultButton}"
-            x:Name="btnSave" Content="Ok" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+            x:Name="btnSave" Content="Ok" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100"/>
         <Button
-            Height="25"
+            Height="40"
+            FontSize="16"
             Style="{StaticResource styleDefaultButton}"
-            x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75"/>
+            x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,115,10" VerticalAlignment="Bottom" Width="100"/>
 
     </Grid>
 </Window>

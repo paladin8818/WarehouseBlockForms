@@ -20,17 +20,15 @@
             <DataGrid
                 SelectionChanged="dgAvailability_SelectionChanged"
                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                Margin="0, 0, 0, 45"
+                Margin="0, 0, 0, 55"
                 x:Name="dgAvailability"
                 ItemsSource="{Binding SWCollection}"
                 Style="{StaticResource styleDefaultDataGrid}">
                 <DataGrid.Columns>
-
-
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
-                        Width="50"
+                        Width="60"
                         SortMemberPath="TId"
                         Header="Код">
                         <DataGridTemplateColumn.CellTemplate>
@@ -39,12 +37,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
-
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
-                        Width="100"
+                        Width="110"
                         SortMemberPath="TName"
                         Header="Тип операции">
                         <DataGridTemplateColumn.CellTemplate>
@@ -57,7 +53,7 @@
                     <DataGridTemplateColumn 
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="*"
+                    Width="130"
                     SortMemberPath="OperationDate"
                     Header="Дата операции">
                         <DataGridTemplateColumn.CellTemplate>
@@ -83,7 +79,7 @@
                     <DataGridTemplateColumn 
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="100"
+                    Width="120"
                     SortMemberPath="AppNumber"
                     Header="Номер заявки">
                         <DataGridTemplateColumn.CellTemplate>
@@ -96,32 +92,35 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button 
+                FontSize="16"
                 Style="{StaticResource styleDefaultButton}" 
                 x:Name="btnCreateSupplyReport" 
                 Content="Журнал поступления" 
                 VerticalAlignment="Bottom" 
                 HorizontalAlignment="Left" 
-                Height="35" 
+                Height="45" 
                 Margin="0, 0, 0, 5"
-                Width="150"></Button>
+                Width="200"></Button>
             <Button 
+                FontSize="16"
                 Style="{StaticResource styleDefaultButton}" 
                 x:Name="btnCreateWriteoffReport" 
                 Content="Журнал списания" 
                 VerticalAlignment="Bottom" 
                 HorizontalAlignment="Left" 
-                Height="35" 
-                Margin="160, 0, 0, 5"
-                Width="150"></Button>
+                Height="45" 
+                Margin="210, 0, 0, 5"
+                Width="200"></Button>
             <Button 
+                FontSize="16"
                 Style="{StaticResource styleDefaultButton}" 
                 x:Name="btnCreateTurnReport" 
                 Content="Отчет оборота" 
                 VerticalAlignment="Bottom" 
                 HorizontalAlignment="Right" 
-                Height="35" 
+                Height="45" 
                 Margin="0, 0, 0, 5"
-                Width="150"></Button>
+                Width="200"></Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
             <DataGrid Margin="5, 0, 0, 5"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"

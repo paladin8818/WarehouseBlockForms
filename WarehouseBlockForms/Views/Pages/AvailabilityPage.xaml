@@ -9,39 +9,65 @@
       Title="AvailabilityPage">
 
     <Grid>
-        <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" Margin="0, 5, 170, 0">
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="45" Margin="0, 5, 170, 0">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="110"></ColumnDefinition>
-                <ColumnDefinition Width="250"></ColumnDefinition>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition Width="110"></ColumnDefinition>
-                <ColumnDefinition Width="250"></ColumnDefinition>
-                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="130"></ColumnDefinition>
+                <ColumnDefinition Width="290"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+                <ColumnDefinition Width="290"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Content="Печь" Grid.Row="0" Grid.Column="0"></Label>
+            <Label 
+                Content="Печь" 
+                Grid.Row="0" 
+                VerticalAlignment="Center"
+                FontSize="16"
+                Grid.Column="0"></Label>
             <ComboBox 
+                FontSize="16"
                 SelectedValuePath="Id"
                 DisplayMemberPath="Name"
                 x:Name="cbxOvenFilter" 
                 Grid.Row="0" 
                 Grid.Column="1" 
+                VerticalContentAlignment="Center"
                 VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch"
                 Margin="5, 0, 10, 0"></ComboBox>
-            <Button  Style="{StaticResource styleDefaultButton}" x:Name="btnClearOvenFilter" Grid.Row="0" Grid.Column="2" Content="X" Margin="0, 0, 5, 0"></Button>
-            
-            <Label Content="Быстрый фильтр" Grid.Row="0" Grid.Column="3"></Label>
-            <TextBox VerticalContentAlignment="Center" x:Name="tbxFastFilter" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="5, 0, 10, 0"></TextBox>
-            <Button Style="{StaticResource styleDefaultButton}" x:Name="btnClearFastFilter" Grid.Row="0" Grid.Column="5" Content="X" Margin="0, 0, 5, 0"></Button>
+            <Button  
+                FontSize="16"
+                Style="{StaticResource styleDefaultButton}"
+                x:Name="btnClearOvenFilter" 
+                Grid.Row="0" Grid.Column="2" 
+                Content="X" Margin="0, 0, 5, 0"></Button>
+            <Label 
+                VerticalAlignment="Center"
+                FontSize="16"
+                Content="Быстрый фильтр"
+                Grid.Row="0" Grid.Column="3"></Label>
+            <TextBox 
+                VerticalContentAlignment="Center"
+                x:Name="tbxFastFilter"
+                Grid.Row="0" Grid.Column="4"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  
+                FontSize="16"
+                Margin="5, 0, 10, 0"></TextBox>
+            <Button
+                FontSize="16"
+                Style="{StaticResource styleDefaultButton}"
+                x:Name="btnClearFastFilter"
+                Grid.Row="0" Grid.Column="5"
+                Content="X" Margin="0, 0, 5, 0"></Button>
         </Grid>
         <DataGrid 
             x:Name="dgAvailability"
             ItemsSource="{Binding Collection}"
             Style="{StaticResource styleDefaultDataGrid}"
-            Margin="0, 40, 0, 40">
+            Margin="0, 55, 0, 50">
             <DataGrid.Columns>
                 <DataGridTemplateColumn
                     SortMemberPath="RowIndex"
@@ -95,7 +121,7 @@
                     SortMemberPath="CurrentCount"
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Текущее количество"
+                    Header="Текущее кол.-во"
                     Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -109,9 +135,10 @@
             Style="{StaticResource styleDefaultButton}" 
             x:Name="btnCreateAvailabilityReport" 
             Content="Отчет наличия" 
+            FontSize="16"
             VerticalAlignment="Bottom" 
             HorizontalAlignment="Right" 
-            Height="35" 
-            Width="150"></Button>
+            Height="45" 
+            Width="200"></Button>
     </Grid>
 </Page>

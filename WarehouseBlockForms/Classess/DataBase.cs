@@ -21,8 +21,8 @@ namespace WarehouseBlockForms.Classess
 		private static SQLiteConnection _connection = null;
 		
 		private DataBase() {}
-		
-		public static SQLiteConnection Connect ()
+
+        public static SQLiteConnection Connect ()
 		{
 			if(!File.Exists(_db_path)) 
 			{
@@ -33,10 +33,10 @@ namespace WarehouseBlockForms.Classess
 				try
 				{
                     createDb();
-					SQLiteConnection connection = new SQLiteConnection(string.Format("Data Source={0}; Version=3;", _db_path));
-					connection.Open();
-					return connection;
-				}
+                    SQLiteConnection connection = new SQLiteConnection(string.Format("Data Source={0}; Version=3;", _db_path));
+                    connection.Open();
+                    return connection;
+                }
 				catch (Exception ex)
 				{
 					Log.WriteError(ex.Message);

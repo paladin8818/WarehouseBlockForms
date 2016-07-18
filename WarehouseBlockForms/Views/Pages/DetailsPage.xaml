@@ -12,7 +12,7 @@
         <DataGrid 
             Style="{StaticResource styleDefaultDataGrid}"
             x:Name="dgDetails"
-            Margin="5, 5, 125, 5"
+            Margin="5, 5, 145, 5"
             ItemsSource="{Binding Collection}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn 
@@ -43,7 +43,7 @@
                     CanUserSort="True"
                     SortMemberPath="VendorCode"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="*"
+                    Width="140"
                     Header="Артикул">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -55,7 +55,7 @@
                     CanUserSort="True"
                     SortMemberPath="OvenName"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="*"
+                    Width="200"
                     Header="Печь">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -64,7 +64,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn 
-                    Width="80"
+                    Width="90"
                     CanUserSort="True"
                     SortMemberPath="RowOrder"
                     Header="Порядок"
@@ -99,7 +99,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="110" Margin="5">
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="135" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -109,14 +109,23 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Button 
+                FontSize="16"
                 Style="{StaticResource styleDefaultButton}"
-                x:Name="btnAdd" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Добавить" Margin="0, 0, 0, 10"></Button>
+                x:Name="btnAdd" Grid.Row="0" Grid.Column="0"
+                HorizontalAlignment="Stretch" Height="45" 
+                Content="Добавить" Margin="0, 0, 0, 10"></Button>
             <Button
+                FontSize="16"
                 Style="{StaticResource styleDefaultButton}"
-                x:Name="btnEdit" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Редактировать" Margin="0, 0, 0, 10"></Button>
+                x:Name="btnEdit" Grid.Row="1" Grid.Column="0"
+                HorizontalAlignment="Stretch" Height="45"
+                Content="Редактировать" Margin="0, 0, 0, 10"></Button>
             <Button
+                FontSize="16"
                 Style="{StaticResource styleDefaultButton}"
-                x:Name="btnDelete" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" Content="Удалить" Margin="0, 0, 0, 10"></Button>
+                x:Name="btnDelete" Grid.Row="2" Grid.Column="0"
+                HorizontalAlignment="Stretch" Height="45" 
+                Content="Удалить" Margin="0, 0, 0, 10"></Button>
         </Grid>
     </Grid>
 </Page>

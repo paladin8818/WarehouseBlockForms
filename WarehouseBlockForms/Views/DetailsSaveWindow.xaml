@@ -5,36 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
-        Title="Добавление детали" Height="200" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Добавление детали" Height="235" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 
 
         <Button 
             Style="{StaticResource styleDefaultButton}"
+            FontSize="16"
             x:Name="btnSave"
             Content="Ok" 
             HorizontalAlignment="Right"
             Margin="0,0,10,10"
             VerticalAlignment="Bottom" 
-            Height="25"
-            Width="75"/>
+            Height="40"
+            Width="100"/>
         <Button 
+            FontSize="16"
             Style="{StaticResource styleDefaultButton}"
-            Height="25"
-            x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75"/>
-        
-        <Label x:Name="label" Content="Название детали" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbxName" HorizontalAlignment="Right" Height="23" Margin="0,10,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="256"/>
-        <Label x:Name="label1" Content="Артикул детали" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbxVendorCode" HorizontalAlignment="Right" Height="23" Margin="0,44,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="256"/>
-        <Label x:Name="label2" Content="Печь" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+            Height="40"
+            x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,115,10" VerticalAlignment="Bottom" Width="100"/>
+
+        <Label 
+            FontSize="16"
+            x:Name="label"
+            Content="Название детали" 
+            HorizontalAlignment="Left"
+            Margin="10,10,0,0"
+            VerticalAlignment="Top"/>
+        <TextBox 
+            x:Name="tbxName"
+            FontSize="16"
+            VerticalContentAlignment="Center"
+            Height="40"
+            Margin="153,10,10,0" 
+            TextWrapping="Wrap"
+            Text="" VerticalAlignment="Top"/>
+        <Label 
+            FontSize="16"
+            x:Name="label1"
+            Content="Артикул детали" 
+            HorizontalAlignment="Left"
+            Margin="10,55,0,0" 
+            VerticalAlignment="Top"/>
+        <TextBox 
+            x:Name="tbxVendorCode"
+            Height="40" 
+            Margin="153,55,10,0" 
+            TextWrapping="Wrap" 
+            Text="" 
+            VerticalAlignment="Top" 
+            FontSize="16"
+            VerticalContentAlignment="Center"/>
+        <Label 
+            FontSize="16"
+            x:Name="label2" 
+            Content="Печь" 
+            HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
         <ComboBox 
+            FontSize="16"
+            Height="40"
+            VerticalContentAlignment="Center"
             DisplayMemberPath="Name"
             SelectedValuePath="Id"
             x:Name="cbxOven"
-            HorizontalAlignment="Right"
-            Margin="0,76,10,0"
-            VerticalAlignment="Top"
-            Width="256"/>
+            Margin="153,100,10,0"
+            VerticalAlignment="Top"/>
     </Grid>
 </Window>
