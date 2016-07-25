@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Excel;
 using WarehouseBlockForms.Classess;
 using System.Collections.Generic;
+using System.IO;
 
 namespace WarehouseBlockForms.Reports.Base
 {
@@ -38,31 +39,33 @@ namespace WarehouseBlockForms.Reports.Base
             excelWorkSheet = (Worksheet)excelWorkbook.Worksheets[1];
         }
 
+        public int ColumnCount { get; set; }
+        public string LastError { get; private set; }
+
         protected bool Create ()
         {
+            if (!Directory.Exists(Path))
+            {
+                Log.WriteError("Path '" + Path + "' not exist");
+                return false;
+            }
             bool result = false;
             try
             {
-
-                
-
+                //set header
                 SetH1();
+                //set titles
                 SetHeaderRow();
+                //set data
                 SetData();
+                //set footer
                 SetF1();
-
-                
-
+                //set columns width
                 foreach(KeyValuePair<int, double> w in columnsWidth)
                 {
-
                     excelWorkSheet.Columns[w.Key].ColumnWidth = w.Value;
-
-                    //setColumnWidth(w.Key, w.Value);
                 }
-
                 excelWorkbook.SaveAs(Path + @"\" + ReportName + ".xlsx");
-
                 result = true;
             }
             catch (Exception ex)
@@ -86,12 +89,10 @@ namespace WarehouseBlockForms.Reports.Base
             if(H1 != null)
             {
                 excelWorkSheet.Cells[lastTopIndex, 1] = H1;
-
-                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
-                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
-                bold(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
-                wrap(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
-                centerAlign(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
+                merge(lastTopIndex, lastTopIndex + 1, 1, ColumnCount);
+                bold(lastTopIndex, lastTopIndex + 1, 1, ColumnCount);
+                wrap(lastTopIndex, lastTopIndex + 1, 1, ColumnCount);
+                centerAlign(lastTopIndex, lastTopIndex + 1, 1, ColumnCount);
                 lastTopIndex += 2;
             }
         }
@@ -127,27 +128,9 @@ namespace WarehouseBlockForms.Reports.Base
             if(F1 != null)
             {
                 excelWorkSheet.Cells[lastTopIndex, 1] = F1;
-                int lastColumn = (ColumnCount() == 0) ? 1 : ColumnCount();
-                merge(lastTopIndex, lastTopIndex + 1, 1, lastColumn);
+                merge(lastTopIndex, lastTopIndex + 1, 1, ColumnCount);
                 lastTopIndex += 2;
             }
-        }
-
-        protected int RowCount ()
-        {
-            if(Data != null)
-            {
-                return Data.Count;
-            }
-            return 0;
-        }
-        protected int ColumnCount ()
-        {
-            if(RowCount() > 0)
-            {
-                return Data[0].Row.Count;
-            }
-            return 0;
         }
 
 
@@ -159,7 +142,7 @@ namespace WarehouseBlockForms.Reports.Base
                 ].Merge();
         }
 
-        private void bold (int r1, int r2, int c1, int c2)
+        protected void bold (int r1, int r2, int c1, int c2)
         {
 
             excelWorkSheet.Range[
@@ -168,7 +151,7 @@ namespace WarehouseBlockForms.Reports.Base
                 ].Font.Bold = true;
         }
 
-        private void wrap(int r1, int r2, int c1, int c2)
+        protected void wrap(int r1, int r2, int c1, int c2)
         {
 
             excelWorkSheet.Range[
@@ -186,7 +169,7 @@ namespace WarehouseBlockForms.Reports.Base
                 ].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightBlue);
         }
 
-        private void centerAlign(int r1, int r2, int c1, int c2)
+        protected void centerAlign(int r1, int r2, int c1, int c2)
         {
 
             excelWorkSheet.Range[

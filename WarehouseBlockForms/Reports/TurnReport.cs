@@ -39,7 +39,7 @@ namespace WarehouseBlockForms.Reports
         public override bool Save(DateTime startDate, DateTime endDate)
         {
 
-
+            ColumnCount = 7;
             columnsWidth.Add(1, 2.57);
             columnsWidth.Add(2, 8.14);
             columnsWidth.Add(3, 8.29);

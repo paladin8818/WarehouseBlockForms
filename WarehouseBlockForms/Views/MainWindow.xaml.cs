@@ -88,7 +88,7 @@ namespace WarehouseBlockForms.Views
 
             Reports.AvailabilityReport report = new Reports.AvailabilityReport();
             report.Postfix = "сформирован автоматически";
-            report.H1 = "Отчет оборота на " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
+            report.H1 = "Отчет наличия на " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
             if (report.Save())
             {
                 reportSetting.save();
@@ -125,7 +125,7 @@ namespace WarehouseBlockForms.Views
 
             Reports.SupplyReport report = new Reports.SupplyReport();
             report.Postfix = "сформирован автоматически " + current.ToString("dd.MM.yyyy HH_mm_ss");
-            report.H1 = "Отчет оборота с " + prev.ToString("dd.MM.yyyy") + " по " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
+            report.H1 = "Журнал поступления с " + prev.ToString("dd.MM.yyyy") + " по " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
             if (report.Save(prev, nextDate))
             {
                 reportSetting.save();
@@ -143,7 +143,7 @@ namespace WarehouseBlockForms.Views
 
             Reports.WriteoffReport report = new Reports.WriteoffReport();
             report.Postfix = "сформирован автоматически, " + current.ToString("dd.MM.yyyy HH_mm_ss");
-            report.H1 = "Отчет оборота с " + prev.ToString("dd.MM.yyyy") + " по " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
+            report.H1 = "Журнал списания с " + prev.ToString("dd.MM.yyyy") + " по " + nextDate.ToString("dd.MM.yyyy") + " (сформирован автоматически, " + current.ToString("dd.MM.yyyy HH:mm:ss") + ")";
             if (report.Save(prev, nextDate))
             {
                 reportSetting.save();

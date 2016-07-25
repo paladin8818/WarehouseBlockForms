@@ -39,6 +39,8 @@ namespace WarehouseBlockForms.Reports
 
             setLandscapeOrientation();
 
+            ColumnCount = 9;
+
             columnsWidth.Add(1, 14);
             columnsWidth.Add(2, 9.29);
             columnsWidth.Add(3, 11.29);
@@ -105,11 +107,8 @@ namespace WarehouseBlockForms.Reports
                 reportRowHead.Style.Add(ReportRow.RowStyle.Bold);
                 reportRowHead.Style.Add(ReportRow.RowStyle.TextAlignCenter);
 
-                
-
                 reportData.Add(reportRowHead);
                 currentRowIndex++;
-
 
                 List<WriteoffDetails> writeoffDetails = WriteoffDetailsController.instance().getByIdWriteoff(writeoff.Id);
                 for (int i = 0; i < writeoffDetails.Count; i++)

@@ -44,7 +44,14 @@ namespace WarehouseBlockForms.Views
                     MessageBox.Show("Введите дату по");
                     return;
                 }
-                callback((DateTime)dtpStart.SelectedDate.Value, (DateTime)dtpEnd.SelectedDate.Value);
+
+                if(dtpStart.SelectedDate.Value > dtpEnd.SelectedDate.Value)
+                {
+                    MessageBox.Show("Дата 'с' не может быть больше даты 'по'");
+                    return;
+                }
+
+                callback(dtpStart.SelectedDate.Value, dtpEnd.SelectedDate.Value);
                 Close();
             };
             

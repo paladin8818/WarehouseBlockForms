@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WarehouseBlockForms.Views.Pages"
       xmlns:s="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-        xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+      xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ReportSettingsPage">
 
@@ -19,7 +19,7 @@
             <DataGrid.Columns>
                 <DataGridTemplateColumn 
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="150"
+                    Width="160"
                     Header="Название отчета">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -34,7 +34,7 @@ namespace WarehouseBlockForms.Reports
 
         public override bool Save()
         {
-
+            ColumnCount = 5;
 
             columnsWidth.Add(1, 2.57);
             columnsWidth.Add(2, 8.29);
