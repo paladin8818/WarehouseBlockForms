@@ -99,7 +99,7 @@ namespace WarehouseBlockForms.Models
         }
         public bool down()
         {
-            int index = DetailsController.instance().nextRowOrderIndex(RowOrder);
+            int index = RecipientsController.instance().nextRowOrderIndex(RowOrder);
             if (index == 0) return true;
             Recipients recipient = RecipientsController.instance().getByOrderIndex(index);
             if (orderChange(recipient))

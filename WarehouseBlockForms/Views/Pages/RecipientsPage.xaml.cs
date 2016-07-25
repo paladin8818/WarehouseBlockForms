@@ -52,6 +52,21 @@ namespace WarehouseBlockForms.Views.Pages
                     selectedRecipient.remove();
                 }
             };
+
+            btnUp.Click += delegate
+            {
+                Recipients recipient = dgRecipients.SelectedItem as Recipients;
+                if (recipient == null) return;
+                up(recipient);
+            };
+
+            btnDown.Click += delegate
+            {
+                Recipients recipient = dgRecipients.SelectedItem as Recipients;
+                if (recipient == null) return;
+                down(recipient);
+            };
+
         }
 
         private void rowUp(object sender, RoutedEventArgs e)
@@ -88,5 +103,24 @@ namespace WarehouseBlockForms.Views.Pages
                 MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
             }
         }
+
+        private void up(Recipients recipient)
+        {
+            if (recipient == null) return;
+            if (!recipient.up())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+        }
+
+        private void down(Recipients recipient)
+        {
+            if (recipient == null) return;
+            if (!recipient.down())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+        }
+
     }
 }

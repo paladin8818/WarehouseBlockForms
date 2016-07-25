@@ -40,6 +40,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn 
+                    Visibility="Collapsed"
                     Width="90"
                     CanUserSort="True"
                     SortMemberPath="RowOrder"
@@ -83,6 +84,8 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Button 
                 FontSize="16"
@@ -108,6 +111,39 @@
                 HorizontalAlignment="Stretch"
                 Height="45" Content="Удалить"
                 Margin="0, 0, 0, 10"></Button>
+            
+            <Button 
+                FontSize="16"
+                x:Name="btnUp" 
+                Grid.Row="3" Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                Height="45"
+                Margin="0, 0, 0, 10">
+                <Image 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="35"
+                    Height="35"
+                    Source="/WarehouseBlockForms;component/Images/ArrowUp.png"
+                    Stretch="Fill"></Image>
+            </Button>
+
+            <Button 
+                FontSize="16"
+                x:Name="btnDown" 
+                Grid.Row="4" Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                Height="45"
+                Margin="0, 0, 0, 10">
+                <Image 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="35"
+                    Height="35"
+                    Source="/WarehouseBlockForms;component/Images/ArrowDown.png"
+                    Stretch="Fill"></Image>
+            </Button>            
+            
         </Grid>
     </Grid>
 </Page>

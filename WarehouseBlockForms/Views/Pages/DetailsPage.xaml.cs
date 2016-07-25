@@ -63,6 +63,20 @@ namespace WarehouseBlockForms.Views.Pages
                     selectedDetails.remove();
                 }
             };
+
+            btnUp.Click += delegate
+            {
+                Details details = dgDetails.SelectedItem as Details;
+                if (details == null) return;
+                up(details);
+            };
+
+            btnDown.Click += delegate
+            {
+                Details details = dgDetails.SelectedItem as Details;
+                if (details == null) return;
+                down(details);
+            };
         }
 
         private void rowUp(object sender, RoutedEventArgs e)
@@ -95,6 +109,24 @@ namespace WarehouseBlockForms.Views.Pages
             if (detail == null) return;
 
             if (!detail.down())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+        }
+
+        private void up(Details details)
+        {
+            if (details == null) return;
+            if (!details.up())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+        }
+
+        private void down(Details details)
+        {
+            if (details == null) return;
+            if (!details.down())
             {
                 MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
             }

@@ -49,6 +49,20 @@ namespace WarehouseBlockForms.Views.Pages
                     selectedOven.remove();
                 }
             };
+
+            btnUp.Click += delegate
+            {
+                Oven oven = dgOven.SelectedItem as Oven;
+                if (oven == null) return;
+                up(oven);
+            };
+
+            btnDown.Click += delegate
+            {
+                Oven oven = dgOven.SelectedItem as Oven;
+                if (oven == null) return;
+                down(oven);
+            };
         }
 
         private void rowUp(object sender, RoutedEventArgs e)
@@ -85,5 +99,24 @@ namespace WarehouseBlockForms.Views.Pages
                 MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
             }
         }
+
+        private void up(Oven oven)
+        {
+            if (oven == null) return;
+            if (!oven.up())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+        }
+
+        private void down (Oven oven)
+        {
+            if (oven == null) return;
+            if (!oven.down())
+            {
+                MessageBox.Show("При выполнении запроса произошли ошибки!\nПодробнее см. в логе ошибок.");
+            }
+        }
+
     }
 }
