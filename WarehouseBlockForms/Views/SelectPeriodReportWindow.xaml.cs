@@ -51,7 +51,9 @@ namespace WarehouseBlockForms.Views
                     return;
                 }
 
-                callback(dtpStart.SelectedDate.Value, dtpEnd.SelectedDate.Value);
+                DateTime correctEndDate = dtpEnd.SelectedDate.Value.AddDays(1).AddMilliseconds(-1);
+
+                callback(dtpStart.SelectedDate.Value, correctEndDate);
                 Close();
             };
             
