@@ -55,7 +55,7 @@ namespace WarehouseBlockForms.Views
                 return;
             }
 
-            loadModels();
+            //loadModels();
 
             setWorkPages();
             setSettingsPages();
