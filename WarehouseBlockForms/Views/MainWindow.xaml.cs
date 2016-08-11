@@ -55,6 +55,8 @@ namespace WarehouseBlockForms.Views
                 return;
             }
 
+            loadModels();
+
             setWorkPages();
             setSettingsPages();
 
@@ -292,5 +294,19 @@ namespace WarehouseBlockForms.Views
 
             return true;
         }
+
+
+        private void loadModels()
+        {
+            OvenController.instance();
+            DetailsController.instance();
+            RecipientsController.instance();
+            SupplyController.instance();
+            SupplyDetailsController.instance();
+            WriteoffController.instance();
+            WriteoffDetailsController.instance();
+            ReportsSettingController.instance();
+        }
+
     }
 }
