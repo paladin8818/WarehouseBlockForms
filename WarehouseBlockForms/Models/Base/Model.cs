@@ -85,6 +85,7 @@ namespace WarehouseBlockForms.Models.Base
 		
 		public virtual bool save ()
 		{
+            IController currentController = controller();
 			if(execQuery (prepareSaveQuery(), prepareSaveParams()))
 			{
 				if(Id == 0) 
@@ -93,7 +94,7 @@ namespace WarehouseBlockForms.Models.Base
 					if(id != 0)
                     {
                         Id = id;
-                        return controller().add(this);
+                        return currentController.add(this);
                     }
                     return false;
 				}
@@ -104,9 +105,10 @@ namespace WarehouseBlockForms.Models.Base
 		
 		public bool remove () 
 		{
-			if(execQuery(prepareRemoveQuery(), prepareRemoveParams()))
+            IController currentController = controller();
+            if (execQuery(prepareRemoveQuery(), prepareRemoveParams()))
 			{
-				controller().remove(this);
+                currentController.remove(this);
 			}
 			return false;
 		}
