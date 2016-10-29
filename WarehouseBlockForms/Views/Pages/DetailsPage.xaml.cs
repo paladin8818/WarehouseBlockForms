@@ -31,7 +31,9 @@ namespace WarehouseBlockForms.Views.Pages
             {
                 Collection = DetailsController.instance().ViewSource.View
             };
-            DetailsController.instance().ViewSource.SortDescriptions.Add(new SortDescription("RowOrder", ListSortDirection.Ascending));
+
+            DetailsController.instance().ViewSource.SortDescriptions.Add(new SortDescription(OrderSettings.DetailsSortColumn, OrderSettings.DetailsSortDirection));
+
             btnAdd.Click += delegate
             {
                 DetailsSaveWindow detailsSaveWindow = new DetailsSaveWindow();
@@ -132,5 +134,22 @@ namespace WarehouseBlockForms.Views.Pages
             }
         }
 
+        private void dgDetails_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            IniFile iniFile = new IniFile("settings.ini");
+            iniFile.Write("details_sort_column", e.Column.SortMemberPath);
+            OrderSettings.DetailsSortColumn = e.Column.SortMemberPath;
+            string sortDirection = e.Column.SortDirection.ToString();
+            if (string.IsNullOrEmpty(sortDirection) || sortDirection == "Descending")
+            {
+                iniFile.Write("details_sort_direction", "Ascending");
+                OrderSettings.DetailsSortDirection = ListSortDirection.Ascending;
+            }
+            else
+            {
+                iniFile.Write("details_sort_direction", "Descending");
+                OrderSettings.DetailsSortDirection = ListSortDirection.Descending;
+            }
+        }
     }
 }

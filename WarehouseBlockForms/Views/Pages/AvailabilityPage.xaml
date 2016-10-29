@@ -9,26 +9,27 @@
       Title="AvailabilityPage">
 
     <Grid>
-        <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="45" Margin="0, 5, 170, 0">
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="45" Margin="0, 4, 0, 0">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"></ColumnDefinition>
-                <ColumnDefinition Width="290"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="140"></ColumnDefinition>
-                <ColumnDefinition Width="290"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label 
                 Content="Печь" 
                 Grid.Row="0" 
-                VerticalAlignment="Center"
-                FontSize="16"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Stretch"
+                FontSize="20"
                 Grid.Column="0"></Label>
             <ComboBox 
-                FontSize="16"
+                FontSize="20"
                 SelectedValuePath="Id"
                 DisplayMemberPath="Name"
                 x:Name="cbxOvenFilter" 
@@ -37,16 +38,16 @@
                 VerticalContentAlignment="Center"
                 VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch"
-                Margin="5, 0, 10, 0"></ComboBox>
+                Margin="5, 0, 5, 0"></ComboBox>
             <Button  
-                FontSize="16"
+                FontSize="20"
                 Style="{StaticResource styleDefaultButton}"
                 x:Name="btnClearOvenFilter" 
                 Grid.Row="0" Grid.Column="2" 
                 Content="X" Margin="0, 0, 5, 0"></Button>
             <Label 
                 VerticalAlignment="Center"
-                FontSize="16"
+                FontSize="20"
                 Content="Быстрый фильтр"
                 Grid.Row="0" Grid.Column="3"></Label>
             <TextBox 
@@ -54,16 +55,17 @@
                 x:Name="tbxFastFilter"
                 Grid.Row="0" Grid.Column="4"
                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  
-                FontSize="16"
-                Margin="5, 0, 10, 0"></TextBox>
+                FontSize="20"
+                Margin="5, 0, 5, 0"></TextBox>
             <Button
-                FontSize="16"
+                FontSize="20"
                 Style="{StaticResource styleDefaultButton}"
                 x:Name="btnClearFastFilter"
                 Grid.Row="0" Grid.Column="5"
                 Content="X" Margin="0, 0, 5, 0"></Button>
         </Grid>
         <DataGrid 
+            FontSize="18"
             x:Name="dgAvailability"
             ItemsSource="{Binding Collection}"
             Style="{StaticResource styleDefaultDataGrid}"

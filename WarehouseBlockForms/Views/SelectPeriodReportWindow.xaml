@@ -5,47 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        Title="Выбор периода формирования отчета" Height="200" Width="500">
-    <Grid Margin="10">
-        <Label 
-            FontSize="16"
-            x:Name="label" 
-            Content="Дата с" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Top" Width="91" Margin="0,6,0,0"/>
-        <DatePicker
-            VerticalContentAlignment="Center"
-            FontSize="16"
-            Height="40"
-            x:Name="dtpStart" 
-            Margin="96,2,0,0" 
-            VerticalAlignment="Top"/>
-        <Label 
-            FontSize="16"
-            x:Name="label1" 
-            Content="Дата по" 
-            HorizontalAlignment="Left"
-            Margin="0,51,0,0" 
-            VerticalAlignment="Top" 
-            Width="91"/>
-        <DatePicker 
-            VerticalContentAlignment="Center"
-            Height="40"
-            FontSize="16"
-            x:Name="dtpEnd"
-            Margin="96,47,0,0"
-            VerticalAlignment="Top"/>
-        <Button 
-            FontSize="16"
-            Style="{StaticResource styleDefaultButton}"
-            Height="40"
-            x:Name="btnOk" Content="Ок" HorizontalAlignment="Right" Width="100" VerticalAlignment="Bottom"></Button>
-        <Button 
-            FontSize="16"
-            Style="{StaticResource styleDefaultButton}"
-            Height="40"
-            x:Name="btnCancel" Content="Отмена" Margin="0,0,105,0" HorizontalAlignment="Right" Width="100" VerticalAlignment="Bottom"/>
+        WindowStartupLocation="CenterScreen" FontSize="18" Title="Выбор периода формирования отчета" Height="200" Width="600" ResizeMode="NoResize">
+    <Grid Margin="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
+            <Label 
+                Grid.Column="0" Grid.Row="0"
+                x:Name="label" 
+                Content="Дата с" 
+                Margin="0, 0, 0, 5" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <DatePicker
+                Grid.Column="1" Grid.Row="0"
+                x:Name="dtpStart" 
+                Margin="0, 0, 0, 5" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+            
+            <Label 
+                Grid.Column="0" Grid.Row="1"
+                x:Name="label1" 
+                Content="Дата по" 
+                Margin="0, 0, 0, 5" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <DatePicker 
+                Grid.Column="1" Grid.Row="1"
+                x:Name="dtpEnd"
+                Margin="0, 0, 0, 5" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+        </Grid>
+
+        <Grid  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button 
+                Grid.Column="0"
+                Margin="0, 0, 5, 0"
+                Style="{StaticResource styleDefaultButton}"
+                Height="45"
+                x:Name="btnCancel" 
+                Content="Отмена" Width="120" />
+
+            <Button 
+                Grid.Column="1"
+                Style="{StaticResource styleDefaultButton}"
+                x:Name="btnOk"
+                Content="Ok" 
+                Height="45"
+                Width="120"/>
+        </Grid>
     </Grid>
 </Window>

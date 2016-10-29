@@ -5,70 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
-        Title="Добавление детали" Height="235" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
+        FontSize="18"
+        Title="Добавление детали" Height="250" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
+            <Label 
+                Margin="0, 0, 0, 5"
+                Grid.Row="0" Grid.Column="0"
+                x:Name="label"
+                Content="Название детали" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <TextBox 
+                Margin="0, 0, 0, 5"
+                Grid.Row="0" Grid.Column="1"
+                x:Name="tbxName"
+                HorizontalAlignment="Stretch"
+                Text="" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
 
-        <Button 
-            Style="{StaticResource styleDefaultButton}"
-            FontSize="16"
-            x:Name="btnSave"
-            Content="Ok" 
-            HorizontalAlignment="Right"
-            Margin="0,0,10,10"
-            VerticalAlignment="Bottom" 
-            Height="40"
-            Width="100"/>
-        <Button 
-            FontSize="16"
-            Style="{StaticResource styleDefaultButton}"
-            Height="40"
-            x:Name="btnCancel" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,115,10" VerticalAlignment="Bottom" Width="100"/>
+            <Label 
+                Margin="0, 0, 0, 5"
+                Grid.Row="1" Grid.Column="0"
+                x:Name="label1"
+                Content="Артикул детали" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <TextBox 
+                Margin="0, 0, 0, 5"
+                Grid.Row="1" Grid.Column="1"
+                x:Name="tbxVendorCode"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" 
+                VerticalContentAlignment="Center"/>
 
-        <Label 
-            FontSize="16"
-            x:Name="label"
-            Content="Название детали" 
-            HorizontalAlignment="Left"
-            Margin="10,10,0,0"
-            VerticalAlignment="Top"/>
-        <TextBox 
-            x:Name="tbxName"
-            FontSize="16"
-            VerticalContentAlignment="Center"
-            Height="40"
-            Margin="153,10,10,0" 
-            TextWrapping="Wrap"
-            Text="" VerticalAlignment="Top"/>
-        <Label 
-            FontSize="16"
-            x:Name="label1"
-            Content="Артикул детали" 
-            HorizontalAlignment="Left"
-            Margin="10,55,0,0" 
-            VerticalAlignment="Top"/>
-        <TextBox 
-            x:Name="tbxVendorCode"
-            Height="40" 
-            Margin="153,55,10,0" 
-            TextWrapping="Wrap" 
-            Text="" 
-            VerticalAlignment="Top" 
-            FontSize="16"
-            VerticalContentAlignment="Center"/>
-        <Label 
-            FontSize="16"
-            x:Name="label2" 
-            Content="Печь" 
-            HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
-        <ComboBox 
-            FontSize="16"
-            Height="40"
-            VerticalContentAlignment="Center"
-            DisplayMemberPath="Name"
-            SelectedValuePath="Id"
-            x:Name="cbxOven"
-            Margin="153,100,10,0"
-            VerticalAlignment="Top"/>
+            <Label 
+                Margin="0, 0, 0, 5"
+                Grid.Row="2" Grid.Column="0"
+                x:Name="label2" 
+                Content="Печь" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
+            <ComboBox 
+                Margin="0, 0, 0, 5"
+                Grid.Row="2" Grid.Column="1"
+                VerticalContentAlignment="Center"
+                DisplayMemberPath="Name"
+                SelectedValuePath="Id"
+                x:Name="cbxOven"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        </Grid>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                Grid.Column="0"
+                Margin="0, 0, 5, 0"
+                Style="{StaticResource styleDefaultButton}"
+                Height="45"
+                x:Name="btnCancel" 
+                Content="Отмена" Width="120" />
+
+            <Button 
+                Grid.Column="1"
+                Style="{StaticResource styleDefaultButton}"
+                x:Name="btnSave"
+                Content="Ok" 
+                Height="45"
+                Width="120"/>
+
+        </Grid>
     </Grid>
 </Window>

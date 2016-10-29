@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace WarehouseBlockForms.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        IniFile iniFile = new IniFile("settings.ini");
         private bool administratorMode = false;
         private bool realClosing = false;
         private static MainWindow _mainWindow;
@@ -57,8 +58,11 @@ namespace WarehouseBlockForms.Views
 
             //loadModels();
 
+            
             setWorkPages();
             setSettingsPages();
+
+            setSortSettings();
 
             btnLoginAdmin.Click += delegate
             {
@@ -306,6 +310,60 @@ namespace WarehouseBlockForms.Views
             WriteoffController.instance();
             WriteoffDetailsController.instance();
             ReportsSettingController.instance();
+        }
+
+        private void setSortSettings ()
+        {
+            if (iniFile.KeyExists("oven_sort_column"))
+            {
+                string o_column = iniFile.Read("oven_sort_column");
+                if (!string.IsNullOrEmpty(o_column))
+                {
+                    OrderSettings.OvenSortColumn = o_column;
+                }
+            }
+            if (iniFile.KeyExists("oven_sort_direction"))
+            {
+                string o_direction = iniFile.Read("oven_sort_direction");
+                if (o_direction == "Descending")
+                {
+                    OrderSettings.OvenSortDirection = ListSortDirection.Descending;
+                }
+            }
+
+            if (iniFile.KeyExists("details_sort_column"))
+            {
+                string o_column = iniFile.Read("details_sort_column");
+                if (!string.IsNullOrEmpty(o_column))
+                {
+                    OrderSettings.DetailsSortColumn = o_column;
+                }
+            }
+            if (iniFile.KeyExists("details_sort_direction"))
+            {
+                string o_direction = iniFile.Read("details_sort_direction");
+                if (o_direction == "Descending")
+                {
+                    OrderSettings.DetailsSortDirection = ListSortDirection.Descending;
+                }
+            }
+
+            if (iniFile.KeyExists("recipients_sort_column"))
+            {
+                string o_column = iniFile.Read("recipients_sort_column");
+                if (!string.IsNullOrEmpty(o_column))
+                {
+                    OrderSettings.RecipientsSortColumn = o_column;
+                }
+            }
+            if (iniFile.KeyExists("recipients_sort_direction"))
+            {
+                string o_direction = iniFile.Read("recipients_sort_direction");
+                if (o_direction == "Descending")
+                {
+                    OrderSettings.RecipientsSortDirection = ListSortDirection.Descending;
+                }
+            }
         }
 
     }

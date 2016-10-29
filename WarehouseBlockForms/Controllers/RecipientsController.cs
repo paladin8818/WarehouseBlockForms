@@ -50,7 +50,10 @@ namespace WarehouseBlockForms.Controllers
         {
             get
             {
-                return "select id, full_name, row_order from recipients";
+                if (OrderSettings.RecipientsSortDirection == System.ComponentModel.ListSortDirection.Ascending)
+                    return "select id, full_name, row_order from recipients order by " + Recipients.ClassDBFields[OrderSettings.RecipientsSortColumn] + " asc";
+                else
+                    return "select id, full_name, row_order from recipients order by " + Recipients.ClassDBFields[OrderSettings.RecipientsSortColumn] + " desc";
             }
         }
 

@@ -12,6 +12,7 @@
             Style="{StaticResource styleDefaultDataGrid}"
             x:Name="dgOven"
             Margin="5, 5, 145, 5"
+            Sorting="dgOven_Sorting"
             ItemsSource="{Binding Collection}">
             <DataGrid.Columns>
 
@@ -27,6 +28,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="Name"
@@ -39,41 +41,20 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
                 <DataGridTemplateColumn 
-                    Visibility="Collapsed"
-                    Width="90"
                     CanUserSort="True"
                     SortMemberPath="RowOrder"
-                    Header="Порядок"
-                    CellStyle="{StaticResource styleDefaultDataGridCell}">
+                    CellStyle="{StaticResource styleDefaultDataGridCell}"
+                    Width="100"
+                    Header="Порядок">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Button Grid.Row="0" Grid.Column="0" Margin="5" Click="rowUp">
-                                    <Image 
-                                        VerticalAlignment="Stretch"
-                                        HorizontalAlignment="Stretch"
-                                        Source="/WarehouseBlockForms;component/Images/ArrowUp.png"
-                                        Stretch="Fill"></Image>
-                                </Button>
-                                <Button Grid.Row="0" Grid.Column="1" Margin="5" Click="rowDown">
-                                    <Image 
-                                        VerticalAlignment="Stretch"
-                                        HorizontalAlignment="Stretch"
-                                        Source="/WarehouseBlockForms;component/Images/ArrowDown.png"
-                                        Stretch="Fill"></Image>
-                                </Button>
-                            </Grid>
+                            <TextBlock Text="{Binding Path=RowOrder}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="135" Margin="5">

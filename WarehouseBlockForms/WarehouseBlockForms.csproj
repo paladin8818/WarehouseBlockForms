@@ -113,6 +113,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classess\OrderSettings.cs" />
     <Compile Include="Controllers\ReportsSettingController.cs" />
     <Compile Include="Models\ReportsSetting.cs" />
     <Compile Include="Reports\WriteoffReport.cs" />

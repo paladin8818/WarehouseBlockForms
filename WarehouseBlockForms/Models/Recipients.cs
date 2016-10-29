@@ -10,6 +10,14 @@ namespace WarehouseBlockForms.Models
 {
     public class Recipients : Model, IRowChangeable
     {
+        public static readonly Dictionary<string, string> ClassDBFields =
+            new Dictionary<string, string>()
+            {
+                {"Id", "id" },
+                {"FullName", "full_name" },
+                {"RowOrder", "row_order" }
+            };
+
         private string full_name;
         public string FullName
         {

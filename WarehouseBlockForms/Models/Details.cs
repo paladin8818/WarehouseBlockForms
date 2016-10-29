@@ -11,6 +11,16 @@ namespace WarehouseBlockForms.Models
     public class Details : Model, IRowChangeable
     {
 
+        public static readonly Dictionary<string, string> ClassDBFields =
+            new Dictionary<string, string>()
+            {
+                {"Id", "id" },
+                {"Name", "name" },
+                {"VendorCode", "vendor_code" },
+                {"IdOven", "id_oven" },
+                {"RowOrder", "row_order" }
+            };
+
         private string name;
         private string vendor_code;
         private int id_oven;

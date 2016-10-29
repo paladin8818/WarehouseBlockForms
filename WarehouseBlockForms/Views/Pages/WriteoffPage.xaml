@@ -9,51 +9,57 @@
       xmlns:Controls="clr-namespace:WarehouseBlockForms.Controls"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="WriteoffPage">
-
     <Grid>
         <Grid 
-            Margin="0, 5, 170, 0"
             Height="45"
+            Margin="0, 4, 0, 0"
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"></ColumnDefinition>
-                <ColumnDefinition Width="290"></ColumnDefinition>
-                <ColumnDefinition Width="130"></ColumnDefinition>
-                <ColumnDefinition Width="290"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label
-                VerticalAlignment="Center"
-                FontSize="16"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Left"
+                FontSize="20"
                 Grid.Row="0" Grid.Column="0" 
-                Content="Получатель" HorizontalAlignment="Left"></Label>
+                VerticalContentAlignment="Center"
+                Content="Получатель" ></Label>
             <ComboBox 
                 SelectedValuePath="Id"
                 DisplayMemberPath="FullName"
                 Grid.Row="0"
                 HorizontalAlignment="Stretch"
                 VerticalContentAlignment="Center"
-                FontSize="16"
+                FontSize="20"
                 Grid.Column="1"
                 x:Name="cbxRecipients"
                 Margin="5, 0, 10, 0"></ComboBox>
             <Label 
                 Grid.Row="0" Grid.Column="2" 
                 VerticalAlignment="Center"
-                FontSize="16"
-                Content="Номер заявки" HorizontalAlignment="Left"></Label>
+                HorizontalAlignment="Left"
+                VerticalContentAlignment="Center"
+                FontSize="20"
+                Content="Номер заявки" ></Label>
             <TextBox 
                 VerticalContentAlignment="Center"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
                 Grid.Row="0" Grid.Column="3"
                 FontSize="16"
-                x:Name="tbxAppNumber" HorizontalAlignment="Stretch"
+                x:Name="tbxAppNumber" 
                 Margin="5, 0, 10, 0"></TextBox>
         </Grid>
         <DataGrid 
+            FontSize="18"
             x:Name="dgSupply"
             ItemsSource="{Binding Collection}"
             Style="{StaticResource styleDefaultDataGrid}"
@@ -83,7 +89,6 @@
                                 VerticalContentAlignment="Center"
                                 SelectionChanged="ovenSelectionChanged"
                                 Width="Auto"
-                                Margin="5, 0, 5, 0"
                                 ItemsSource="{Binding Path=Ovens}"
                                 SelectedValuePath="Id"
                                 DisplayMemberPath="Name"
@@ -104,7 +109,6 @@
                                 VerticalContentAlignment="Center"
                                 SelectionChanged="detailsSelectionChanged"
                                 Width="Auto"
-                                Margin="5, 0, 5, 0"
                                 ItemsSource="{Binding Path=Details}"
                                 SelectedValuePath="Id"
                                 DisplayMemberPath="Name"
@@ -123,7 +127,6 @@
                         <DataTemplate>
                             <TextBlock                                 
                                 Width="Auto"
-                                Margin="5, 0, 5, 0"
                                 VerticalAlignment="Center"
                                 Text="{Binding Path=VendorCode}"></TextBlock>
                         </DataTemplate>
@@ -141,7 +144,6 @@
                                 Value="{Binding Path=DetailsCount}"
                                 Minimum="{Binding Path=MinCount}"
                                 Maximum="{Binding Path=MaxCount}"
-                                Margin="5, 0, 5, 0" 
                                 ValueChanged="countValueChange"
                                 Width="Auto">
                             </Controls:IntSpinnerControl>
@@ -151,12 +153,11 @@
                 <DataGridTemplateColumn 
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Удалить из списка"
-                    Width="150">
+                    Width="160">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button 
                                 Width="Auto"
-                                Margin="5, 0, 5, 0"
                                 Content="Удалить" Click="removeRecord">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource styleRedButton}">
@@ -167,7 +168,6 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
-
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

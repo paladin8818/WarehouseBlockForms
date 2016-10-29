@@ -42,8 +42,11 @@ namespace WarehouseBlockForms.Controllers
 		protected override string LoadQuery
 		{
 			get {
-				return "select id, name, row_order from oven order by row_order asc";
-			}
+                if(OrderSettings.OvenSortDirection == System.ComponentModel.ListSortDirection.Ascending)
+				    return "select id, name, row_order from oven order by " + Oven.ClassDBFields[OrderSettings.OvenSortColumn] + " asc";
+                else
+                    return "select id, name, row_order from oven order by " + Oven.ClassDBFields[OrderSettings.OvenSortColumn] + " desc";
+            }
 		}
 		
 		private OvenController()

@@ -17,6 +17,15 @@ namespace WarehouseBlockForms.Models
 {
 	public class Oven : Model, IRowChangeable
 	{
+
+        public static readonly Dictionary<string, string> ClassDBFields =
+            new Dictionary<string, string>()
+            {
+                {"Id", "id" },
+                {"Name", "name" },
+                {"RowOrder", "row_order" }
+            };
+
         private string name;
 
 		public string Name {

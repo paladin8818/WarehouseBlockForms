@@ -15,7 +15,7 @@
             <Setter Property="Height" Value="45"></Setter>
             <Setter Property="Background" Value="#0068B3"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="Width">
                 <Setter.Value>
                     <MultiBinding Converter="{StaticResource tabSizeConverter}">
@@ -40,7 +40,7 @@
             Background="#D4D6D8"
             Height="30"
             VerticalAlignment="Top" 
-            FontSize="16"
+            FontSize="18"
             HorizontalAlignment="Stretch">
             <MenuItem Header="Файл" Height="30">
                 <MenuItem Header="Выход" Click="MenuItem_Click" Height="30"></MenuItem>
@@ -62,21 +62,30 @@
             <TabItem Header="Настройки" x:Name="tiSettings" Style="{StaticResource styleRootTabControl}">
                 <Grid Background="#FFE5E5E5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid Width="500" Height="90" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="grdLoginAdmin">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <Label 
+                            Grid.Row="0" Grid.Column="0"
                             Content="ВВЕДИТЕ ПАРОЛЬ" 
-                            VerticalAlignment="Top" 
-                            Width="180" 
-                            Margin="0, 5, 0, 0"
+                            VerticalAlignment="Stretch" 
+                            VerticalContentAlignment="Center"
                             HorizontalAlignment="Left"></Label>
-                        <PasswordBox 
+                        <PasswordBox
+                            Grid.Row="0" Grid.Column="1"
                             KeyUp="tbxPassword_KeyUp"
                             x:Name="tbxPassword"
-                            VerticalAlignment="Top" 
-                            Margin="180, 0, 0, 0" 
-                            Height="40"
+                            VerticalAlignment="Stretch"  
                             VerticalContentAlignment="Center"
                             HorizontalAlignment="Stretch"></PasswordBox>
                         <Button 
+                            Grid.Row="1" Grid.Column="1"
+                            Style="{StaticResource styleDefaultButton}"
                             x:Name="btnLoginAdmin" 
                             Content="OK" 
                             Width="150" Height="45" 

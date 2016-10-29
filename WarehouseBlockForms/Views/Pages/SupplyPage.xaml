@@ -11,10 +11,12 @@
     <Grid>
         <DataGrid 
             x:Name="dgSupply"
+            FontSize="18"
             ItemsSource="{Binding Collection}"
             Style="{StaticResource styleDefaultDataGrid}"
             Margin="0, 0, 0, 50">
             <DataGrid.Columns>
+                
                 <DataGridTemplateColumn
                     CanUserSort="True"
                     SortMemberPath="RowIndex"
@@ -27,6 +29,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="IdOven"
@@ -39,7 +42,6 @@
                                 VerticalContentAlignment="Center"
                                 SelectionChanged="ovenSelectionChanged"
                                 Width="Auto"
-                                Margin="5, 0, 5, 0"
                                 ItemsSource="{Binding Path=Ovens}"
                                 SelectedValuePath="Id"
                                 DisplayMemberPath="Name"
@@ -48,6 +50,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="IdDetails"
@@ -60,7 +63,6 @@
                                 SelectionChanged="detailsSelectionChanged"
                                 VerticalContentAlignment="Center"
                                 Width="Auto"
-                                Margin="5, 0, 5, 0"
                                 ItemsSource="{Binding Path=Details}"
                                 SelectedValuePath="Id"
                                 DisplayMemberPath="Name"
@@ -69,6 +71,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn
                     CanUserSort="True"
                     SortMemberPath="VendorCode"
@@ -79,12 +82,13 @@
                         <DataTemplate>
                             <TextBlock                                 
                                 Width="Auto"
-                                Margin="5, 0, 5, 0"
+                                Margin="5, 0, 0, 0"
                                 VerticalAlignment="Center"
                                 Text="{Binding Path=VendorCode}"></TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="DetailsCount"
@@ -95,7 +99,6 @@
                         <DataTemplate>
                             <Controls:IntSpinnerControl 
                                 Minimum="1"
-                                Margin="5, 0, 5, 0" 
                                 Value="{Binding Path=DetailsCount}"
                                 ValueChanged="countValueChange"
                                 Width="Auto">
@@ -103,10 +106,11 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Удалить из списка"
-                    Width="150">
+                    Width="160">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button 

@@ -16,7 +16,8 @@ namespace WarehouseBlockForms.Views.Pages
         {
             InitializeComponent();
             DataContext = new { Collection = OvenController.instance().ViewSource.View };
-            OvenController.instance().ViewSource.SortDescriptions.Add(new SortDescription("RowOrder", ListSortDirection.Ascending));
+
+            OvenController.instance().ViewSource.SortDescriptions.Add(new SortDescription(OrderSettings.OvenSortColumn, OrderSettings.OvenSortDirection));
 
             btnAdd.Click += delegate
             {
@@ -118,5 +119,23 @@ namespace WarehouseBlockForms.Views.Pages
             }
         }
 
+        private void dgOven_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            IniFile iniFile = new IniFile("settings.ini");
+            iniFile.Write("oven_sort_column", e.Column.SortMemberPath);
+            OrderSettings.OvenSortColumn = e.Column.SortMemberPath;
+
+            string sortDirection = e.Column.SortDirection.ToString();
+            if(string.IsNullOrEmpty(sortDirection) || sortDirection == "Descending")
+            {
+                iniFile.Write("oven_sort_direction", "Ascending");
+                OrderSettings.OvenSortDirection = ListSortDirection.Ascending;
+            }
+            else
+            {
+                iniFile.Write("oven_sort_direction", "Descending");
+                OrderSettings.OvenSortDirection = ListSortDirection.Descending;
+            }
+        }
     }
 }

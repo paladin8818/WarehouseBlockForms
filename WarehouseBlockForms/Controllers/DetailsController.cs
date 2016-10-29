@@ -58,7 +58,10 @@ namespace WarehouseBlockForms.Controllers
         {
             get
             {
-                return "select id, name, vendor_code, id_oven, row_order from details order by name asc";
+                if (OrderSettings.DetailsSortDirection == System.ComponentModel.ListSortDirection.Ascending)
+                    return "select id, name, vendor_code, id_oven, row_order from details order by " + Details.ClassDBFields[OrderSettings.DetailsSortColumn] + " asc";
+                else
+                    return "select id, name, vendor_code, id_oven, row_order from details order by " + Details.ClassDBFields[OrderSettings.DetailsSortColumn] + " desc";
             }
         }
 
