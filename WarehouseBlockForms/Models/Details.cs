@@ -16,13 +16,11 @@ namespace WarehouseBlockForms.Models
             {
                 {"Id", "id" },
                 {"Name", "name" },
-                {"VendorCode", "vendor_code" },
                 {"IdOven", "id_oven" },
                 {"RowOrder", "row_order" }
             };
 
         private string name;
-        private string vendor_code;
         private int id_oven;
 
         public int RowIndex
@@ -47,19 +45,6 @@ namespace WarehouseBlockForms.Models
             {
                 name = value;
                 base.RaisePropertyChaned("name", value);
-            }
-        }
-
-        public string VendorCode
-        {
-            get
-            {
-                return vendor_code;
-            }
-            set
-            {
-                vendor_code = value;
-                base.RaisePropertyChaned("VendorCode", value);
             }
         }
 
@@ -152,7 +137,6 @@ namespace WarehouseBlockForms.Models
                 return new Dictionary<string, object>()
                 {
                     {"@name", Name},
-                    {"@vendor_code", VendorCode },
                     {"@id_oven", IdOven },
                     {"@row_order",  RowOrder}
                 };
@@ -160,7 +144,6 @@ namespace WarehouseBlockForms.Models
             return new Dictionary<string, object>()
             {
                 {"@name", Name},
-                {"@vendor_code", VendorCode },
                 {"@id_oven", IdOven },
                 {"@id", Id },
                 {"@row_order",  RowOrder}
@@ -171,9 +154,9 @@ namespace WarehouseBlockForms.Models
         {
             if(Id == 0)
             {
-                return "insert into " + TableName + " (name, vendor_code, id_oven, row_order) values(@name, @vendor_code, @id_oven, @row_order)";
+                return "insert into " + TableName + " (name, id_oven, row_order) values(@name, @id_oven, @row_order)";
             }
-            return "update " + TableName + " set name = @name, vendor_code = @vendor_code, id_oven = @id_oven, row_order = @row_order where id = @id ";
+            return "update " + TableName + " set name = @name, id_oven = @id_oven, row_order = @row_order where id = @id ";
         }
 
         public static int GetNewRowOrder()

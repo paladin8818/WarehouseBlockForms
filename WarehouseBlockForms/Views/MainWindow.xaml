@@ -8,7 +8,7 @@
         xmlns:local1="clr-namespace:WarehouseBlockForms.Converters"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="Склад блок-форм" Height="768" Width="1366" Closing="Window_Closing">
+        Title="Склад электроматериалов" Height="768" Width="1366" Closing="Window_Closing">
     <Window.Resources>
         <local1:TabSizeConverter x:Key="tabSizeConverter"></local1:TabSizeConverter>
         <Style TargetType="TabItem" x:Key="styleRootTabControl">
@@ -92,10 +92,10 @@
                             VerticalAlignment="Bottom" HorizontalAlignment="Right"></Button>
                     </Grid>
                     <TabControl x:Name="tcSettings" TabStripPlacement="Left" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Collapsed">
-                        <TabItem Header="Печи" Style="{StaticResource styleVerticalTabControl}">
+                        <TabItem Header="Производители" Style="{StaticResource styleVerticalTabControl}">
                             <Frame x:Name="frameSettingsOven" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
-                        <TabItem Header="Детали" Style="{StaticResource styleVerticalTabControl}">
+                        <TabItem Header="Наименования" Style="{StaticResource styleVerticalTabControl}">
                             <Frame x:Name="frameSettingsDetails" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Frame>
                         </TabItem>
                         <TabItem Header="Получатели" Style="{StaticResource styleVerticalTabControl}">

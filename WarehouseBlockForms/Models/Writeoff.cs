@@ -11,7 +11,6 @@ namespace WarehouseBlockForms.Models
     public class Writeoff : Model
     {
         private DateTime writeoff_date;
-        private string app_number;
         private int id_recipient;
 
         public string TName
@@ -32,19 +31,6 @@ namespace WarehouseBlockForms.Models
             {
                 writeoff_date = value;
                 base.RaisePropertyChaned("WriteoffDate", value);
-            }
-        }
-
-        public string AppNumber
-        {
-            get
-            {
-                return app_number;
-            }
-            set
-            {
-                app_number = value;
-                base.RaisePropertyChaned("AppNumber", value);
             }
         }
 
@@ -94,7 +80,6 @@ namespace WarehouseBlockForms.Models
                 return new Dictionary<string, object>()
                 {
                     {"@writeoff_date", WriteoffDate },
-                    {"@app_number", AppNumber },
                     {"@id_recipient", IdRecipient }
                 };
             }
@@ -102,7 +87,6 @@ namespace WarehouseBlockForms.Models
             {
                 {"@id", Id },
                 {"@writeoff_date", WriteoffDate },
-                {"@app_number", AppNumber },
                 {"@id_recipient", IdRecipient }
             };
         }
@@ -111,9 +95,9 @@ namespace WarehouseBlockForms.Models
         {
             if(Id == 0)
             {
-                return "insert into " + TableName + " (writeoff_date, app_number, id_recipient) values (@writeoff_date, @app_number, @id_recipient)";
+                return "insert into " + TableName + " (writeoff_date, id_recipient) values (@writeoff_date, @id_recipient)";
             }
-            return "update " + TableName + " set writeoff_date = @writeoff_date, app_number = @app_number, id_recipient = @id_recipient where id = @id";
+            return "update " + TableName + " set writeoff_date = @writeoff_date, id_recipient = @id_recipient where id = @id";
         }
     }
 }

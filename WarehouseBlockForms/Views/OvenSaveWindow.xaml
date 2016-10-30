@@ -19,7 +19,7 @@
             <Label 
                 Grid.Column="0" Grid.Row="0"
                 x:Name="label"
-                Content="Название печи" 
+                Content="Производитель" 
                 Margin="0, 0, 0, 5" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>

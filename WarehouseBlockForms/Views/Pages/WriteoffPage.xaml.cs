@@ -109,11 +109,6 @@ namespace WarehouseBlockForms.Views.Pages
                 System.Windows.MessageBox.Show("Выберите получателя!");
                 return;
             }
-            if(tbxAppNumber.Text == "")
-            {
-                System.Windows.MessageBox.Show("Введите номер заявки!");
-                return;
-            }
             if (wodh_collection.Collection.Count == 0)
             {
                 System.Windows.MessageBox.Show("Невозможно сохранить пустое списание!");
@@ -132,7 +127,6 @@ namespace WarehouseBlockForms.Views.Pages
 
             Writeoff writeoff = new Writeoff();
             writeoff.WriteoffDate = DateTime.Now;
-            writeoff.AppNumber = tbxAppNumber.Text;
             writeoff.IdRecipient = (int)cbxRecipients.SelectedValue;
 
             if (writeoff.save())
@@ -162,7 +156,6 @@ namespace WarehouseBlockForms.Views.Pages
 
                 wodh_collection.clear();
                 cbxRecipients.SelectedIndex = -1;
-                tbxAppNumber.Text = "";
 
                 WriteoffDetailsHelper newWriteoffDetailsHelper = new WriteoffDetailsHelper();
                 wodh_collection.add(newWriteoffDetailsHelper);

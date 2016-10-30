@@ -31,10 +31,9 @@ namespace WarehouseBlockForms.Views
             if(details != null)
             {
                 tbxName.Text = details.Name;
-                tbxVendorCode.Text = details.VendorCode;
                 cbxOven.SelectedValue = details.IdOven;
 
-                Title = "Редактирование детали (" + details.Name + ")";
+                Title = "Редактирование наименования (" + details.Name + ")";
             }
 
             btnCancel.Click += delegate
@@ -57,7 +56,6 @@ namespace WarehouseBlockForms.Views
                 details = new Details();
             }
             details.Name = tbxName.Text;
-            details.VendorCode = tbxVendorCode.Text;
             details.IdOven = (int)cbxOven.SelectedValue;
             if(details.save())
             {
@@ -65,7 +63,7 @@ namespace WarehouseBlockForms.Views
             }
             else
             {
-                MessageBox.Show("При сохранении детали произошли ошибки.\nПодробности см. в логе ошибок.");
+                MessageBox.Show("При сохранении наименования произошли ошибки.\nПодробности см. в логе ошибок.");
             }
         }
 
@@ -73,17 +71,12 @@ namespace WarehouseBlockForms.Views
         {
             if (tbxName.Text == "")
             {
-                MessageBox.Show("Введите название детали!");
-                return false;
-            }
-            if(tbxVendorCode.Text == "")
-            {
-                MessageBox.Show("Введите артикул детали!");
+                MessageBox.Show("Введите наименование!");
                 return false;
             }
             if(cbxOven.SelectedIndex == -1)
             {
-                MessageBox.Show("Выберите печь!");
+                MessageBox.Show("Выберите производителя!");
                 return false;
             }
             return true;

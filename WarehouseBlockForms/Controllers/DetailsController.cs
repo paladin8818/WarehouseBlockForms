@@ -59,9 +59,9 @@ namespace WarehouseBlockForms.Controllers
             get
             {
                 if (OrderSettings.DetailsSortDirection == System.ComponentModel.ListSortDirection.Ascending)
-                    return "select id, name, vendor_code, id_oven, row_order from details order by " + Details.ClassDBFields[OrderSettings.DetailsSortColumn] + " asc";
+                    return "select id, name, id_oven, row_order from details order by " + Details.ClassDBFields[OrderSettings.DetailsSortColumn] + " asc";
                 else
-                    return "select id, name, vendor_code, id_oven, row_order from details order by " + Details.ClassDBFields[OrderSettings.DetailsSortColumn] + " desc";
+                    return "select id, name, id_oven, row_order from details order by " + Details.ClassDBFields[OrderSettings.DetailsSortColumn] + " desc";
             }
         }
 
@@ -116,9 +116,8 @@ namespace WarehouseBlockForms.Controllers
             Details details = new Details();
             details.Id = reader.GetInt32(0);
             details.Name = reader.GetString(1);
-            details.VendorCode = reader.GetString(2);
-            details.IdOven = reader.GetInt32(3);
-            details.RowOrder = reader.GetInt32(4);
+            details.IdOven = reader.GetInt32(2);
+            details.RowOrder = reader.GetInt32(3);
             add(details);
         }
 
@@ -197,7 +196,7 @@ namespace WarehouseBlockForms.Controllers
             string[] properties = new string[] {"Name", "VendorCode"};
             _collection.ToList().ForEach(x => x.setFilters(properties, false));
             text = text.ToLower();
-            _collection.Where(x => (x.Name.ToLower().IndexOf(text) != -1) | (x.VendorCode.ToLower().IndexOf(text) != -1) )
+            _collection.Where(x => (x.Name.ToLower().IndexOf(text) != -1) )
                 .ToList().ForEach(y => y.setFilters(properties, true));
 
             ViewSource.View.Refresh();

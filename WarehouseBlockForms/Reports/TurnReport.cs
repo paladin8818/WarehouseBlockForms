@@ -74,7 +74,6 @@ namespace WarehouseBlockForms.Reports
 
                 reportRow.Row.Add(detail.RowIndex.ToString());
                 reportRow.Row.Add(detail.OvenName);
-                reportRow.Row.Add(detail.VendorCode);
                 reportRow.Row.Add(detail.Name);
                 reportRow.Row.Add(getSupplyForPeriod(detail, supplysForPeriod).ToString());
                 reportRow.Row.Add(getWriteoffForPeriod(detail, writeoffsForPeriod).ToString());

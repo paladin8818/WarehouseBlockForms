@@ -34,7 +34,7 @@
                     CanUserSort="True"
                     SortMemberPath="IdOven"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Печь"
+                    Header="Производитель"
                     Width="260">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -55,7 +55,7 @@
                     CanUserSort="True"
                     SortMemberPath="IdDetails"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Деталь"
+                    Header="Наименование"
                     Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -68,23 +68,6 @@
                                 DisplayMemberPath="Name"
                                 SelectedValue="{Binding Path=IdDetails}"
                                 IsReadOnly="True"></ComboBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn
-                    CanUserSort="True"
-                    SortMemberPath="VendorCode"
-                    CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Артикул"
-                    Width="200">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock                                 
-                                Width="Auto"
-                                Margin="5, 0, 0, 0"
-                                VerticalAlignment="Center"
-                                Text="{Binding Path=VendorCode}"></TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

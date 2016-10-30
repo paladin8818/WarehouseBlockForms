@@ -94,7 +94,6 @@ namespace WarehouseBlockForms.Reports
 
                     detailRow.Row.Add((i + 1).ToString());
                     detailRow.Row.Add(currentDetail.OvenName);
-                    detailRow.Row.Add(currentDetail.VendorCode);
                     detailRow.Row.Add(currentDetail.Name);
                     detailRow.Row.Add(supplyDetails[i].DetailsCount.ToString());
 

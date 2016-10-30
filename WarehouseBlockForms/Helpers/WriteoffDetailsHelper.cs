@@ -84,15 +84,6 @@ namespace WarehouseBlockForms.Helpers
             }
         }
 
-        public string VendorCode
-        {
-            get
-            {
-                Details detail = DetailsController.instance().getById(IdDetails);
-                return (detail == null) ? "" : detail.VendorCode;
-            }
-        }
-
         public int DetailsCount
         {
             get

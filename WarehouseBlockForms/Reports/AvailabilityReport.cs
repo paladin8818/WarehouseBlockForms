@@ -52,7 +52,7 @@ namespace WarehouseBlockForms.Reports
                 Details detail = details[i];
                 reportRow.Row.Add(detail.RowIndex.ToString());
                 reportRow.Row.Add(detail.OvenName);
-                reportRow.Row.Add(detail.VendorCode);
+                reportRow.Row.Add("");
                 reportRow.Row.Add(detail.Name);
                 reportRow.Row.Add(detail.CurrentCount.ToString());
                 reportData.Add(reportRow);

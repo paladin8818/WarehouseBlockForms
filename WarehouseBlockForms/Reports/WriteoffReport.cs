@@ -77,7 +77,7 @@ namespace WarehouseBlockForms.Reports
                 reportRow.Row.Add("Дата");
                 reportRow.Row.Add(writeoff.WriteoffDate.ToString("dd.MM.yyyy"));
                 reportRow.Row.Add("№ заявки");
-                reportRow.Row.Add(writeoff.AppNumber);
+                reportRow.Row.Add("");
                 reportRow.Row.Add("Получатель");
                 reportRow.Row.Add(RecipientsController.instance().getById(writeoff.IdRecipient).FullName);
 
@@ -120,7 +120,7 @@ namespace WarehouseBlockForms.Reports
 
                     detailRow.Row.Add((i + 1).ToString());
                     detailRow.Row.Add(currentDetail.OvenName);
-                    detailRow.Row.Add(currentDetail.VendorCode);
+                    detailRow.Row.Add("");
                     detailRow.Row.Add(currentDetail.Name);
 
                     detailRow.Row.Add("");

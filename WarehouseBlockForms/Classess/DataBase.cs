@@ -80,7 +80,6 @@ namespace WarehouseBlockForms.Classess
 			query += "create table if not exists details (" +
 				"id integer primary key autoincrement not null," +
 				"name text not null," +
-				"vendor_code text not null unique," +
 				"id_oven integer not null," +
                 "row_order integer not null unique, " +
 				"foreign key (id_oven) references oven (id) on delete cascade);";
@@ -105,7 +104,6 @@ namespace WarehouseBlockForms.Classess
 			query += "create table if not exists writeoff (" +
 				"id integer primary key autoincrement not null," +
 				"writeoff_date datetime not null," +
-				"app_number text not null unique," +
 				"id_recipient integer not null," +
 				"foreign key (id_recipient) references recipients (id) on delete cascade);";
 			//writeoff_details table (детали в списании)
