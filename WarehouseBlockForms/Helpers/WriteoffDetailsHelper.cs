@@ -97,7 +97,7 @@ namespace WarehouseBlockForms.Helpers
         }
 
 
-        public int MinCount
+        public double MinCount
         {
             get
             {
@@ -105,7 +105,7 @@ namespace WarehouseBlockForms.Helpers
                 {
                     return 0;
                 }
-                return 1;
+                return 0.1;
             }
             set
             {

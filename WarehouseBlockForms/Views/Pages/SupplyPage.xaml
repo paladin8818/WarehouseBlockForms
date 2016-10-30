@@ -81,7 +81,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Controls:IntSpinnerControl 
-                                Minimum="1"
+                                Minimum="0.1"
                                 Value="{Binding Path=DetailsCount}"
                                 ValueChanged="countValueChange"
                                 Width="Auto">

@@ -166,7 +166,7 @@ namespace WarehouseBlockForms.Views.Pages
             SupplyDetailsHelper supplyDetailHelper = (SupplyDetailsHelper)dgrow.Item;
             if (supplyDetailHelper == null) return;
 
-            supplyDetailHelper.DetailsCount = (int)updown.Value;
+            supplyDetailHelper.DetailsCount = (double)updown.Value;
         }
     }
 }

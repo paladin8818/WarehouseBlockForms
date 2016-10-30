@@ -180,7 +180,7 @@ namespace WarehouseBlockForms.Views.Pages
             WriteoffDetailsHelper writeoffDetailHelper = (WriteoffDetailsHelper)dgrow.Item;
             if (writeoffDetailHelper == null) return;
 
-            writeoffDetailHelper.DetailsCount = (int)updown.Value;
+            writeoffDetailHelper.DetailsCount = (double)updown.Value;
 
         }
 
