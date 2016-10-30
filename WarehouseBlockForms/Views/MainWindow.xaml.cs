@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,7 +42,10 @@ namespace WarehouseBlockForms.Views
             //Notify
 
             notifyIcon.Text = "Склад блок-форм";
-            notifyIcon.Icon = new System.Drawing.Icon("logo.ico");
+            if(System.IO.File.Exists("logo.ico"))
+            {
+                notifyIcon.Icon = new System.Drawing.Icon("logo.ico");
+            }
 
             notifyIcon.Click += delegate
             {
