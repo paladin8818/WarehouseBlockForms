@@ -37,12 +37,11 @@ namespace WarehouseBlockForms.Reports
             ColumnCount = 5;
 
             columnsWidth.Add(1, 2.57);
-            columnsWidth.Add(2, 8.29);
-            columnsWidth.Add(3, 8.29);
-            columnsWidth.Add(4, 53);
-            columnsWidth.Add(5, 11.57);
+            columnsWidth.Add(2, 16.57);
+            columnsWidth.Add(3, 53);
+            columnsWidth.Add(4, 11.57);
 
-            HeaderRow = new string[] { "№", "Печь", "Артикул", "Наименование", "Количество" };
+            HeaderRow = new string[] { "№", "Производитель", "Наименование", "Количество" };
 
             List<Details> details = DetailsController.instance().getSortedByRowOrder();
             List<ReportRow> reportData = new List<ReportRow>();
@@ -52,7 +51,6 @@ namespace WarehouseBlockForms.Reports
                 Details detail = details[i];
                 reportRow.Row.Add(detail.RowIndex.ToString());
                 reportRow.Row.Add(detail.OvenName);
-                reportRow.Row.Add("");
                 reportRow.Row.Add(detail.Name);
                 reportRow.Row.Add(detail.CurrentCount.ToString());
                 reportData.Add(reportRow);

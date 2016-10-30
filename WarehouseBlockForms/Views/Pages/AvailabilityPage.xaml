@@ -90,7 +90,7 @@
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Производитель"
-                    Width="150">
+                    Width="180">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock VerticalAlignment="Center" Text="{Binding Path=OvenName}" Margin="5, 0, 0, 0"></TextBlock>

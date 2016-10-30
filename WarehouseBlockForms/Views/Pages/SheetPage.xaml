@@ -43,7 +43,7 @@
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
-                        Width="110"
+                        Width="130"
                         SortMemberPath="TName"
                         Header="Тип операции">
                         <DataGridTemplateColumn.CellTemplate>
@@ -125,7 +125,7 @@
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
-                        Width="100"
+                        Width="130"
                         SortMemberPath="OvenName"
                         Header="Производитель">
                         <DataGridTemplateColumn.CellTemplate>

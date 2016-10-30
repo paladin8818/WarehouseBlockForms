@@ -93,16 +93,21 @@ namespace WarehouseBlockForms.Reports
                 ReportRow reportRowHead = new ReportRow();
 
                 reportRowHead.Row.Add("№");
-                reportRowHead.Row.Add("Печь");
-                reportRowHead.Row.Add("Артикул");
+
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("Производитель");
+                merge(currentRowIndex, currentRowIndex, 2, 3);
+
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("Наименование");
-                reportRowHead.Row.Add("");
-                reportRowHead.Row.Add("");
-                reportRowHead.Row.Add("");
-                reportRowHead.Row.Add("");
+                merge(currentRowIndex, currentRowIndex, 4, 8);
+
                 reportRowHead.Row.Add("Количество");
 
-                merge(currentRowIndex, currentRowIndex, 4, 8);
+                
                 border(currentRowIndex, currentRowIndex, 1, 9);
                 reportRowHead.Style.Add(ReportRow.RowStyle.Bold);
                 reportRowHead.Style.Add(ReportRow.RowStyle.TextAlignCenter);

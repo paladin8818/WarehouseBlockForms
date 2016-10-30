@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
-        Title="Добавление печи" Height="155" Width="600" WindowStartupLocation="CenterScreen" FontSize="18" ResizeMode="NoResize">
+        Title="Добавление производителя" Height="155" Width="600" WindowStartupLocation="CenterScreen" FontSize="18" ResizeMode="NoResize">
     <Grid Margin="5">
         <Grid>
             <Grid.RowDefinitions>

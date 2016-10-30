@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
         FontSize="18"
-        Title="Добавление детали" Height="200" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Добавление наименования" Height="200" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="5">
         <Grid>
             <Grid.RowDefinitions>
