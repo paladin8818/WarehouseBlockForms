@@ -30,6 +30,8 @@ namespace WarehouseBlockForms.Views
 
             InitializeComponent();
 
+            int i = 0;
+
             if(CheckSingleProcess() == false)
             {
                 realClosing = true;
