@@ -22,7 +22,7 @@
                 <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label 
-                Content="Печь" 
+                Content="Наименование" 
                 Grid.Row="0" 
                 VerticalContentAlignment="Center"
                 VerticalAlignment="Stretch"
@@ -90,7 +90,7 @@
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Наименование"
-                    Width="150">
+                    Width="180">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock VerticalAlignment="Center" Text="{Binding Path=OvenName}" Margin="5, 0, 0, 0"></TextBlock>

@@ -33,7 +33,7 @@ namespace WarehouseBlockForms.Views
                 tbxName.Text = details.Name;
                 cbxOven.SelectedValue = details.IdOven;
 
-                Title = "Редактирование детали (" + details.Name + ")";
+                Title = "Редактирование маркировки (" + details.Name + ")";
             }
 
             btnCancel.Click += delegate
@@ -63,7 +63,7 @@ namespace WarehouseBlockForms.Views
             }
             else
             {
-                MessageBox.Show("При сохранении детали произошли ошибки.\nПодробности см. в логе ошибок.");
+                MessageBox.Show("При сохранении маркировки произошли ошибки.\nПодробности см. в логе ошибок.");
             }
         }
 
@@ -71,12 +71,12 @@ namespace WarehouseBlockForms.Views
         {
             if (tbxName.Text == "")
             {
-                MessageBox.Show("Введите название детали!");
+                MessageBox.Show("Введите название маркировки!");
                 return false;
             }
             if(cbxOven.SelectedIndex == -1)
             {
-                MessageBox.Show("Выберите печь!");
+                MessageBox.Show("Выберите наименование!");
                 return false;
             }
             return true;

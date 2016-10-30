@@ -16,7 +16,7 @@ namespace WarehouseBlockForms.Views
             if(oven != null)
             {
                 tbxName.Text = oven.Name;
-                Title = "Редактирование печи (" + oven.Name + ")";
+                Title = "Редактирование наименования (" + oven.Name + ")";
             }
 
             btnCancel.Click += delegate
@@ -44,7 +44,7 @@ namespace WarehouseBlockForms.Views
             }
             else
             {
-                MessageBox.Show("При сохранении печи произошли ошибки.\nПодробности см. в логе ошибок.");
+                MessageBox.Show("При сохранении наименования произошли ошибки.\nПодробности см. в логе ошибок.");
             }
         }
 
@@ -52,7 +52,7 @@ namespace WarehouseBlockForms.Views
         {
             if(tbxName.Text == "")
             {
-                MessageBox.Show("Введите название печи!");
+                MessageBox.Show("Введите наименование!");
                 return false;
             }
             return true;

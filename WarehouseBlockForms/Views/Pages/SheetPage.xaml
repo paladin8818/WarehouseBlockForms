@@ -43,7 +43,7 @@
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
-                        Width="110"
+                        Width="140"
                         SortMemberPath="TName"
                         Header="Тип операции">
                         <DataGridTemplateColumn.CellTemplate>
@@ -56,7 +56,7 @@
                     <DataGridTemplateColumn 
                     CanUserSort="True"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="130"
+                    Width="140"
                     SortMemberPath="OperationDate"
                     Header="Дата операции">
                         <DataGridTemplateColumn.CellTemplate>
@@ -125,7 +125,7 @@
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
-                        Width="100"
+                        Width="140"
                         SortMemberPath="OvenName"
                         Header="Наименование">
                         <DataGridTemplateColumn.CellTemplate>
