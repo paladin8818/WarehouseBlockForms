@@ -93,17 +93,19 @@ namespace WarehouseBlockForms.Reports
                 ReportRow reportRowHead = new ReportRow();
 
                 reportRowHead.Row.Add("№");
-                reportRowHead.Row.Add("Печь");
-                reportRowHead.Row.Add("Артикул");
                 reportRowHead.Row.Add("Наименование");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("Маркировка");
                 reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("Количество");
 
+                merge(currentRowIndex, currentRowIndex, 2, 3);
                 merge(currentRowIndex, currentRowIndex, 4, 8);
                 border(currentRowIndex, currentRowIndex, 1, 9);
+
                 reportRowHead.Style.Add(ReportRow.RowStyle.Bold);
                 reportRowHead.Style.Add(ReportRow.RowStyle.TextAlignCenter);
 
@@ -119,17 +121,21 @@ namespace WarehouseBlockForms.Reports
                     ReportRow detailRow = new ReportRow();
 
                     detailRow.Row.Add((i + 1).ToString());
-                    detailRow.Row.Add(currentDetail.OvenName);
-                    detailRow.Row.Add(currentDetail.Name);
 
+                    detailRow.Row.Add(currentDetail.OvenName);
+                    detailRow.Row.Add("");
+                    merge(currentRowIndex, currentRowIndex, 2, 3);
+
+                    detailRow.Row.Add(currentDetail.Name);
                     detailRow.Row.Add("");
                     detailRow.Row.Add("");
                     detailRow.Row.Add("");
                     detailRow.Row.Add("");
+                    merge(currentRowIndex, currentRowIndex, 4, 8);
 
                     detailRow.Row.Add(writeoffDetails[i].DetailsCount.ToString());
 
-                    merge(currentRowIndex, currentRowIndex, 4, 8);
+                    
                     border(currentRowIndex, currentRowIndex, 1, 9);
 
                     reportData.Add(detailRow);
