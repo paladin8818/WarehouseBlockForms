@@ -47,7 +47,7 @@ namespace WarehouseBlockForms.Controllers
         {
             get
             {
-                return "select id, writeoff_date, app_number, id_recipient from writeoff";
+                return "select id, writeoff_date, id_recipient from writeoff";
             }
         }
 
@@ -97,8 +97,7 @@ namespace WarehouseBlockForms.Controllers
             Writeoff writeoff = new Writeoff();
             writeoff.Id = reader.GetInt32(0);
             writeoff.WriteoffDate = reader.GetDateTime(1);
-            writeoff.AppNumber = reader.GetString(2);
-            writeoff.IdRecipient = reader.GetInt32(3);
+            writeoff.IdRecipient = reader.GetInt32(2);
             add(writeoff);
         }
 

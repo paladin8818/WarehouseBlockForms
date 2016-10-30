@@ -112,14 +112,14 @@ namespace WarehouseBlockForms.Controllers
             return _collection.Where(x => x.IdSupply == id_supply).ToList();
         }
 
-        public int allSupply (int id_detail)
+        public double allSupply (int id_detail)
         {
             return getByIdDetail(id_detail).Sum(x => x.DetailsCount);
         }
 
-        public int getCountDetailByIdDetailAndSupplyList (int id_detail, List<Supply> supplyList)
+        public double getCountDetailByIdDetailAndSupplyList (int id_detail, List<Supply> supplyList)
         {
-            int detailsCount = 0;
+            double detailsCount = 0;
             for(int i = 0; i < supplyList.Count; i++)
             {
                 detailsCount = detailsCount + _collection.Where(x => (x.IdSupply == supplyList[i].Id) && (x.IdDetails == id_detail)).Sum(x => x.DetailsCount);

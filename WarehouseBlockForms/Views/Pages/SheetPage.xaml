@@ -26,6 +26,7 @@
                 ItemsSource="{Binding SWCollection}"
                 Style="{StaticResource styleDefaultDataGrid}">
                 <DataGrid.Columns>
+                    
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
@@ -38,6 +39,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
@@ -73,19 +75,6 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Recipient.FullName}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTemplateColumn 
-                    CanUserSort="True"
-                    CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="120"
-                    SortMemberPath="AppNumber"
-                    Header="Номер заявки">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=AppNumber}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -132,42 +121,33 @@
                 Style="{StaticResource styleDefaultDataGrid}">
 
                 <DataGrid.Columns>
+                    
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
                         Width="100"
                         SortMemberPath="OvenName"
-                        Header="Печь">
+                        Header="Наименование">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=OvenName}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn 
-                        CanUserSort="True"
-                        CellStyle="{StaticResource styleDefaultDataGridCell}"
-                        Width="100"
-                        SortMemberPath="VendorCode"
-                        Header="Артикул">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=VendorCode}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
                         Width="*"
                         SortMemberPath="Name"
-                        Header="Деталь">
+                        Header="Маркировка">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    
                     <DataGridTemplateColumn 
                         CanUserSort="True"
                         CellStyle="{StaticResource styleDefaultDataGridCell}"
@@ -180,6 +160,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

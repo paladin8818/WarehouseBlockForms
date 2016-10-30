@@ -11,7 +11,7 @@ namespace WarehouseBlockForms.Helpers
     {
         public string Name { get; private set; }
         public string VendorCode { get; private set; }
-        public int Count { get; private set; }
+        public double Count { get; private set; }
         public string OvenName { get; private set; }
 
         private SWDetailsHelper() { }
@@ -31,7 +31,6 @@ namespace WarehouseBlockForms.Helpers
                 Details detail = DetailsController.instance().getById(supplyDetails[i].IdDetails);
                 if (detail == null) continue;
                 swdHelper.Name = detail.Name;
-                swdHelper.VendorCode = detail.VendorCode;
                 swdHelper.OvenName = detail.OvenName;
                 swdHelperList.Add(swdHelper);
 
@@ -55,7 +54,6 @@ namespace WarehouseBlockForms.Helpers
                 Details detail = DetailsController.instance().getById(writeoffDetails[i].IdDetails);
                 if (detail == null) continue;
                 swdHelper.Name = detail.Name;
-                swdHelper.VendorCode = detail.VendorCode;
                 swdHelper.OvenName = detail.OvenName;
                 swdHelperList.Add(swdHelper);
 

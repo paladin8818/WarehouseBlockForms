@@ -29,39 +29,26 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="Name"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Width="*"
-                    Header="Название детали">
+                    Header="Маркировка">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn 
-                    CanUserSort="True"
-                    SortMemberPath="VendorCode"
-                    CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="140"
-                    Header="Артикул">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=VendorCode}" VerticalAlignment="Center"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="OvenName"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Width="200"
-                    Header="Печь">
+                    Header="Наименование">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=OvenName}" VerticalAlignment="Center"/>

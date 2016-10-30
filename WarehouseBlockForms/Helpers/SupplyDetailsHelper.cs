@@ -77,19 +77,10 @@ namespace WarehouseBlockForms.Helpers
             {
                 id_detail = value;
                 RaisePropertyChaned("IdDetails", null);
-                RaisePropertyChaned("VendorCode", null);
                 RaisePropertyChaned("DetailsCount", null);
             }
         }
 
-        public string VendorCode
-        {
-            get
-            {
-                Details detail = DetailsController.instance().getById(IdDetails);
-                return (detail == null) ? "" : detail.VendorCode;
-            }
-        }
 
         public int DetailsCount
         {

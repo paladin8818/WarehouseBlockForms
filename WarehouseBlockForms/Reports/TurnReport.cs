@@ -39,18 +39,17 @@ namespace WarehouseBlockForms.Reports
         public override bool Save(DateTime startDate, DateTime endDate)
         {
 
-            ColumnCount = 7;
+            ColumnCount = 6;
             columnsWidth.Add(1, 2.57);
-            columnsWidth.Add(2, 8.14);
-            columnsWidth.Add(3, 8.29);
-            columnsWidth.Add(4, 34.29);
-            columnsWidth.Add(5, 11.71);
-            columnsWidth.Add(6, 9);
-            columnsWidth.Add(7, 7.43);
+            columnsWidth.Add(2, 16.57);
+            columnsWidth.Add(3, 34.29);
+            columnsWidth.Add(4, 11.71);
+            columnsWidth.Add(5, 9);
+            columnsWidth.Add(6, 7.43);
 
 
 
-            HeaderRow = new string[] { "№", "Печь", "Артикул", "Наименование", "Поступление", "Списание", "Остаток" };
+            HeaderRow = new string[] { "№", "Наименование", "Маркировка",  "Поступление", "Списание", "Остаток" };
 
             List<Details> details = DetailsController.instance().getSortedByRowOrder();
 
@@ -74,7 +73,6 @@ namespace WarehouseBlockForms.Reports
 
                 reportRow.Row.Add(detail.RowIndex.ToString());
                 reportRow.Row.Add(detail.OvenName);
-                reportRow.Row.Add(detail.VendorCode);
                 reportRow.Row.Add(detail.Name);
                 reportRow.Row.Add(getSupplyForPeriod(detail, supplysForPeriod).ToString());
                 reportRow.Row.Add(getWriteoffForPeriod(detail, writeoffsForPeriod).ToString());
@@ -88,12 +86,12 @@ namespace WarehouseBlockForms.Reports
             return Create();
         }
 
-        private int getSupplyForPeriod(Details detail, List<Supply> supplys)
+        private double getSupplyForPeriod(Details detail, List<Supply> supplys)
         {
             return SupplyDetailsController.instance().getCountDetailByIdDetailAndSupplyList(detail.Id, supplys);
         }
 
-        private int getWriteoffForPeriod(Details detail, List<Writeoff> writeoffs)
+        private double getWriteoffForPeriod(Details detail, List<Writeoff> writeoffs)
         {
             return WriteoffDetailsController.instance().getCountByIdDetailAndWriteoffList(detail.Id, writeoffs);
         }

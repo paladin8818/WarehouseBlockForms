@@ -21,8 +21,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="165"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="165"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label
@@ -42,21 +40,7 @@
                 Grid.Column="1"
                 x:Name="cbxRecipients"
                 Margin="5, 0, 10, 0"></ComboBox>
-            <Label 
-                Grid.Row="0" Grid.Column="2" 
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                VerticalContentAlignment="Center"
-                FontSize="20"
-                Content="Номер заявки" ></Label>
-            <TextBox 
-                VerticalContentAlignment="Center"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Grid.Row="0" Grid.Column="3"
-                FontSize="16"
-                x:Name="tbxAppNumber" 
-                Margin="5, 0, 10, 0"></TextBox>
+
         </Grid>
         <DataGrid 
             FontSize="18"
@@ -65,6 +49,7 @@
             Style="{StaticResource styleDefaultDataGrid}"
             Margin="0, 55, 0, 50">
             <DataGrid.Columns>
+                
                 <DataGridTemplateColumn
                     CanUserSort="True"
                     SortMemberPath="RowIndex"
@@ -77,11 +62,12 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="IdOven"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Печь"
+                    Header="Наименование"
                     Width="260">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -97,11 +83,12 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="IdDetails"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Деталь"
+                    Header="Маркировка"
                     Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -117,26 +104,12 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn
-                    CanUserSort="True"
-                    SortMemberPath="VendorCode"
-                    CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Артикул"
-                    Width="200">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock                                 
-                                Width="Auto"
-                                VerticalAlignment="Center"
-                                Text="{Binding Path=VendorCode}"></TextBlock>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CanUserSort="True"
                     SortMemberPath="DetailsCount"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Header="Количество"
+                    Header="Метры"
                     Width="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -150,6 +123,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn 
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Header="Удалить из списка"
@@ -172,6 +146,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
         <Button 

@@ -76,20 +76,10 @@ namespace WarehouseBlockForms.Helpers
             set
             {
                 id_detail = value;
-                RaisePropertyChaned("VendorCode", null);
                 RaisePropertyChaned("DetailsCount", null);
                 RaisePropertyChaned("Detail", null);
                 RaisePropertyChaned("MinCount", null);
                 RaisePropertyChaned("MaxCount", null);
-            }
-        }
-
-        public string VendorCode
-        {
-            get
-            {
-                Details detail = DetailsController.instance().getById(IdDetails);
-                return (detail == null) ? "" : detail.VendorCode;
             }
         }
 
@@ -123,7 +113,7 @@ namespace WarehouseBlockForms.Helpers
             }
         }
 
-        public int MaxCount
+        public double MaxCount
         {
             get
             {

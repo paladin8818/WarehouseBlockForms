@@ -59,7 +59,6 @@ namespace WarehouseBlockForms.Helpers
             swHelper.Id = writeoff.Id;
             swHelper.TName = writeoff.TName;
             swHelper.OperationDate = writeoff.WriteoffDate;
-            swHelper.AppNumber = writeoff.AppNumber;
             swHelper.IdRecipient = writeoff.IdRecipient;
 
             swHelper.TWriteoff = writeoff;
@@ -74,7 +73,6 @@ namespace WarehouseBlockForms.Helpers
             swHelper.Id = supply.Id;
             swHelper.TName = supply.TName;
             swHelper.OperationDate = supply.SupplyDate;
-
             swHelper.TSupply = supply;
 
             return swHelper;

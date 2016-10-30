@@ -11,11 +11,11 @@ namespace WarehouseBlockForms.Models
     class WriteoffDetails : Model
     {
 
-        private int details_count;
+        private double details_count;
         private int id_details;
         private int id_writeoff;
 
-        public int DetailsCount
+        public double DetailsCount
         {
             get
             {

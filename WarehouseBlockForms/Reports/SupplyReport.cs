@@ -39,20 +39,18 @@ namespace WarehouseBlockForms.Reports
         public override bool Save(DateTime startDate, DateTime endDate)
         {
 
-            ColumnCount = 5;
+            ColumnCount = 4;
 
             columnsWidth.Add(1, 13.14);
-            columnsWidth.Add(2, 8.29);
-            columnsWidth.Add(3, 8.29);
-            columnsWidth.Add(4, 42.57);
-            columnsWidth.Add(5, 10.86);
+            columnsWidth.Add(2, 16.57);
+            columnsWidth.Add(3, 42.57);
+            columnsWidth.Add(4, 10.86);
 
             List<Supply> supplysForPeriod = SupplyController.instance().getByPeriod(startDate, endDate);
             List<ReportRow> reportData = new List<ReportRow>();
             foreach (Supply supply in supplysForPeriod)
             {
                 ReportRow emptyRow = new ReportRow();
-                emptyRow.Row.Add("");
                 emptyRow.Row.Add("");
                 emptyRow.Row.Add("");
                 emptyRow.Row.Add("");
@@ -74,9 +72,8 @@ namespace WarehouseBlockForms.Reports
                 ReportRow reportRowHead = new ReportRow();
 
                 reportRowHead.Row.Add("№");
-                reportRowHead.Row.Add("Печь");
-                reportRowHead.Row.Add("Артикул");
                 reportRowHead.Row.Add("Наименование");
+                reportRowHead.Row.Add("Маркировка");
                 reportRowHead.Row.Add("Количество");
 
                 reportData.Add(reportRowHead);
@@ -94,7 +91,6 @@ namespace WarehouseBlockForms.Reports
 
                     detailRow.Row.Add((i + 1).ToString());
                     detailRow.Row.Add(currentDetail.OvenName);
-                    detailRow.Row.Add(currentDetail.VendorCode);
                     detailRow.Row.Add(currentDetail.Name);
                     detailRow.Row.Add(supplyDetails[i].DetailsCount.ToString());
 

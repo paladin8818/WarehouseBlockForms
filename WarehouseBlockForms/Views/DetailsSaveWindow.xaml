@@ -6,11 +6,10 @@
         xmlns:local="clr-namespace:WarehouseBlockForms.Views"
         mc:Ignorable="d"
         FontSize="18"
-        Title="Добавление детали" Height="250" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Добавление детали" Height="200" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="5">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
             </Grid.RowDefinitions>
@@ -23,7 +22,7 @@
                 Margin="0, 0, 0, 5"
                 Grid.Row="0" Grid.Column="0"
                 x:Name="label"
-                Content="Название детали" 
+                Content="Маркировка" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
             <TextBox 
@@ -36,28 +35,13 @@
             <Label 
                 Margin="0, 0, 0, 5"
                 Grid.Row="1" Grid.Column="0"
-                x:Name="label1"
-                Content="Артикул детали" 
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
-            <TextBox 
-                Margin="0, 0, 0, 5"
-                Grid.Row="1" Grid.Column="1"
-                x:Name="tbxVendorCode"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch" 
-                VerticalContentAlignment="Center"/>
-
-            <Label 
-                Margin="0, 0, 0, 5"
-                Grid.Row="2" Grid.Column="0"
                 x:Name="label2" 
-                Content="Печь" 
+                Content="Наименование" 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
             <ComboBox 
                 Margin="0, 0, 0, 5"
-                Grid.Row="2" Grid.Column="1"
+                Grid.Row="1" Grid.Column="1"
                 VerticalContentAlignment="Center"
                 DisplayMemberPath="Name"
                 SelectedValuePath="Id"

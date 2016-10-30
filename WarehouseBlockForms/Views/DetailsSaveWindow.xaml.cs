@@ -31,7 +31,6 @@ namespace WarehouseBlockForms.Views
             if(details != null)
             {
                 tbxName.Text = details.Name;
-                tbxVendorCode.Text = details.VendorCode;
                 cbxOven.SelectedValue = details.IdOven;
 
                 Title = "Редактирование детали (" + details.Name + ")";
@@ -57,7 +56,6 @@ namespace WarehouseBlockForms.Views
                 details = new Details();
             }
             details.Name = tbxName.Text;
-            details.VendorCode = tbxVendorCode.Text;
             details.IdOven = (int)cbxOven.SelectedValue;
             if(details.save())
             {
@@ -74,11 +72,6 @@ namespace WarehouseBlockForms.Views
             if (tbxName.Text == "")
             {
                 MessageBox.Show("Введите название детали!");
-                return false;
-            }
-            if(tbxVendorCode.Text == "")
-            {
-                MessageBox.Show("Введите артикул детали!");
                 return false;
             }
             if(cbxOven.SelectedIndex == -1)

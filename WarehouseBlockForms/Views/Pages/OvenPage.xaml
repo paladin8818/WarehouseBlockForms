@@ -34,7 +34,7 @@
                     SortMemberPath="Name"
                     CellStyle="{StaticResource styleDefaultDataGridCell}"
                     Width="*"
-                    Header="Название печи">
+                    Header="Наименование">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
