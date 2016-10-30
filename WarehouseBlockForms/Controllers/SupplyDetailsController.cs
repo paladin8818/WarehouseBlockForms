@@ -96,7 +96,7 @@ namespace WarehouseBlockForms.Controllers
         {
             SupplyDetails supplyDetails = new SupplyDetails();
             supplyDetails.Id = reader.GetInt32(0);
-            supplyDetails.DetailsCount = reader.GetInt32(1);
+            supplyDetails.DetailsCount = reader.GetDouble(1);
             supplyDetails.IdDetails = reader.GetInt32(2);
             supplyDetails.IdSupply = reader.GetInt32(3);
             add(supplyDetails);

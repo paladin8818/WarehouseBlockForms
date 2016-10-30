@@ -67,11 +67,11 @@
                     </DataGridTemplateColumn>
 
                     <DataGridTemplateColumn 
-                    CanUserSort="True"
-                    CellStyle="{StaticResource styleDefaultDataGridCell}"
-                    Width="*"
-                    SortMemberPath="IdRecipient"
-                    Header="Получатель">
+                        CanUserSort="True"
+                        CellStyle="{StaticResource styleDefaultDataGridCell}"
+                        Width="*"
+                        SortMemberPath="IdRecipient"
+                        Header="Получатель">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Recipient.FullName}" VerticalAlignment="Center" Margin="5, 0, 0, 0" />

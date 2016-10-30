@@ -40,7 +40,7 @@ namespace WarehouseBlockForms.Views
 
             //Notify
 
-            notifyIcon.Text = "Склад блок-форм";
+            notifyIcon.Text = "Склад";
             if(System.IO.File.Exists("logo.ico"))
             {
                 notifyIcon.Icon = new System.Drawing.Icon("logo.ico");

@@ -14,7 +14,7 @@ namespace WarehouseBlockForms.Helpers
 
         private int id_oven;
         private int id_detail;
-        private int details_count = 1;
+        private double details_count = 0.1;
 
         public int RowIndex
         {
@@ -82,7 +82,7 @@ namespace WarehouseBlockForms.Helpers
         }
 
 
-        public int DetailsCount
+        public double DetailsCount
         {
             get
             {

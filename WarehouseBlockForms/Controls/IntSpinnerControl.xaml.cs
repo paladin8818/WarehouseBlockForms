@@ -22,46 +22,49 @@ namespace WarehouseBlockForms.Controls
     public partial class IntSpinnerControl : UserControl
     {
 
-        private int? OldValue;
+        private double? OldValue;
 
         #region Minimum DP
-        public int Minimum
+        public double Minimum
         {
             get
             {
-                return (int)GetValue(MinimumProperty);
+                return (double)GetValue(MinimumProperty);
             }
             set
             {
                 SetMinimumDP(MinimumProperty, value);
             }
         }
-        public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(int),
-            typeof(IntSpinnerControl), new FrameworkPropertyMetadata(Int32.MinValue,
+        public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(double),
+            typeof(IntSpinnerControl), new FrameworkPropertyMetadata(Double.MinValue,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 new PropertyChangedCallback(OnMinimumChanged)));
 
         public event PropertyChangedEventHandler MinimumChanged;
-        void SetMinimumDP(DependencyProperty property, int value)
+        void SetMinimumDP(DependencyProperty property, double value)
         {
             SetValue(property, value);
-            MinimumChanged?.Invoke(this, new PropertyChangedEventArgs(value.ToString()));
+            if (MinimumChanged != null)
+            {
+                MinimumChanged(this, new PropertyChangedEventArgs(value.ToString()));
+            }
         }
         private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             IntSpinnerControl spinner = d as IntSpinnerControl;
             if (spinner == null) return;
-            spinner.Minimum = (int)e.NewValue;
+            spinner.Minimum = (double)e.NewValue;
         }
 
         #endregion
 
         #region Maximim DP
-        public int Maximum
+        public double Maximum
         {
             get
             {
-                return (int)GetValue(MaximumProperty);
+                return (double)GetValue(MaximumProperty);
             }
             set
             {
@@ -69,61 +72,67 @@ namespace WarehouseBlockForms.Controls
             }
         }
 
-        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(int),
-            typeof(IntSpinnerControl), new FrameworkPropertyMetadata(Int32.MaxValue,
+        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(double),
+            typeof(IntSpinnerControl), new FrameworkPropertyMetadata(Double.MaxValue,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 new PropertyChangedCallback(OnMaximumChanged)));
 
         public event PropertyChangedEventHandler MaximumChanged;
-        void SetMaximumDP(DependencyProperty property, int value)
+        void SetMaximumDP(DependencyProperty property, double value)
         {
             SetValue(property, value);
-            MaximumChanged?.Invoke(this, new PropertyChangedEventArgs(value.ToString()));
+            if (MaximumChanged != null)
+            {
+                MaximumChanged(this, new PropertyChangedEventArgs(value.ToString()));
+            }
         }
 
         private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             IntSpinnerControl spinner = d as IntSpinnerControl;
             if (spinner == null) return;
-            spinner.Maximum = (int)e.NewValue;
+            spinner.Maximum = (double)e.NewValue;
         }
         #endregion
 
         #region Value DP
-        public int? Value
+        public double? Value
         {
             get
             {
-                return (int?)GetValue(ValueProperty);
+                return (double?)GetValue(ValueProperty);
             }
             set
             {
-                if(value != OldValue)
+                if (value != OldValue)
                 {
-                    int? actualValue = ValidateValue(value);
+                    double? actualValue = ValidateValue(value);
                     OldValue = actualValue;
                     SetValueDP(ValueProperty, actualValue);
                 }
             }
         }
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(int?),
-            typeof(IntSpinnerControl), 
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double?),
+            typeof(IntSpinnerControl),
             new FrameworkPropertyMetadata(null,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 new PropertyChangedCallback(OnValueChanged)));
 
         public event PropertyChangedEventHandler ValueChanged;
-        void SetValueDP(DependencyProperty property, int? value)
+        void SetValueDP(DependencyProperty property, double? value)
         {
             SetValue(property, value);
-            ValueChanged?.Invoke(this, new PropertyChangedEventArgs(property.ToString()));
+            if (ValueChanged != null)
+            {
+                ValueChanged(this, new PropertyChangedEventArgs(property.ToString()));
+            }
         }
 
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             IntSpinnerControl spinner = d as IntSpinnerControl;
             if (spinner == null) return;
-            spinner.Value = spinner.ValidateValue((int?)e.NewValue);
+            spinner.Value = spinner.ValidateValue((double?)e.NewValue);
         }
 
         #endregion
@@ -134,18 +143,19 @@ namespace WarehouseBlockForms.Controls
             (Content as FrameworkElement).DataContext = this;
             btnPlus.Click += delegate
             {
-                Value++;
+                Value = Value + 0.1;
             };
             btnMinus.Click += delegate
             {
-                Value--;
+                Value = Value - 0.1;
             };
 
             tbxField.TextChanged += delegate
             {
+                string val = tbxField.Text.Replace('.', ',');
                 try
                 {
-                    Value = int.Parse(tbxField.Text);
+                    Value = Double.Parse(val);
                 }
                 catch
                 {
@@ -154,9 +164,9 @@ namespace WarehouseBlockForms.Controls
             };
         }
 
-        private int? ValidateValue (int? inputValue)
+        private double? ValidateValue(double? inputValue)
         {
-            int? actualValue = inputValue;
+            double? actualValue = inputValue;
 
             if (actualValue < Minimum)
             {
@@ -170,7 +180,7 @@ namespace WarehouseBlockForms.Controls
             return actualValue;
         }
 
-        private void setEnabledButtons(int? value)
+        private void setEnabledButtons(double? value)
         {
             btnMinus.IsEnabled = true;
             btnPlus.IsEnabled = true;
@@ -179,7 +189,7 @@ namespace WarehouseBlockForms.Controls
             {
                 btnMinus.IsEnabled = false;
             }
-            if(value == Maximum)
+            if (value == Maximum)
             {
                 btnPlus.IsEnabled = false;
             }

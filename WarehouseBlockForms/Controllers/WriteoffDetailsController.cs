@@ -96,7 +96,7 @@ namespace WarehouseBlockForms.Controllers
         {
             WriteoffDetails writeoffDetails = new WriteoffDetails();
             writeoffDetails.Id = reader.GetInt32(0);
-            writeoffDetails.DetailsCount = reader.GetInt32(1);
+            writeoffDetails.DetailsCount = reader.GetDouble(1);
             writeoffDetails.IdDetails = reader.GetInt32(2);
             writeoffDetails.IdWriteoff = reader.GetInt32(3);
             add(writeoffDetails);
