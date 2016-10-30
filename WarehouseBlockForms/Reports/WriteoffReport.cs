@@ -76,7 +76,7 @@ namespace WarehouseBlockForms.Reports
                 reportRow.Row.Add(writeoff.Id.ToString());
                 reportRow.Row.Add("Дата");
                 reportRow.Row.Add(writeoff.WriteoffDate.ToString("dd.MM.yyyy"));
-                reportRow.Row.Add("№ заявки");
+                reportRow.Row.Add("");
                 reportRow.Row.Add("");
                 reportRow.Row.Add("Получатель");
                 reportRow.Row.Add(RecipientsController.instance().getById(writeoff.IdRecipient).FullName);
@@ -88,27 +88,24 @@ namespace WarehouseBlockForms.Reports
 
                 reportRow.Style.Add(ReportRow.RowStyle.Bold);
                 reportRow.Style.Add(ReportRow.RowStyle.TextAlignCenter);
-                
+
 
                 ReportRow reportRowHead = new ReportRow();
 
                 reportRowHead.Row.Add("№");
-
-                reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("Производитель");
-                merge(currentRowIndex, currentRowIndex, 2, 3);
-
-                reportRowHead.Row.Add("");
-                reportRowHead.Row.Add("");
-                reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("Наименование");
-                merge(currentRowIndex, currentRowIndex, 4, 8);
-
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
+                reportRowHead.Row.Add("");
                 reportRowHead.Row.Add("Количество");
 
-                
+                merge(currentRowIndex, currentRowIndex, 2, 3);
+                merge(currentRowIndex, currentRowIndex, 4, 8);
                 border(currentRowIndex, currentRowIndex, 1, 9);
+
                 reportRowHead.Style.Add(ReportRow.RowStyle.Bold);
                 reportRowHead.Style.Add(ReportRow.RowStyle.TextAlignCenter);
 
@@ -124,18 +121,21 @@ namespace WarehouseBlockForms.Reports
                     ReportRow detailRow = new ReportRow();
 
                     detailRow.Row.Add((i + 1).ToString());
+
                     detailRow.Row.Add(currentDetail.OvenName);
                     detailRow.Row.Add("");
-                    detailRow.Row.Add(currentDetail.Name);
+                    merge(currentRowIndex, currentRowIndex, 2, 3);
 
+                    detailRow.Row.Add(currentDetail.Name);
                     detailRow.Row.Add("");
                     detailRow.Row.Add("");
                     detailRow.Row.Add("");
                     detailRow.Row.Add("");
+                    merge(currentRowIndex, currentRowIndex, 4, 8);
 
                     detailRow.Row.Add(writeoffDetails[i].DetailsCount.ToString());
 
-                    merge(currentRowIndex, currentRowIndex, 4, 8);
+
                     border(currentRowIndex, currentRowIndex, 1, 9);
 
                     reportData.Add(detailRow);
