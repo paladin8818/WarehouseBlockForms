@@ -40,8 +40,6 @@ namespace WarehouseBlockForms.Helpers
             get
             {
                 List<Details> details = DetailsController.instance().Collection.Where(x => x.IdOven == IdOven).ToList();
-                details.Sort(DetailRowOrderCompare);
-
                 List<Details> currentDetails = WriteoffDetailsHelperCollection.instance()
                     .Collection.Where(x => x.IdOven == IdOven).Select(z => z.Detail).ToList();
                 //Если уже установлена деталь и таже печь
@@ -49,9 +47,9 @@ namespace WarehouseBlockForms.Helpers
                 {
                     List<Details> existDetail = details.Except(currentDetails).ToList();
                     existDetail.Add(Detail);
-                    return existDetail;
+                    return DetailsController.instance().GetSortedList(existDetail);
                 }
-                return details.Except(currentDetails).ToList();
+                return DetailsController.instance().GetSortedList(details.Except(currentDetails).ToList());
             }
         }
 
@@ -168,14 +166,5 @@ namespace WarehouseBlockForms.Helpers
         {
             RaisePropertyChaned("IsLastRow", null);
         }
-
-        //Details comparator
-        private static int DetailRowOrderCompare(Details x, Details y)
-        {
-            if (x.RowOrder > y.RowOrder) return 1;
-            if (x.RowOrder < y.RowOrder) return -1;
-            return 0;
-        }
-
     }
 }

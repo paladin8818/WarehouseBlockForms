@@ -123,8 +123,7 @@ namespace WarehouseBlockForms.Controllers
 
         public int getPos(Details detail)
         {
-            List<Details> details = _collection.ToList();
-            details.Sort(DetailRowOrderCompare);
+            List<Details> details = getSortedByOrderSetting();
             if (details.Contains(detail))
             {
                 return details.IndexOf(detail) + 1;
@@ -132,14 +131,65 @@ namespace WarehouseBlockForms.Controllers
             return -1;
         }
 
-        public List<Details> getSortedByRowOrder ()
+        public List<Details> getSortedByOrderSetting()
         {
             List<Details> details = _collection.ToList();
-            details.Sort(DetailRowOrderCompare);
+            switch (OrderSettings.DetailsSortColumn)
+            {
+                case "Id": details.Sort(DetailsIdCompare); break;
+                case "Name": details.Sort(DetailsNameCompare); break;
+                case "IdOven": details.Sort(DetailsIdOvenCompare); break;
+                case "RowOrder": details.Sort(DetailsRowOrderCompare); break;
+            }
             return details;
         }
 
-        private static int DetailRowOrderCompare (Details x, Details y)
+        public List<Details> GetSortedList(List<Details> details)
+         {
+             switch (OrderSettings.DetailsSortColumn)
+             {
+                 case "Id": details.Sort(DetailsIdCompare); break;
+                 case "Name": details.Sort(DetailsNameCompare); break;
+                 case "IdOven": details.Sort(DetailsIdOvenCompare); break;
+                 case "RowOrder": details.Sort(DetailsRowOrderCompare); break;
+             }
+              return details;
+        }
+ 
+        private static int DetailsIdCompare(Details x, Details y)
+         {
+             if (OrderSettings.DetailsSortDirection == System.ComponentModel.ListSortDirection.Descending)
+                 return y.Id.CompareTo(x.Id);
+             else
+                 return x.Id.CompareTo(y.Id);
+         }
+ 
+         private static int DetailsNameCompare(Details x, Details y)
+    {
+
+                    if (OrderSettings.DetailsSortDirection == System.ComponentModel.ListSortDirection.Descending)
+                            return y.Name.CompareTo(x.Name);
+                   else
+                return x.Name.CompareTo(y.Name);
+    }
+
+    private static int DetailsIdOvenCompare(Details x, Details y)
+         {
+             if (OrderSettings.DetailsSortDirection == System.ComponentModel.ListSortDirection.Descending)
+                 return y.IdOven.CompareTo(x.IdOven);
+             else
+                 return x.IdOven.CompareTo(y.IdOven);
+         }
+ 
+         private static int DetailsRowOrderCompare(Details x, Details y)
+         {
+             if (OrderSettings.DetailsSortDirection == System.ComponentModel.ListSortDirection.Descending)
+                 return y.RowOrder.CompareTo(x.RowOrder);
+             else
+                 return x.RowOrder.CompareTo(y.RowOrder);
+         }
+
+private static int DetailRowOrderCompare (Details x, Details y)
         {
             if (x.RowOrder > y.RowOrder) return 1;
             if (x.RowOrder < y.RowOrder) return -1;

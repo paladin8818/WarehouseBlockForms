@@ -43,7 +43,7 @@ namespace WarehouseBlockForms.Reports
 
             HeaderRow = new string[] { "№", "Производитель", "Наименование", "Количество" };
 
-            List<Details> details = DetailsController.instance().getSortedByRowOrder();
+            List<Details> details = DetailsController.instance().getSortedByOrderSetting();
             List<ReportRow> reportData = new List<ReportRow>();
             for (int i = 0; i < details.Count; i++)
             {
